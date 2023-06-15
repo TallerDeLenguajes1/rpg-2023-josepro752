@@ -42,3 +42,77 @@ public class Personaje {
     //     Salud = salud;
     // }
 }
+
+public class FabricaDePersonajes {
+    public string[] Nombres = {
+        "Jose",
+        "Ragahe",
+        "Guillo",
+        "Juan",
+        "Marte",
+        "Carlos",
+        "Gero",
+        "Fran",
+    };
+    public string[] Apodos = {
+        "Culebra",
+        "Buitre",
+        "Rata",
+        "Campero",
+        "Caballero",
+        "Muerte",
+        "Manco",
+        "ProPlayer",
+    };
+    public string[] Tipo = {
+        "Elfo",
+        "Orco",
+        "Humano",
+        "Zombie",
+        "Esqueleto",
+        "Mago",
+    };
+    public Personaje CrearPersonaje() {
+        Personaje nuevo = new Personaje();
+        Random valor = new Random();
+        // Datos
+        int anio = valor.Next(1723,2024);
+        int mes = valor.Next(1,13);
+        int dia;
+        switch (mes) {
+            case 2:
+                dia = valor.Next(1,29);
+            break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                dia = valor.Next(1,31);
+            break;
+            default:
+                dia = valor.Next(1,32);
+            break;
+        }
+        nuevo.FechaDeNacimiento = new DateTime (dia,mes,anio);
+        nuevo.Apodo = Apodos[valor.Next(0,8)];
+        nuevo.Nombre = Nombres[valor.Next(0,8)];
+        nuevo.Tipo = Tipo[valor.Next(0,6)];
+        nuevo.Edad = CalcularEdad(nuevo.FechaDeNacimiento);
+        // Caracteristicas
+        nuevo.Velocidad = valor.Next(1,11);
+        nuevo.Destreza = valor.Next(1,6);
+        nuevo.Fuerza = valor.Next(1,11);
+        nuevo.Nivel = valor.Next(1,11);
+        nuevo.Armadura = valor.Next(1,11);
+        nuevo.Salud = 100;
+        return nuevo;
+    }
+    public int CalcularEdad(DateTime fechaDeNacimiento) {
+        DateTime FechaActual = DateTime.Now;
+        int edad = FechaActual.Year - fechaDeNacimiento.Year;
+        if (FechaActual.Month < fechaDeNacimiento.Month || (FechaActual.Month == fechaDeNacimiento.Month && FechaActual.Day < fechaDeNacimiento.Day)) {
+            edad--;
+        }
+        return edad;
+    }
+}
