@@ -1,3 +1,5 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
 namespace EspacioPersonaje;
 public class Personaje {
     // ATRIBUTOS
@@ -55,14 +57,14 @@ public class FabricaDePersonajes {
         "Fran",
     };
     public string[] Apodos = {
-        "Culebra",
-        "Buitre",
-        "Rata",
-        "Campero",
-        "Caballero",
-        "Muerte",
-        "Manco",
-        "ProPlayer",
+        "La Culebra",
+        "El Buitre",
+        "La Rata",
+        "El Campero",
+        "El Muerto",
+        "El Manco",
+        "El ProPlayer",
+        "El Tronco",
     };
     public string[] Tipo = {
         "Elfo",
@@ -93,7 +95,7 @@ public class FabricaDePersonajes {
                 dia = valor.Next(1,32);
             break;
         }
-        nuevo.FechaDeNacimiento = new DateTime (dia,mes,anio);
+        nuevo.FechaDeNacimiento = new DateTime (anio,mes,dia);
         nuevo.Apodo = Apodos[valor.Next(0,8)];
         nuevo.Nombre = Nombres[valor.Next(0,8)];
         nuevo.Tipo = Tipo[valor.Next(0,6)];
@@ -114,5 +116,30 @@ public class FabricaDePersonajes {
             edad--;
         }
         return edad;
+    }
+}
+
+public class PersonajesJson {
+    // Serializacion
+    public void GuardarPersonaje(List<Personaje> lista, string nombre) {
+        string json;
+        //var json = new JsonSerializerOptions {WriteIndented = true};
+        // foreach (var personaje in lista) {
+        //     json = json + "\n\r"+ JsonSerializer.Serialize(personaje/*, config*/);
+        // }
+        json = JsonSerializer.Serialize(lista);
+        File.WriteAllText(nombre+".json",json);
+    }
+    // Deserialicacion
+    public List<Personaje>? LeerPersonaje(string nombreArchivo) {
+        List<Personaje>? listaPersonaje = null;
+        if (Existe(nombreArchivo)) {
+            string json = File.ReadAllText(nombreArchivo);
+            listaPersonaje = JsonSerializer.Deserialize<List<Personaje>>(json);
+        }
+        return listaPersonaje;
+    }
+    public bool Existe(string nombreArchivo) {
+        return (File.Exists(nombreArchivo));
     }
 }
