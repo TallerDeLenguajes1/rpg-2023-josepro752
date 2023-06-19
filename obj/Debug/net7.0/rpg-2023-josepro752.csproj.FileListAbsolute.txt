@@ -13,3 +13,18 @@ C:\Users\josei\OneDrive\Escritorio\FACULTAD\Taller de lenguajes 1\PRACTICA\PROYE
 C:\Users\josei\OneDrive\Escritorio\FACULTAD\Taller de lenguajes 1\PRACTICA\PROYECTO FINAL\rpg-2023-josepro752\obj\Debug\net7.0\rpg-2023-josepro752.pdb
 C:\Users\josei\OneDrive\Escritorio\FACULTAD\Taller de lenguajes 1\PRACTICA\PROYECTO FINAL\rpg-2023-josepro752\obj\Debug\net7.0\rpg-2023-josepro752.genruntimeconfig.cache
 C:\Users\josei\OneDrive\Escritorio\FACULTAD\Taller de lenguajes 1\PRACTICA\PROYECTO FINAL\rpg-2023-josepro752\obj\Debug\net7.0\ref\rpg-2023-josepro752.dll
+E:\FACULTAD 2023\Taller de Lenguajes 1\PRACTICA\Proyecto Final\rpg-2023-josepro752\bin\Debug\net7.0\rpg-2023-josepro752.exe
+E:\FACULTAD 2023\Taller de Lenguajes 1\PRACTICA\Proyecto Final\rpg-2023-josepro752\bin\Debug\net7.0\rpg-2023-josepro752.deps.json
+E:\FACULTAD 2023\Taller de Lenguajes 1\PRACTICA\Proyecto Final\rpg-2023-josepro752\bin\Debug\net7.0\rpg-2023-josepro752.runtimeconfig.json
+E:\FACULTAD 2023\Taller de Lenguajes 1\PRACTICA\Proyecto Final\rpg-2023-josepro752\bin\Debug\net7.0\rpg-2023-josepro752.dll
+E:\FACULTAD 2023\Taller de Lenguajes 1\PRACTICA\Proyecto Final\rpg-2023-josepro752\bin\Debug\net7.0\rpg-2023-josepro752.pdb
+E:\FACULTAD 2023\Taller de Lenguajes 1\PRACTICA\Proyecto Final\rpg-2023-josepro752\obj\Debug\net7.0\rpg-2023-josepro752.csproj.AssemblyReference.cache
+E:\FACULTAD 2023\Taller de Lenguajes 1\PRACTICA\Proyecto Final\rpg-2023-josepro752\obj\Debug\net7.0\rpg-2023-josepro752.GeneratedMSBuildEditorConfig.editorconfig
+E:\FACULTAD 2023\Taller de Lenguajes 1\PRACTICA\Proyecto Final\rpg-2023-josepro752\obj\Debug\net7.0\rpg-2023-josepro752.AssemblyInfoInputs.cache
+E:\FACULTAD 2023\Taller de Lenguajes 1\PRACTICA\Proyecto Final\rpg-2023-josepro752\obj\Debug\net7.0\rpg-2023-josepro752.AssemblyInfo.cs
+E:\FACULTAD 2023\Taller de Lenguajes 1\PRACTICA\Proyecto Final\rpg-2023-josepro752\obj\Debug\net7.0\rpg-2023-josepro752.csproj.CoreCompileInputs.cache
+E:\FACULTAD 2023\Taller de Lenguajes 1\PRACTICA\Proyecto Final\rpg-2023-josepro752\obj\Debug\net7.0\rpg-2023-josepro752.dll
+E:\FACULTAD 2023\Taller de Lenguajes 1\PRACTICA\Proyecto Final\rpg-2023-josepro752\obj\Debug\net7.0\refint\rpg-2023-josepro752.dll
+E:\FACULTAD 2023\Taller de Lenguajes 1\PRACTICA\Proyecto Final\rpg-2023-josepro752\obj\Debug\net7.0\rpg-2023-josepro752.pdb
+E:\FACULTAD 2023\Taller de Lenguajes 1\PRACTICA\Proyecto Final\rpg-2023-josepro752\obj\Debug\net7.0\rpg-2023-josepro752.genruntimeconfig.cache
+E:\FACULTAD 2023\Taller de Lenguajes 1\PRACTICA\Proyecto Final\rpg-2023-josepro752\obj\Debug\net7.0\ref\rpg-2023-josepro752.dll
