@@ -43,6 +43,19 @@ public class Personaje {
     //     Armadura = armadura;
     //     Salud = salud;
     // }
+    public void MostrarPersonaje(Personaje personaje) {
+        System.Console.WriteLine("~~~ PERSONAJE ~~~");
+        System.Console.WriteLine(" - "+ Nombre +", "+ Apodo);
+        System.Console.WriteLine(" - LVL: "+ Nivel + "| TIPO: "+ Tipo);
+        System.Console.WriteLine(" - FECHA DE NACIMIENTO: "+ FechaDeNacimiento.ToShortDateString());
+        System.Console.WriteLine(" - EDAD: "+ Edad);
+        System.Console.WriteLine(" - CARACTERISTICAS:");
+        System.Console.WriteLine("    -> SALUD: "+ Salud);
+        System.Console.WriteLine("    -> VELOCIDAD: "+ Velocidad);
+        System.Console.WriteLine("    -> DESTREZA: "+ Destreza);
+        System.Console.WriteLine("    -> FUERZA: "+ Fuerza);
+        System.Console.WriteLine("    -> ARMADURA: "+ Armadura);
+    }
 }
 
 public class FabricaDePersonajes {
