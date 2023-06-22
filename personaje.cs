@@ -227,7 +227,7 @@ public class FabricaDePersonajes {
                 nuevo.Salud = valor.Next(130,200);
             break;
         }
-        nuevo.Nivel = valor.Next(1,11);
+        nuevo.Nivel = valor.Next(1,7);
         switch (nuevo.Nivel) {
             case 1:
                 nuevo.Salud = nuevo.Salud + 5;
@@ -259,30 +259,36 @@ public class FabricaDePersonajes {
                 nuevo.Armadura = nuevo.Armadura + 1.25f;
                 nuevo.Velocidad = nuevo.Velocidad + 1.25f;
             break;
-            case 7:
+            case 6:
                 nuevo.Salud = nuevo.Salud + 30;
                 nuevo.Fuerza = nuevo.Fuerza + 1.5f;
                 nuevo.Armadura = nuevo.Armadura + 1.5f;
                 nuevo.Velocidad = nuevo.Velocidad + 1.5f;
             break;
-            case 8:
-                nuevo.Salud = nuevo.Salud + 35;
-                nuevo.Fuerza = nuevo.Fuerza + 1.75f;
-                nuevo.Armadura = nuevo.Armadura + 1.75f;
-                nuevo.Velocidad = nuevo.Velocidad + 1.75f;
-            break;
-            case 9:
-                nuevo.Salud = nuevo.Salud + 40;
-                nuevo.Fuerza = nuevo.Fuerza + 2;
-                nuevo.Armadura = nuevo.Armadura + 2;
-                nuevo.Velocidad = nuevo.Velocidad + 2;
-            break;
-            case 10:
-                nuevo.Salud = nuevo.Salud + 45;
-                nuevo.Fuerza = nuevo.Fuerza + 2.25f;
-                nuevo.Armadura = nuevo.Armadura + 2.25f;
-                nuevo.Velocidad = nuevo.Velocidad + 2.25f;
-            break;
+            // case 7:
+            //     nuevo.Salud = nuevo.Salud + 35;
+            //     nuevo.Fuerza = nuevo.Fuerza + 1.75f;
+            //     nuevo.Armadura = nuevo.Armadura + 1.75f;
+            //     nuevo.Velocidad = nuevo.Velocidad + 1.75f;
+            // break;
+            // case 8:
+            //     nuevo.Salud = nuevo.Salud + 40;
+            //     nuevo.Fuerza = nuevo.Fuerza + 2;
+            //     nuevo.Armadura = nuevo.Armadura + 2;
+            //     nuevo.Velocidad = nuevo.Velocidad + 2;
+            // break;
+            // case 9:
+            //     nuevo.Salud = nuevo.Salud + 45;
+            //     nuevo.Fuerza = nuevo.Fuerza + 2.25f;
+            //     nuevo.Armadura = nuevo.Armadura + 2.25f;
+            //     nuevo.Velocidad = nuevo.Velocidad + 2.25f;
+            // break;
+            // case 10:
+            //     nuevo.Salud = nuevo.Salud + 50;
+            //     nuevo.Fuerza = nuevo.Fuerza + 2.5f;
+            //     nuevo.Armadura = nuevo.Armadura + 2.5f;
+            //     nuevo.Velocidad = nuevo.Velocidad + 2.5f;
+            // break;
         }
         rol = roles[valor.Next(0,5)];
         switch (rol) {
@@ -335,6 +341,40 @@ public class FabricaDePersonajes {
             edad--;
         }
         return edad;
+    }
+}
+
+public class MecanicaDeCombate {
+    public Personaje SubirNivel(Personaje personaje) {
+        Random valor = new Random(); 
+        personaje.Nivel = personaje.Nivel + 1;
+        personaje.Salud = personaje.Salud + 5;
+        personaje.Fuerza = personaje.Fuerza + 0.25f;
+        personaje.Armadura = personaje.Armadura + 0.25f;
+        personaje.Velocidad = personaje.Velocidad + 0.25f;
+        switch (valor.Next(1,5)) {
+            case 1:
+                personaje.Armadura = personaje.Armadura + 1;
+            break;
+            case 2:
+                personaje.Fuerza = personaje.Fuerza + 1;
+            break;
+            case 3:
+                personaje.Velocidad = personaje.Velocidad + 1;
+            break;
+            case 4:
+                personaje.Salud = personaje.Salud + 25;
+            break;
+        }
+        return personaje;
+    }
+    public float Combate(Personaje atacante, Personaje defensor) {
+        float dano, ataque, defensa;
+        Random valor = new Random();
+        ataque = atacante.Destreza * atacante.Fuerza * atacante.Nivel;
+        defensa = defensor.Armadura * defensor.Velocidad;
+        dano = (((ataque * valor.Next(1,100)) - defensa)/500);
+        return dano;
     }
 }
 
