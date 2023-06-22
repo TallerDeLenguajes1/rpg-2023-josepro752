@@ -15,6 +15,7 @@ public class Personaje {
     private float fuerza;
     private int nivel;
     private float armadura;
+    private int energia;
     private float salud;
     // PROPIEDADES DE DATOS
     public string? Tipo { get => tipo; set => tipo = value; }
@@ -28,6 +29,7 @@ public class Personaje {
     public float Fuerza { get => fuerza; set => fuerza = value; }
     public int Nivel { get => nivel; set => nivel = value; }
     public float Armadura { get => armadura; set => armadura = value; }
+    public int Energia { get => energia; set => energia = value; }
     public float Salud { get => salud; set => salud = value; }
     // CONSTRUCTOR
     // public Personaje(string tipo, string nombre, string apodo, DateTime fechaDeNacimiento, int edad, int velocidad, int destreza, int fuerza, int nivel, int armadura, int salud) {
@@ -331,6 +333,7 @@ public class FabricaDePersonajes {
         }
         nuevo.Destreza = valor.Next(1,6);
         nuevo.Tipo = nuevo.Tipo + ", " + rol;
+        nuevo.Energia = 2;
         nuevo.Edad = CalcularEdad(nuevo.FechaDeNacimiento);
         return nuevo;
     }
@@ -368,13 +371,117 @@ public class MecanicaDeCombate {
         }
         return personaje;
     }
-    public float Combate(Personaje atacante, Personaje defensor) {
+    public float DanoDeCombate(Personaje atacante, Personaje defensor,int habilidadAtacante, int habilidadDefensor) {
         float dano, ataque, defensa;
         Random valor = new Random();
-        ataque = atacante.Destreza * atacante.Fuerza * atacante.Nivel;
-        defensa = defensor.Armadura * defensor.Velocidad;
-        dano = (((ataque * valor.Next(1,100)) - defensa)/500);
+        if (habilidadAtacante == 0) {
+            habilidadAtacante = 1;
+        }
+        if (habilidadDefensor == 0) {
+            habilidadDefensor = 1;
+        }
+        ataque = atacante.Destreza * atacante.Fuerza * atacante.Nivel * habilidadAtacante;
+        defensa = defensor.Armadura * defensor.Velocidad * habilidadDefensor;
+        dano = (((ataque * valor.Next(1,100)) - defensa)/200);
         return dano;
+    }
+    public Personaje Combate(Personaje personaje1, Personaje personaje2) {
+        Random valor = new Random();
+        float salud1, salud2;
+        int turno = valor.Next(1,3);
+        int ronda = 1;
+        int habilidadAtacante;
+        int habilidadDefensor;
+        salud1 = personaje1.Salud;
+        salud2 = personaje2.Salud;
+        while ((salud1 > 0) && (salud2 > 0)) {
+            habilidadAtacante = 0;
+            habilidadDefensor = 0;
+            System.Console.WriteLine("--> RONDA N"+ronda);
+            if (turno == 1) {
+                turno = 2;
+                //El personaje que ataca utilizara su habilidad especial, si tiene una clara ventaja sobre su adversario
+                if (personaje1.Energia == 5 && (salud1 > (personaje1.Salud/2))) {
+                    habilidadAtacante = 5;
+                    personaje1.Energia = 0;
+                } else {
+                    if (personaje1.Energia == 5 && (salud2 < (personaje2.Salud/3))) {
+                        habilidadAtacante = 5;
+                        personaje1.Energia = 0;
+                    }
+                }
+                //El personaje que defiende utilizara su habilidad especial para defenderse si esta cerca de morir 
+                if (personaje2.Energia == 3 && (salud2 < (personaje2.Salud/3))) {
+                    habilidadDefensor = 3;
+                    personaje2.Energia -= 3;
+                }
+                salud2 = salud2 - DanoDeCombate(personaje1,personaje2,habilidadAtacante,habilidadDefensor);
+                personaje2.Energia += 1;
+                System.Console.WriteLine("--- Resultados del combate ---");
+                System.Console.WriteLine("Personaje: "+ personaje2.Nombre + ", " + personaje2.Apodo);
+                System.Console.WriteLine("Salud: "+ salud2);
+            } else {
+                turno = 1;
+                //El personaje que ataca utilizara su habilidad especial, si tiene una clara ventaja sobre su adversario
+                if (personaje2.Energia == 5 && (salud2 > (personaje2.Salud/2))) {
+                    habilidadAtacante = 5;
+                    personaje2.Energia = 0;
+                } else {
+                    if (personaje2.Energia == 5 && (salud1 < (personaje1.Salud/3))) {
+                        habilidadAtacante = 5;
+                        personaje2.Energia = 0;
+                    }
+                }
+                //El personaje que defiende utilizara su habilidad especial para defenderse si esta cerca de morir 
+                if (personaje1.Energia == 3 && (salud1 < (personaje1.Salud/3))) {
+                    habilidadDefensor = 3;
+                    personaje1.Energia -= 3;
+                }
+                salud1 = salud1 - DanoDeCombate(personaje1,personaje2,habilidadAtacante,habilidadDefensor);
+                personaje1.Energia += 1;
+                System.Console.WriteLine("--- Resultados del combate ---");
+                System.Console.WriteLine("Personaje: "+ personaje1.Nombre + ", " + personaje1.Apodo);
+                System.Console.WriteLine("Salud: "+ salud1);
+            }
+            ronda++;
+        }
+        if (salud1 > 0) {
+            return personaje1;
+        } else {
+            return personaje2;
+        }
+    }
+    public List<Personaje> Sorteo(List<Personaje> listaPersonajes){
+        var Combate = new List<Personaje>();
+        var random = new Random();
+        Personaje p;
+        while(listaPersonajes.Count()!=0){
+            p = listaPersonajes[random.Next(0,listaPersonajes.Count())];
+            Combate.Add(p);
+            listaPersonajes.Remove(p);
+        }
+        return Combate;
+    }
+    public List<Personaje> Ganadores(List<Personaje> Competidores){
+        var resultados = new List<Personaje>();
+        int batalla = 1;
+        Personaje ganador;
+        while(Competidores.Count()>0){
+            System.Console.WriteLine("--- BATALLA NUMERO "+batalla);
+            if(Competidores.Count()>1){
+                System.Console.WriteLine(Competidores[0].Nombre + ", " + Competidores[0].Apodo + " vs " +Competidores[1].Nombre + ", " + Competidores[1].Apodo);
+                ganador = Combate(Competidores[0],Competidores[1]);
+                resultados.Add(ganador);
+                System.Console.WriteLine("EL GANADOR ES: "+ganador.Nombre+ ", "+ganador.Apodo);
+                Competidores.Remove(Competidores[0]);
+                Competidores.Remove(Competidores[0]);
+            }else{
+                resultados.Add(Competidores[0]);
+                Competidores.Remove(Competidores[0]);
+            }
+            batalla++;
+        }
+        return resultados;
     }
 }
 
