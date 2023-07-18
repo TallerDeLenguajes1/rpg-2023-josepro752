@@ -1,3 +1,4 @@
+using System.Net;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 namespace EspacioPersonaje;
@@ -67,22 +68,22 @@ public class FabricaDePersonajes {
         "Galadriel",
         "Thranduil",
         "Elrond",
-        "Eärendil",
-        "Celebrían",
+        "Earendil",
+        "Celebrian",
         "Finrod",
-        "Lúthien",
+        "Luthien",
         "Glorfindel"
     };
     string[] nombresOrcos = {
-        "Gorbag",
-        "Uglúk",
+        "Rotten",
+        "Ghoul",
+        "Lurker",
+        "Zed",
+        "Ugluk",
         "Azog",
         "Lurtz",
         "Gothmog",
         "Shagrat",
-        "Grishnákh",
-        "Mauhúr",
-        "Guritz",
         "Bolg"
     };
     string[] nombresHumanos = {
@@ -104,7 +105,7 @@ public class FabricaDePersonajes {
         "Zed",
         "Mort",
         "Cadaver",
-        "Flesh-Eater",
+        "Flesh",
         "Rotter",
         "Zombie",
         "Decay"
@@ -171,29 +172,36 @@ public class FabricaDePersonajes {
         "Cazador",
         "Saboteador"
     };
+    public void EdadconAPI(string nombre){
+        var url = $"https://api.agify.io?name="+nombre;
+        var request = (HttpWebRequest)WebRequest.Create(url);
+        Random valor = new Random();
+        request.Method = "GET";
+        request.ContentType = "application/json";
+        request.Accept = "application/json";
+        try{
+            using (WebResponse response = request.GetResponse())
+            {
+                using (Stream strReader = response.GetResponseStream())
+                {
+                    if (strReader == null) return ;
+                    using (StreamReader objReader = new StreamReader(strReader))
+                    {
+                        string responseBody = objReader.ReadToEnd();
+                        File.WriteAllText("EdadAPI.json",responseBody);
+                    }
+                }
+            }
+        }
+        catch (WebException ex){
+            Console.WriteLine("Problemas de acceso a la API");
+        }
+    }
     public Personaje CrearPersonaje() {
         Personaje nuevo = new Personaje();
         Random valor = new Random();
         string rol;
         // Datos
-        int anio = valor.Next(1723,2024);
-        int mes = valor.Next(1,13);
-        int dia;
-        switch (mes) {
-            case 2:
-                dia = valor.Next(1,29);
-            break;
-            case 4:
-            case 6:
-            case 9:
-            case 11:
-                dia = valor.Next(1,31);
-            break;
-            default:
-                dia = valor.Next(1,32);
-            break;
-        }
-        nuevo.FechaDeNacimiento = new DateTime (anio,mes,dia);
         nuevo.Tipo = Tipo[valor.Next(0,4)];
         switch (nuevo.Tipo) {
             case "Elfo":
@@ -334,6 +342,31 @@ public class FabricaDePersonajes {
         nuevo.Destreza = valor.Next(1,6);
         nuevo.Tipo = nuevo.Tipo + ", " + rol;
         nuevo.Energia = 2;
+        // Edad con API
+        EdadconAPI(nuevo.Nombre);
+        Root EdadConAPI = new Root();
+        if (File.Exists("EdadAPI.json")) {
+            string json = File.ReadAllText("EdadAPI.json");
+            EdadConAPI = JsonSerializer.Deserialize<Root>(json);
+        }
+        int anio = 2023 - EdadConAPI.age;
+        int mes = valor.Next(1,13);
+        int dia;
+        switch (mes) {
+            case 2:
+                dia = valor.Next(1,29);
+            break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                dia = valor.Next(1,31);
+            break;
+            default:
+                dia = valor.Next(1,32);
+            break;
+        }
+        nuevo.FechaDeNacimiento = new DateTime (anio,mes,dia);
         nuevo.Edad = CalcularEdad(nuevo.FechaDeNacimiento);
         return nuevo;
     }
@@ -387,68 +420,93 @@ public class MecanicaDeCombate {
     }
     public Personaje Combate(Personaje personaje1, Personaje personaje2) {
         Random valor = new Random();
+        string? decision = "1";
         float salud1, salud2;
         int turno = valor.Next(1,3);
         int ronda = 1;
         int habilidadAtacante;
         int habilidadDefensor;
+        int energia1, energia2;
         salud1 = personaje1.Salud;
         salud2 = personaje2.Salud;
-        while ((salud1 > 0) && (salud2 > 0)) {
+        energia1 = personaje1.Energia;
+        energia2 = personaje2.Energia;
+        while ((salud1 > 0) && (salud2 > 0) && (ronda < 20)) {
             habilidadAtacante = 0;
             habilidadDefensor = 0;
-            System.Console.WriteLine("--> RONDA N"+ronda);
+            System.Console.WriteLine("--> TURNO N"+ronda);
             if (turno == 1) {
                 turno = 2;
                 //El personaje que ataca utilizara su habilidad especial, si tiene una clara ventaja sobre su adversario
                 if (personaje1.Energia == 5 && (salud1 > (personaje1.Salud/2))) {
                     habilidadAtacante = 5;
-                    personaje1.Energia = 0;
+                    energia1 = 0;
                 } else {
                     if (personaje1.Energia == 5 && (salud2 < (personaje2.Salud/3))) {
                         habilidadAtacante = 5;
-                        personaje1.Energia = 0;
+                        energia1 = 0;
                     }
                 }
                 //El personaje que defiende utilizara su habilidad especial para defenderse si esta cerca de morir 
                 if (personaje2.Energia == 3 && (salud2 < (personaje2.Salud/3))) {
                     habilidadDefensor = 3;
-                    personaje2.Energia -= 3;
+                    energia2 -= 3;
                 }
                 salud2 = salud2 - DanoDeCombate(personaje1,personaje2,habilidadAtacante,habilidadDefensor);
-                personaje2.Energia += 1;
+                energia2 += 1;
                 System.Console.WriteLine("--- Resultados del combate ---");
                 System.Console.WriteLine("Personaje: "+ personaje2.Nombre + ", " + personaje2.Apodo);
                 System.Console.WriteLine("Salud: "+ salud2);
+                if (decision == "1") {
+                    System.Console.WriteLine("Continuar al siguiente turno? Ingrese 1");
+                    System.Console.WriteLine("Continuar a la siguiente batalla(omitir batalla)? Ingrese 0");
+                    decision = System.Console.ReadLine();
+                }
             } else {
                 turno = 1;
                 //El personaje que ataca utilizara su habilidad especial, si tiene una clara ventaja sobre su adversario
                 if (personaje2.Energia == 5 && (salud2 > (personaje2.Salud/2))) {
-                    habilidadAtacante = 5;
-                    personaje2.Energia = 0;
+                    habilidadAtacante = 7;
+                    energia2 = 0;
                 } else {
                     if (personaje2.Energia == 5 && (salud1 < (personaje1.Salud/3))) {
-                        habilidadAtacante = 5;
-                        personaje2.Energia = 0;
+                        habilidadAtacante = 7;
+                        energia2 = 0;
                     }
                 }
                 //El personaje que defiende utilizara su habilidad especial para defenderse si esta cerca de morir 
                 if (personaje1.Energia == 3 && (salud1 < (personaje1.Salud/3))) {
                     habilidadDefensor = 3;
-                    personaje1.Energia -= 3;
+                    energia1 -= 3;
                 }
                 salud1 = salud1 - DanoDeCombate(personaje1,personaje2,habilidadAtacante,habilidadDefensor);
-                personaje1.Energia += 1;
+                energia1 += 1;
                 System.Console.WriteLine("--- Resultados del combate ---");
                 System.Console.WriteLine("Personaje: "+ personaje1.Nombre + ", " + personaje1.Apodo);
                 System.Console.WriteLine("Salud: "+ salud1);
+                System.Console.WriteLine("----------");
+                if (decision == "1") {
+                    System.Console.WriteLine("Continuar al siguiente turno? Ingrese 1");
+                    System.Console.WriteLine("Continuar a la siguiente batalla(omitir batalla)? Ingrese 0");
+                    decision = System.Console.ReadLine();
+                }
             }
             ronda++;
         }
         if (salud1 > 0) {
             return personaje1;
         } else {
-            return personaje2;
+            if (salud2 > 0) {
+                return personaje2;
+            } else {
+                salud1 = (salud1/personaje1.Salud)*100;
+                salud2 = (salud2/personaje2.Salud)*100;
+                if (salud1 > salud2) {
+                    return personaje1;
+                } else {
+                    return personaje2;
+                }
+            }
         }
     }
     public List<Personaje> Sorteo(List<Personaje> listaPersonajes){
@@ -471,8 +529,10 @@ public class MecanicaDeCombate {
             if(Competidores.Count()>1){
                 System.Console.WriteLine(Competidores[0].Nombre + ", " + Competidores[0].Apodo + " vs " +Competidores[1].Nombre + ", " + Competidores[1].Apodo);
                 ganador = Combate(Competidores[0],Competidores[1]);
+                ganador = SubirNivel(ganador);
                 resultados.Add(ganador);
-                System.Console.WriteLine("EL GANADOR ES: "+ganador.Nombre+ ", "+ganador.Apodo);
+                System.Console.WriteLine("*****EL GANADOR ES: "+ganador.Nombre+ ", "+ganador.Apodo+"*****");
+                System.Console.WriteLine("");
                 Competidores.Remove(Competidores[0]);
                 Competidores.Remove(Competidores[0]);
             }else{
@@ -496,7 +556,7 @@ public class PersonajesJson {
         json = JsonSerializer.Serialize(lista);
         File.WriteAllText(nombre+".json",json);
     }
-    // Deserialicacion
+    // Deserializacion
     public List<Personaje>? LeerPersonaje(string nombreArchivo) {
         List<Personaje>? listaPersonaje = null;
         if (Existe(nombreArchivo)) {
@@ -508,4 +568,10 @@ public class PersonajesJson {
     public bool Existe(string nombreArchivo) {
         return (File.Exists(nombreArchivo));
     }
+}
+
+public class Root {
+    public int count { get; set; }
+    public string name { get; set; }
+    public int age { get; set; }
 }

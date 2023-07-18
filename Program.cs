@@ -2,9 +2,9 @@
 
 Personaje personaje;
 personaje = new FabricaDePersonajes().CrearPersonaje();
-System.Console.WriteLine("Nombre del personaje: "+personaje.Nombre);
 List<Personaje>? listaDePersonajes = new List<Personaje>();
 List<Personaje>? listaDeGanadores = new List<Personaje>();
+//List<Personaje>? listaDeFixture = new List<Personaje>();
 
 var fp = new FabricaDePersonajes();
 
@@ -34,7 +34,7 @@ MecanicaDeCombate mecanica = new MecanicaDeCombate();
 //     ganador = mecanica.SubirNivel(ganador);
 //     listaDeGanadores.Add(ganador);
 // }
-
+//listaDeFixture = listaDePersonajes;
 System.Console.WriteLine("----- OCTAVOS DE FINAL -----");
 listaDePersonajes = mecanica.Sorteo(listaDePersonajes);
 listaDeGanadores = mecanica.Ganadores(listaDePersonajes);
