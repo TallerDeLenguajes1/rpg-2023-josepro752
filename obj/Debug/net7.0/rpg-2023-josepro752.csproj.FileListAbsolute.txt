@@ -28,3 +28,18 @@ E:\FACULTAD 2023\Taller de Lenguajes 1\PRACTICA\Proyecto Final\rpg-2023-josepro7
 E:\FACULTAD 2023\Taller de Lenguajes 1\PRACTICA\Proyecto Final\rpg-2023-josepro752\obj\Debug\net7.0\rpg-2023-josepro752.pdb
 E:\FACULTAD 2023\Taller de Lenguajes 1\PRACTICA\Proyecto Final\rpg-2023-josepro752\obj\Debug\net7.0\rpg-2023-josepro752.genruntimeconfig.cache
 E:\FACULTAD 2023\Taller de Lenguajes 1\PRACTICA\Proyecto Final\rpg-2023-josepro752\obj\Debug\net7.0\ref\rpg-2023-josepro752.dll
+C:\Users\Jose.DESKTOP-6FS2U8S\Downloads\rpg-2023-josepro752\rpg-2023-josepro752\bin\Debug\net7.0\rpg-2023-josepro752.exe
+C:\Users\Jose.DESKTOP-6FS2U8S\Downloads\rpg-2023-josepro752\rpg-2023-josepro752\bin\Debug\net7.0\rpg-2023-josepro752.deps.json
+C:\Users\Jose.DESKTOP-6FS2U8S\Downloads\rpg-2023-josepro752\rpg-2023-josepro752\bin\Debug\net7.0\rpg-2023-josepro752.runtimeconfig.json
+C:\Users\Jose.DESKTOP-6FS2U8S\Downloads\rpg-2023-josepro752\rpg-2023-josepro752\bin\Debug\net7.0\rpg-2023-josepro752.dll
+C:\Users\Jose.DESKTOP-6FS2U8S\Downloads\rpg-2023-josepro752\rpg-2023-josepro752\bin\Debug\net7.0\rpg-2023-josepro752.pdb
+C:\Users\Jose.DESKTOP-6FS2U8S\Downloads\rpg-2023-josepro752\rpg-2023-josepro752\obj\Debug\net7.0\rpg-2023-josepro752.csproj.AssemblyReference.cache
+C:\Users\Jose.DESKTOP-6FS2U8S\Downloads\rpg-2023-josepro752\rpg-2023-josepro752\obj\Debug\net7.0\rpg-2023-josepro752.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jose.DESKTOP-6FS2U8S\Downloads\rpg-2023-josepro752\rpg-2023-josepro752\obj\Debug\net7.0\rpg-2023-josepro752.AssemblyInfoInputs.cache
+C:\Users\Jose.DESKTOP-6FS2U8S\Downloads\rpg-2023-josepro752\rpg-2023-josepro752\obj\Debug\net7.0\rpg-2023-josepro752.AssemblyInfo.cs
+C:\Users\Jose.DESKTOP-6FS2U8S\Downloads\rpg-2023-josepro752\rpg-2023-josepro752\obj\Debug\net7.0\rpg-2023-josepro752.csproj.CoreCompileInputs.cache
+C:\Users\Jose.DESKTOP-6FS2U8S\Downloads\rpg-2023-josepro752\rpg-2023-josepro752\obj\Debug\net7.0\rpg-2023-josepro752.dll
+C:\Users\Jose.DESKTOP-6FS2U8S\Downloads\rpg-2023-josepro752\rpg-2023-josepro752\obj\Debug\net7.0\refint\rpg-2023-josepro752.dll
+C:\Users\Jose.DESKTOP-6FS2U8S\Downloads\rpg-2023-josepro752\rpg-2023-josepro752\obj\Debug\net7.0\rpg-2023-josepro752.pdb
+C:\Users\Jose.DESKTOP-6FS2U8S\Downloads\rpg-2023-josepro752\rpg-2023-josepro752\obj\Debug\net7.0\rpg-2023-josepro752.genruntimeconfig.cache
+C:\Users\Jose.DESKTOP-6FS2U8S\Downloads\rpg-2023-josepro752\rpg-2023-josepro752\obj\Debug\net7.0\ref\rpg-2023-josepro752.dll

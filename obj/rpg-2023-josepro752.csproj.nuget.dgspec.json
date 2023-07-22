@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\FACULTAD 2023\\Taller de Lenguajes 1\\PRACTICA\\Proyecto Final\\rpg-2023-josepro752\\rpg-2023-josepro752.csproj": {}
+    "C:\\Users\\Jose.DESKTOP-6FS2U8S\\Downloads\\rpg-2023-josepro752\\rpg-2023-josepro752\\rpg-2023-josepro752.csproj": {}
   },
   "projects": {
-    "E:\\FACULTAD 2023\\Taller de Lenguajes 1\\PRACTICA\\Proyecto Final\\rpg-2023-josepro752\\rpg-2023-josepro752.csproj": {
+    "C:\\Users\\Jose.DESKTOP-6FS2U8S\\Downloads\\rpg-2023-josepro752\\rpg-2023-josepro752\\rpg-2023-josepro752.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\FACULTAD 2023\\Taller de Lenguajes 1\\PRACTICA\\Proyecto Final\\rpg-2023-josepro752\\rpg-2023-josepro752.csproj",
+        "projectUniqueName": "C:\\Users\\Jose.DESKTOP-6FS2U8S\\Downloads\\rpg-2023-josepro752\\rpg-2023-josepro752\\rpg-2023-josepro752.csproj",
         "projectName": "rpg-2023-josepro752",
-        "projectPath": "E:\\FACULTAD 2023\\Taller de Lenguajes 1\\PRACTICA\\Proyecto Final\\rpg-2023-josepro752\\rpg-2023-josepro752.csproj",
+        "projectPath": "C:\\Users\\Jose.DESKTOP-6FS2U8S\\Downloads\\rpg-2023-josepro752\\rpg-2023-josepro752\\rpg-2023-josepro752.csproj",
         "packagesPath": "C:\\Users\\Jose.DESKTOP-6FS2U8S\\.nuget\\packages\\",
-        "outputPath": "E:\\FACULTAD 2023\\Taller de Lenguajes 1\\PRACTICA\\Proyecto Final\\rpg-2023-josepro752\\obj\\",
+        "outputPath": "C:\\Users\\Jose.DESKTOP-6FS2U8S\\Downloads\\rpg-2023-josepro752\\rpg-2023-josepro752\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Jose.DESKTOP-6FS2U8S\\AppData\\Roaming\\NuGet\\NuGet.Config"
