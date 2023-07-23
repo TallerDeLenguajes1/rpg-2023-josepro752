@@ -1,4 +1,5 @@
 using EspacioPersonaje;
+using InterfazVisual;
 namespace EspacioCombate;
 
 public class MecanicaDeCombate {
@@ -78,6 +79,7 @@ public class MecanicaDeCombate {
                 System.Console.WriteLine("--- Resultados del combate ---");
                 System.Console.WriteLine("Personaje: "+ personaje2.Nombre + ", " + personaje2.Apodo);
                 System.Console.WriteLine("Salud: "+ salud2);
+                System.Console.WriteLine("------------------------------");
                 if (decision == "1") {
                     System.Console.WriteLine("Continuar al siguiente turno? Ingrese 1");
                     System.Console.WriteLine("Continuar a la siguiente batalla(omitir batalla)? Ingrese 0");
@@ -105,13 +107,14 @@ public class MecanicaDeCombate {
                 System.Console.WriteLine("--- Resultados del combate ---");
                 System.Console.WriteLine("Personaje: "+ personaje1.Nombre + ", " + personaje1.Apodo);
                 System.Console.WriteLine("Salud: "+ salud1);
-                System.Console.WriteLine("----------");
+                System.Console.WriteLine("------------------------------");
                 if (decision == "1") {
                     System.Console.WriteLine("Continuar al siguiente turno? Ingrese 1");
                     System.Console.WriteLine("Continuar a la siguiente batalla(omitir batalla)? Ingrese 0");
                     decision = System.Console.ReadLine();
                 }
             }
+            Console.Clear();
             ronda++;
         }
         if (salud1 > 0) {
@@ -146,37 +149,36 @@ public class MecanicaDeCombate {
         int batalla = 1;
         Personaje ganador;
         while(Competidores.Count()>0){
-            System.Console.WriteLine("--- BATALLA NUMERO "+batalla);
+            System.Console.WriteLine("------ BATALLA NUMERO "+batalla+" ------");
+            System.Console.WriteLine(Competidores[0].Nombre + ", " + Competidores[0].Apodo + " vs " +Competidores[1].Nombre + ", " + Competidores[1].Apodo);
             if(Competidores.Count()>1){
-                System.Console.WriteLine(Competidores[0].Nombre + ", " + Competidores[0].Apodo + " vs " +Competidores[1].Nombre + ", " + Competidores[1].Apodo);
                 ganador = Combate(Competidores[0],Competidores[1]);
                 ganador = SubirNivel(ganador);
                 resultados.Add(ganador);
+                System.Console.WriteLine("");
                 System.Console.WriteLine("*****EL GANADOR ES: "+ganador.Nombre+ ", "+ganador.Apodo+"*****");
                 System.Console.WriteLine("");
+                System.Console.WriteLine("- Click Enter -");
+                Console.ReadKey();
+                Console.Clear();
                 Competidores.Remove(Competidores[0]);
                 Competidores.Remove(Competidores[0]);
-            }else{
+            } else {
                 resultados.Add(Competidores[0]);
                 Competidores.Remove(Competidores[0]);
             }
             batalla++;
         }
+        Console.Clear();
         return resultados;
     }
-    public void Competencia(List<Personaje> listaDePersonajes) {
-        List<Personaje> listaDeGanadores = new List<Personaje>();
-        MecanicaDeCombate mecanica = new MecanicaDeCombate();
-        System.Console.WriteLine("----- OCTAVOS DE FINAL ---- -");
-        listaDePersonajes = mecanica.Sorteo(listaDePersonajes); 
-        listaDeGanadores = mecanica.Ganadores(listaDePersonajes);
-        System.Console.WriteLine("----- CUARTOS DE FINAL -----");
-        listaDeGanadores = mecanica.Sorteo(listaDeGanadores);
-        listaDeGanadores = mecanica.Ganadores(listaDeGanadores);
-        System.Console.WriteLine("----- SEMIFINALES -----");
-        listaDeGanadores = mecanica.Sorteo(listaDeGanadores);
-        listaDeGanadores = mecanica.Ganadores(listaDeGanadores);
-        System.Console.WriteLine("----- FINAL -----");
-        listaDeGanadores = mecanica.Ganadores(listaDeGanadores);   
+    public void Fixture(List<Personaje> listaDePersonajes, int cant) {
+        for (int i = 0; i < cant; i++) {
+            System.Console.WriteLine("--- Batalla N"+ (i+1) +" ---");
+            listaDePersonajes[i*2].MostrarPersonajeVersionCorta();
+            Interfaz.EscribirMensaje("         Vs ...");
+            listaDePersonajes[(i*2)+1].MostrarPersonajeVersionCorta();
+            System.Console.WriteLine("----------------------------");
+        }
     }
 }

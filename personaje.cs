@@ -46,6 +46,25 @@ public class Personaje {
     //     Armadura = armadura;
     //     Salud = salud;
     // }
+    private string Centrar(string palabra, int espacios){
+        int Blanco = (espacios - palabra.Length)/2;
+        string palabraCentrada = palabra.PadLeft(palabra.Length + Blanco);
+        palabraCentrada = palabraCentrada.PadRight(espacios);
+        return palabraCentrada;
+    }
+    private string Numero(float num){
+        string aux;
+        if(num<10){
+            aux = "  "+num;
+        }else{
+            if(num<100){
+                aux = " "+num;
+            }else{
+                aux = num.ToString();
+            }
+        }
+        return aux;
+    }
     public void MostrarPersonaje() {
         System.Console.WriteLine("~~~ PERSONAJE ~~~");
         System.Console.WriteLine(" - "+ Nombre +", "+ Apodo);
@@ -58,6 +77,34 @@ public class Personaje {
         System.Console.WriteLine("    -> DESTREZA: "+ Destreza);
         System.Console.WriteLine("    -> FUERZA: "+ Fuerza);
         System.Console.WriteLine("    -> ARMADURA: "+ Armadura);
+    }
+    public void MostrarPersonajeVersionMENU() {
+        Console.WriteLine("╔══════════════════════════════════════════════╗");
+        Console.WriteLine("║                                              ║");
+        Console.WriteLine("║                ╔═══════════╗                 ║");
+        Console.WriteLine("║                ║ PERSONAJE ║                 ║");
+        Console.WriteLine("║                ╚═══════════╝                 ║");
+        Console.WriteLine("║         ┌──────────────────────────┐         ║");
+        Console.WriteLine("║         │ + Nombre: "+ Nombre +", "+ Apodo +"│         ║");
+        Console.WriteLine("║         │ + LVL: "+ Nivel + "                  │         ║");
+        Console.WriteLine("║         │ + TIPO: "+ Tipo + "                 │         ║");
+        Console.WriteLine("║         │ + Fec. Nac.: "+ FechaDeNacimiento.ToShortDateString() +"           │         ║");
+        Console.WriteLine("║         │ + Edad: "+ Edad +"              │         ║");
+        Console.WriteLine("║         ├──────────────────────────┤         ║");
+        Console.WriteLine("║         │    ▲ CARACTERISTICAS ▲   │         ║");
+        Console.WriteLine("║         ├──────────────────────────┤         ║");
+        Console.WriteLine("║         │  ► SALUD ◄: "+ Salud +"           │         ║");
+        Console.WriteLine("║         │  ► VELOCIDAD ◄: "+ Velocidad +"       │         ║");
+        Console.WriteLine("║         │  ► DESTREZA ◄: "+ Destreza +"        │         ║");
+        Console.WriteLine("║         │  ► FUERZA ◄: "+ Fuerza +"          │         ║");
+        Console.WriteLine("║         │  ► ARMADURA ◄: "+ Armadura +"          │         ║");
+        Console.WriteLine("║         └──────────────────────────┘         ║");
+        Console.WriteLine("║                                              ║");
+        Console.WriteLine("╚══════════════════════════════════════════════╝");
+        
+    }
+    public void MostrarPersonajeVersionCorta() {
+        System.Console.WriteLine(Nombre +", "+ Apodo);
     }
 }
 
@@ -97,30 +144,6 @@ public class FabricaDePersonajes {
         "Merry",
         "Eowyn",
         "Faramir"
-    };
-    string[] nombresZombies = {
-        "Rotten",
-        "Ghoul",
-        "Lurker",
-        "Zed",
-        "Mort",
-        "Cadaver",
-        "Flesh",
-        "Rotter",
-        "Zombie",
-        "Decay"
-    };
-    string[] apodosZombies = {
-        "Caminante",
-        "Comecerebros",
-        "Muerto Viviente",
-        "Podrido",
-        "Carroñero",
-        "Putrefacto",
-        "Despojo",
-        "Errante",
-        "No-Muerto",
-        "Pálido"
     };
     string[] apodosHumanos = {
         "Valiente",
@@ -162,7 +185,6 @@ public class FabricaDePersonajes {
         "Elfo",
         "Orco",
         "Humano",
-        "Zombie",
     };
     string[] roles = {
         "Arquero",
@@ -227,14 +249,6 @@ public class FabricaDePersonajes {
                 nuevo.Fuerza = valor.Next(3,11);
                 nuevo.Armadura = valor.Next(3,11);
                 nuevo.Salud = valor.Next(120,150);
-            break;
-            case "Zombie":
-                nuevo.Nombre = nombresZombies[valor.Next(0,9)];
-                nuevo.Apodo = apodosZombies[valor.Next(0,9)];
-                nuevo.Velocidad = valor.Next(1,11);
-                nuevo.Fuerza = valor.Next(4,11);
-                nuevo.Armadura = valor.Next(5,11);
-                nuevo.Salud = valor.Next(130,200);
             break;
         }
         nuevo.Nivel = valor.Next(1,7);
