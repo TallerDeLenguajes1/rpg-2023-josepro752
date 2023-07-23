@@ -330,10 +330,7 @@ public class Interfaz{
         int op = 1, salida = 0;
         do {
             Console.Clear();
-            System.Console.WriteLine("             ╔══════════════════════╗");
-            System.Console.WriteLine("             ║  >>> PERSONAJES <<<  ║");
-            System.Console.WriteLine("             ╚══════════════════════╝");
-            listaDePersonajes[i].MostrarPersonaje();
+            listaDePersonajes[i].MostrarPersonajeVersionMENU();
             System.Console.WriteLine("'Usa las flechas (<- ó ->)para cambiar de personaje'");
             System.Console.WriteLine("          ┌─────────────────────────────┐");
             if(op == 1){

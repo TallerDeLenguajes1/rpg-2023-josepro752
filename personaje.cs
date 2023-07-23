@@ -46,24 +46,12 @@ public class Personaje {
     //     Armadura = armadura;
     //     Salud = salud;
     // }
-    private string Centrar(string palabra, int espacios){
-        int Blanco = (espacios - palabra.Length)/2;
-        string palabraCentrada = palabra.PadLeft(palabra.Length + Blanco);
-        palabraCentrada = palabraCentrada.PadRight(espacios);
-        return palabraCentrada;
-    }
-    private string Numero(float num){
-        string aux;
-        if(num<10){
-            aux = "  "+num;
-        }else{
-            if(num<100){
-                aux = " "+num;
-            }else{
-                aux = num.ToString();
-            }
+    private string Espaciado(string palabra, int espacios){
+        int aux = espacios - palabra.Count();
+        for (int i = 0; i < aux; i++) {
+            palabra = palabra + " ";
         }
-        return aux;
+        return palabra;
     }
     public void MostrarPersonaje() {
         System.Console.WriteLine("~~~ PERSONAJE ~~~");
@@ -79,28 +67,30 @@ public class Personaje {
         System.Console.WriteLine("    -> ARMADURA: "+ Armadura);
     }
     public void MostrarPersonajeVersionMENU() {
-        Console.WriteLine("╔══════════════════════════════════════════════╗");
-        Console.WriteLine("║                                              ║");
-        Console.WriteLine("║                ╔═══════════╗                 ║");
-        Console.WriteLine("║                ║ PERSONAJE ║                 ║");
-        Console.WriteLine("║                ╚═══════════╝                 ║");
-        Console.WriteLine("║         ┌──────────────────────────┐         ║");
-        Console.WriteLine("║         │ + Nombre: "+ Nombre +", "+ Apodo +"│         ║");
-        Console.WriteLine("║         │ + LVL: "+ Nivel + "                  │         ║");
-        Console.WriteLine("║         │ + TIPO: "+ Tipo + "                 │         ║");
-        Console.WriteLine("║         │ + Fec. Nac.: "+ FechaDeNacimiento.ToShortDateString() +"           │         ║");
-        Console.WriteLine("║         │ + Edad: "+ Edad +"              │         ║");
-        Console.WriteLine("║         ├──────────────────────────┤         ║");
-        Console.WriteLine("║         │    ▲ CARACTERISTICAS ▲   │         ║");
-        Console.WriteLine("║         ├──────────────────────────┤         ║");
-        Console.WriteLine("║         │  ► SALUD ◄: "+ Salud +"           │         ║");
-        Console.WriteLine("║         │  ► VELOCIDAD ◄: "+ Velocidad +"       │         ║");
-        Console.WriteLine("║         │  ► DESTREZA ◄: "+ Destreza +"        │         ║");
-        Console.WriteLine("║         │  ► FUERZA ◄: "+ Fuerza +"          │         ║");
-        Console.WriteLine("║         │  ► ARMADURA ◄: "+ Armadura +"          │         ║");
-        Console.WriteLine("║         └──────────────────────────┘         ║");
-        Console.WriteLine("║                                              ║");
-        Console.WriteLine("╚══════════════════════════════════════════════╝");
+        Console.WriteLine("╔═════════════════════════════════════════════╗");
+        Console.WriteLine("║                                             ║");
+        Console.WriteLine("║                ╔═══════════╗                ║");
+        Console.WriteLine("║                ║ PERSONAJE ║                ║");
+        Console.WriteLine("║                ╚═══════════╝                ║");
+        Console.WriteLine("║     ┌─────────────────────────────────┐     ║");
+        Console.WriteLine("║     │     → DATOS DEL PERSONAJE ←     │     ║");
+        Console.WriteLine("║     ├─────────────────────────────────┤     ║");
+        Console.WriteLine("║     │ ♦ Nombre: "+ Espaciado(Nombre +", "+ Apodo,21) +" │     ║"); //21 espacios
+        Console.WriteLine("║     │ ♦ LVL: "+ Espaciado(Nivel.ToString(),24) +" │     ║"); //24 espacios
+        Console.WriteLine("║     │ ♦ TIPO: "+ Espaciado(Tipo,23) +" │     ║"); //23 espacioes
+        Console.WriteLine("║     │ ♦ Fec. Nac.: "+ Espaciado(FechaDeNacimiento.ToShortDateString(),18) +" │     ║"); //148espacios
+        Console.WriteLine("║     │ ♦ Edad: "+ Espaciado(Edad.ToString(),23) +" │     ║"); //23 espacios
+        Console.WriteLine("║     ├─────────────────────────────────┤     ║");
+        Console.WriteLine("║     │       ▲ CARACTERISTICAS ▲       │     ║");
+        Console.WriteLine("║     ├─────────────────────────────────┤     ║");
+        Console.WriteLine("║     │      ♥ SALUD ♥: "+ Espaciado(Salud.ToString(),15) +" │     ║"); //15
+        Console.WriteLine("║     │      ↨ VELOCIDAD ↨: "+ Espaciado(Velocidad.ToString(),11) +" │     ║"); //11
+        Console.WriteLine("║     │      ♫ DESTREZA ♫: "+ Espaciado(Destreza.ToString(),12) +" │     ║"); //12
+        Console.WriteLine("║     │      ♠ FUERZA ♠: "+ Espaciado(Fuerza.ToString(),14) +" │     ║"); //14
+        Console.WriteLine("║     │      ◘ ARMADURA ◘: "+ Espaciado(Armadura.ToString(),12) +" │     ║"); //12
+        Console.WriteLine("║     └─────────────────────────────────┘     ║");
+        Console.WriteLine("║                                             ║");
+        Console.WriteLine("╚═════════════════════════════════════════════╝");
         
     }
     public void MostrarPersonajeVersionCorta() {
@@ -164,7 +154,7 @@ public class FabricaDePersonajes {
         "Danzante",
         "Esmeralda",
         "Radiante",
-        "Susurrante",
+        "Caminante",
         "Sombra",
         "Ardiente",
         "Celestial"
@@ -224,7 +214,7 @@ public class FabricaDePersonajes {
         Random valor = new Random();
         string rol;
         // Datos
-        nuevo.Tipo = Tipo[valor.Next(0,4)];
+        nuevo.Tipo = Tipo[valor.Next(0,3)];
         switch (nuevo.Tipo) {
             case "Elfo":
                 nuevo.Nombre = nombresElficos[valor.Next(0,9)];
