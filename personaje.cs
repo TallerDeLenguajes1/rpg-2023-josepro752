@@ -1,6 +1,7 @@
 using System.Net;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using InterfazVisual;
 namespace EspacioPersonaje;
 public class Personaje {
     // ATRIBUTOS
@@ -46,13 +47,6 @@ public class Personaje {
     //     Armadura = armadura;
     //     Salud = salud;
     // }
-    private string Espaciado(string palabra, int espacios){
-        int aux = espacios - palabra.Count();
-        for (int i = 0; i < aux; i++) {
-            palabra = palabra + " ";
-        }
-        return palabra;
-    }
     public void MostrarPersonaje() {
         System.Console.WriteLine("~~~ PERSONAJE ~~~");
         System.Console.WriteLine(" - "+ Nombre +", "+ Apodo);
@@ -75,19 +69,19 @@ public class Personaje {
         Console.WriteLine("║     ┌─────────────────────────────────┐     ║");
         Console.WriteLine("║     │     → DATOS DEL PERSONAJE ←     │     ║");
         Console.WriteLine("║     ├─────────────────────────────────┤     ║");
-        Console.WriteLine("║     │ ♦ Nombre: "+ Espaciado(Nombre +", "+ Apodo,21) +" │     ║"); //21 espacios
-        Console.WriteLine("║     │ ♦ LVL: "+ Espaciado(Nivel.ToString(),24) +" │     ║"); //24 espacios
-        Console.WriteLine("║     │ ♦ TIPO: "+ Espaciado(Tipo,23) +" │     ║"); //23 espacioes
-        Console.WriteLine("║     │ ♦ Fec. Nac.: "+ Espaciado(FechaDeNacimiento.ToShortDateString(),18) +" │     ║"); //148espacios
-        Console.WriteLine("║     │ ♦ Edad: "+ Espaciado(Edad.ToString(),23) +" │     ║"); //23 espacios
+        Console.WriteLine("║     │ ♦ Nombre: "+ Interfaz.Espaciado(Nombre +", "+ Apodo,21) +" │     ║"); //21 espacios
+        Console.WriteLine("║     │ ♦ LVL: "+ Interfaz.Espaciado(Nivel.ToString(),24) +" │     ║"); //24 espacios
+        Console.WriteLine("║     │ ♦ TIPO: "+ Interfaz.Espaciado(Tipo,23) +" │     ║"); //23 espacioes
+        Console.WriteLine("║     │ ♦ Fec. Nac.: "+ Interfaz.Espaciado(FechaDeNacimiento.ToShortDateString(),18) +" │     ║"); //148espacios
+        Console.WriteLine("║     │ ♦ Edad: "+ Interfaz.Espaciado(Edad.ToString(),23) +" │     ║"); //23 espacios
         Console.WriteLine("║     ├─────────────────────────────────┤     ║");
         Console.WriteLine("║     │       ▲ CARACTERISTICAS ▲       │     ║");
         Console.WriteLine("║     ├─────────────────────────────────┤     ║");
-        Console.WriteLine("║     │      ♥ SALUD ♥: "+ Espaciado(Salud.ToString(),15) +" │     ║"); //15
-        Console.WriteLine("║     │      ↨ VELOCIDAD ↨: "+ Espaciado(Velocidad.ToString(),11) +" │     ║"); //11
-        Console.WriteLine("║     │      ♫ DESTREZA ♫: "+ Espaciado(Destreza.ToString(),12) +" │     ║"); //12
-        Console.WriteLine("║     │      ♠ FUERZA ♠: "+ Espaciado(Fuerza.ToString(),14) +" │     ║"); //14
-        Console.WriteLine("║     │      ◘ ARMADURA ◘: "+ Espaciado(Armadura.ToString(),12) +" │     ║"); //12
+        Console.WriteLine("║     │      ♥ SALUD ♥: "+ Interfaz.Espaciado(Salud.ToString(),15) +" │     ║"); //15
+        Console.WriteLine("║     │      ↨ VELOCIDAD ↨: "+ Interfaz.Espaciado(Velocidad.ToString(),11) +" │     ║"); //11
+        Console.WriteLine("║     │      ♫ DESTREZA ♫: "+ Interfaz.Espaciado(Destreza.ToString(),12) +" │     ║"); //12
+        Console.WriteLine("║     │      ♠ FUERZA ♠: "+ Interfaz.Espaciado(Fuerza.ToString(),14) +" │     ║"); //14
+        Console.WriteLine("║     │      ◘ ARMADURA ◘: "+ Interfaz.Espaciado(Armadura.ToString(),12) +" │     ║"); //12
         Console.WriteLine("║     └─────────────────────────────────┘     ║");
         Console.WriteLine("║                                             ║");
         Console.WriteLine("╚═════════════════════════════════════════════╝");
@@ -206,7 +200,7 @@ public class FabricaDePersonajes {
             }
         }
         catch (WebException ex){
-            Console.WriteLine("Problemas de acceso a la API");
+            Console.WriteLine("Limite de accesos a la API superados, se creara una edad aleatoria");
         }
     }
     public Personaje CrearPersonaje() {
@@ -349,11 +343,14 @@ public class FabricaDePersonajes {
         // Edad con API
         EdadconAPI(nuevo.Nombre);
         Root EdadConAPI = new Root();
+        int anio;
         if (File.Exists("EdadAPI.json")) {
             string json = File.ReadAllText("EdadAPI.json");
             EdadConAPI = JsonSerializer.Deserialize<Root>(json);
+            anio = 2023 - EdadConAPI.age;
+        } else {
+            anio = valor.Next(1723,2024);
         }
-        int anio = 2023 - EdadConAPI.age;
         int mes = valor.Next(1,13);
         int dia;
         switch (mes) {

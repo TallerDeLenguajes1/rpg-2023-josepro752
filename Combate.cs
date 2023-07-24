@@ -53,10 +53,13 @@ public class MecanicaDeCombate {
         salud2 = personaje2.Salud;
         energia1 = personaje1.Energia;
         energia2 = personaje2.Energia;
-        while ((salud1 > 0) && (salud2 > 0) && (ronda < 20)) {
+        while ((salud1 > 0) && (salud2 > 0) && (ronda < 21)) {
             habilidadAtacante = 0;
             habilidadDefensor = 0;
-            System.Console.WriteLine("--> TURNO N"+ronda);
+            System.Console.WriteLine("                   ╔══════════════════════════╗");
+            System.Console.WriteLine("                   ║     --> TURNO N"+ Interfaz.Espaciado(ronda.ToString() + " <--",6) +"    ║");
+            System.Console.WriteLine("                   ╚══════════════════════════╝");
+            System.Console.WriteLine("");
             if (turno == 1) {
                 turno = 2;
                 //El personaje que ataca utilizara su habilidad especial, si tiene una clara ventaja sobre su adversario
@@ -76,13 +79,17 @@ public class MecanicaDeCombate {
                 }
                 salud2 = salud2 - DanoDeCombate(personaje1,personaje2,habilidadAtacante,habilidadDefensor);
                 energia2 += 1;
-                System.Console.WriteLine("--- Resultados del combate ---");
-                System.Console.WriteLine("Personaje: "+ personaje2.Nombre + ", " + personaje2.Apodo);
-                System.Console.WriteLine("Salud: "+ salud2);
-                System.Console.WriteLine("------------------------------");
+                System.Console.WriteLine("             ╔═══════════════════════════════════════╗");
+                System.Console.WriteLine("             ║  Personaje: "+ Interfaz.Espaciado(personaje2.Nombre +", "+ personaje2.Apodo,25) +" ║"); //25 espacios
+                System.Console.WriteLine("             ║  Salud restante: "+ Interfaz.Espaciado(salud2.ToString(),20) +" ║"); //20 espacios
+                System.Console.WriteLine("             ╚═══════════════════════════════════════╝");
                 if (decision == "1") {
-                    System.Console.WriteLine("Continuar al siguiente turno? Ingrese 1");
-                    System.Console.WriteLine("Continuar a la siguiente batalla(omitir batalla)? Ingrese 0");
+                System.Console.WriteLine("");
+                    System.Console.WriteLine("         ┌──────────────────────────────────────────────┐");
+                    System.Console.WriteLine("         │       . Siguiente turno (Ingrese 1) .        │");
+                    System.Console.WriteLine("         ├──────────────────────────────────────────────┤");
+                    System.Console.WriteLine("         │        . Omitir batalla (Ingrese 0) .        │");
+                    System.Console.WriteLine("         └──────────────────────────────────────────────┘");
                     decision = System.Console.ReadLine();
                 }
             } else {
@@ -104,30 +111,62 @@ public class MecanicaDeCombate {
                 }
                 salud1 = salud1 - DanoDeCombate(personaje1,personaje2,habilidadAtacante,habilidadDefensor);
                 energia1 += 1;
-                System.Console.WriteLine("--- Resultados del combate ---");
-                System.Console.WriteLine("Personaje: "+ personaje1.Nombre + ", " + personaje1.Apodo);
-                System.Console.WriteLine("Salud: "+ salud1);
-                System.Console.WriteLine("------------------------------");
+                System.Console.WriteLine("             ╔═══════════════════════════════════════╗");
+                System.Console.WriteLine("             ║  Personaje: "+ Interfaz.Espaciado(personaje1.Nombre +", "+ personaje1.Apodo,25) +" ║"); //25 espacios
+                System.Console.WriteLine("             ║  Salud restante: "+ Interfaz.Espaciado(salud1.ToString(),20) +" ║"); //20 espacios
+                System.Console.WriteLine("             ╚═══════════════════════════════════════╝");
                 if (decision == "1") {
-                    System.Console.WriteLine("Continuar al siguiente turno? Ingrese 1");
-                    System.Console.WriteLine("Continuar a la siguiente batalla(omitir batalla)? Ingrese 0");
+                    System.Console.WriteLine("");
+                    System.Console.WriteLine("         ┌──────────────────────────────────────────────┐");
+                    System.Console.WriteLine("         │       . Siguiente turno (Ingrese 1) .        │");
+                    System.Console.WriteLine("         ├──────────────────────────────────────────────┤");
+                    System.Console.WriteLine("         │        . Omitir batalla (Ingrese 0) .        │");
+                    System.Console.WriteLine("         └──────────────────────────────────────────────┘");
                     decision = System.Console.ReadLine();
                 }
             }
             Console.Clear();
             ronda++;
         }
-        if (salud1 > 0) {
+        if (salud1 > 0 && salud2 < 0) {
+                System.Console.WriteLine("");
+                System.Console.WriteLine("            ╔═══════════════════════════════════════════════╗");
+                System.Console.WriteLine("            ║  "+ Interfaz.Espaciado("EL GANADOR ES: "+ personaje1.Nombre +", "+ personaje1.Apodo,43) +"  ║"); //21 espacios
+                System.Console.WriteLine("            ╟───────────────────────────────────────────────╢");
+                System.Console.WriteLine("            ║                 Ganó por K.O                  ║");
+                System.Console.WriteLine("            ╚═══════════════════════════════════════════════╝");
+                Interfaz.Continuar();
             return personaje1;
         } else {
-            if (salud2 > 0) {
+            if (salud2 > 0 && salud1 < 0) {
+                System.Console.WriteLine("");
+                System.Console.WriteLine("            ╔═══════════════════════════════════════════════╗");
+                System.Console.WriteLine("            ║  "+ Interfaz.Espaciado("EL GANADOR ES: "+ personaje2.Nombre +", "+ personaje2.Apodo,43) +"  ║"); //21 espacios
+                System.Console.WriteLine("            ╟───────────────────────────────────────────────╢");
+                System.Console.WriteLine("            ║                 Ganó por K.O                  ║");
+                System.Console.WriteLine("            ╚═══════════════════════════════════════════════╝");
+                Interfaz.Continuar();
                 return personaje2;
             } else {
                 salud1 = (salud1/personaje1.Salud)*100;
                 salud2 = (salud2/personaje2.Salud)*100;
                 if (salud1 > salud2) {
+                    System.Console.WriteLine("");
+                    System.Console.WriteLine("            ╔═══════════════════════════════════════╗");
+                    System.Console.WriteLine("            ║  EL GANADOR ES: "+ Interfaz.Espaciado(personaje1.Nombre +", "+ personaje1.Apodo,21) +" ║"); //21 espacios
+                    System.Console.WriteLine("            ╟───────────────────────────────────────╢");
+                    System.Console.WriteLine("            ║    Ganó por mayor cantidad de vida    ║");
+                    System.Console.WriteLine("            ╚═══════════════════════════════════════╝");
+                    Interfaz.Continuar();;
                     return personaje1;
                 } else {
+                    System.Console.WriteLine("");
+                    System.Console.WriteLine("            ╔═══════════════════════════════════════╗");
+                    System.Console.WriteLine("            ║  EL GANADOR ES: "+ Interfaz.Espaciado(personaje2.Nombre +", "+ personaje2.Apodo,21) +" ║"); //21 espacios
+                    System.Console.WriteLine("            ╟───────────────────────────────────────╢");
+                    System.Console.WriteLine("            ║    Ganó por mayor cantidad de vida    ║");
+                    System.Console.WriteLine("            ╚═══════════════════════════════════════╝");
+                    Interfaz.Continuar();
                     return personaje2;
                 }
             }
@@ -149,18 +188,18 @@ public class MecanicaDeCombate {
         int batalla = 1;
         Personaje ganador;
         while(Competidores.Count()>0){
-            System.Console.WriteLine("------ BATALLA NUMERO "+batalla+" ------");
-            System.Console.WriteLine(Competidores[0].Nombre + ", " + Competidores[0].Apodo + " vs " +Competidores[1].Nombre + ", " + Competidores[1].Apodo);
+            System.Console.WriteLine("        ╔═════════════════════════════════════════════════════════╗");
+            System.Console.WriteLine("        ║                      BATALLA N"+ batalla +"                         ║");
+            System.Console.WriteLine("        ╚═════════════════════════════════════════════════════════╝");
+            System.Console.WriteLine("");
+            System.Console.WriteLine("        ┌─────────────────────────────────────────────────────────┐");
+            System.Console.WriteLine("        │   . "+ Interfaz.Espaciado(Competidores[0].Nombre +", "+ Competidores[0].Apodo,20) +" vs.   "+ Interfaz.Espaciado(Competidores[1].Nombre +", "+ Competidores[1].Apodo,20) +" .   │");
+            System.Console.WriteLine("        └─────────────────────────────────────────────────────────┘");
             if(Competidores.Count()>1){
+                Interfaz.Continuar();
                 ganador = Combate(Competidores[0],Competidores[1]);
                 ganador = SubirNivel(ganador);
                 resultados.Add(ganador);
-                System.Console.WriteLine("");
-                System.Console.WriteLine("*****EL GANADOR ES: "+ganador.Nombre+ ", "+ganador.Apodo+"*****");
-                System.Console.WriteLine("");
-                System.Console.WriteLine("- Click Enter -");
-                Console.ReadKey();
-                Console.Clear();
                 Competidores.Remove(Competidores[0]);
                 Competidores.Remove(Competidores[0]);
             } else {
@@ -173,12 +212,15 @@ public class MecanicaDeCombate {
         return resultados;
     }
     public void Fixture(List<Personaje> listaDePersonajes, int cant) {
+        Interfaz.EscribirMensajeV2(" ╔═══════════════════════════════════════════════════════════╗");
         for (int i = 0; i < cant; i++) {
-            System.Console.WriteLine("--- Batalla N"+ (i+1) +" ---");
-            listaDePersonajes[i*2].MostrarPersonajeVersionCorta();
-            Interfaz.EscribirMensaje("         Vs ...");
-            listaDePersonajes[(i*2)+1].MostrarPersonajeVersionCorta();
-            System.Console.WriteLine("----------------------------");
+            System.Console.WriteLine(" ║                         COMBATE N"+ (i+1) +"                        ║");
+            System.Console.WriteLine(" ╟───────────────────────────────────────────────────────────╢");
+            System.Console.WriteLine(" ║        "+ Interfaz.Espaciado(listaDePersonajes[i*2].Nombre +", "+ listaDePersonajes[i*2].Apodo,21) +"vs.     "+ Interfaz.Espaciado(listaDePersonajes[(i*2)+1].Nombre +", "+ listaDePersonajes[(i*2)+1].Apodo,21) +" ║");
+            if (i != cant - 1) {
+            System.Console.WriteLine(" ╠═══════════════════════════════════════════════════════════╣");
+            }
         }
+            Interfaz.EscribirMensajeV2(" ╚═══════════════════════════════════════════════════════════╝");
     }
 }

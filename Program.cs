@@ -39,3 +39,5 @@ if (listaDePersonajes != null) {
 // } else {
 //     System.Console.WriteLine("No hay personajes");
 // }
+
+File.Delete("EdadAPI.json");
