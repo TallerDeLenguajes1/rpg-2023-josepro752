@@ -79,10 +79,7 @@ public class MecanicaDeCombate {
                 }
                 salud2 = salud2 - DanoDeCombate(personaje1,personaje2,habilidadAtacante,habilidadDefensor);
                 energia2 += 1;
-                System.Console.WriteLine("             ╔═══════════════════════════════════════╗");
-                System.Console.WriteLine("             ║  Personaje: "+ Interfaz.Espaciado(personaje2.Nombre +", "+ personaje2.Apodo,25) +" ║"); //25 espacios
-                System.Console.WriteLine("             ║  Salud restante: "+ Interfaz.Espaciado(salud2.ToString(),20) +" ║"); //20 espacios
-                System.Console.WriteLine("             ╚═══════════════════════════════════════╝");
+                ResultadoCombate(personaje2, salud2);
                 if (decision == "1") {
                 System.Console.WriteLine("");
                     System.Console.WriteLine("         ┌──────────────────────────────────────────────┐");
@@ -111,10 +108,7 @@ public class MecanicaDeCombate {
                 }
                 salud1 = salud1 - DanoDeCombate(personaje1,personaje2,habilidadAtacante,habilidadDefensor);
                 energia1 += 1;
-                System.Console.WriteLine("             ╔═══════════════════════════════════════╗");
-                System.Console.WriteLine("             ║  Personaje: "+ Interfaz.Espaciado(personaje1.Nombre +", "+ personaje1.Apodo,25) +" ║"); //25 espacios
-                System.Console.WriteLine("             ║  Salud restante: "+ Interfaz.Espaciado(salud1.ToString(),20) +" ║"); //20 espacios
-                System.Console.WriteLine("             ╚═══════════════════════════════════════╝");
+                ResultadoCombate(personaje1, salud1);
                 if (decision == "1") {
                     System.Console.WriteLine("");
                     System.Console.WriteLine("         ┌──────────────────────────────────────────────┐");
@@ -177,7 +171,7 @@ public class MecanicaDeCombate {
             System.Console.WriteLine("        ╚═════════════════════════════════════════════════════════╝");
             System.Console.WriteLine("");
             System.Console.WriteLine("        ┌─────────────────────────────────────────────────────────┐");
-            System.Console.WriteLine("        │   . "+ Interfaz.Espaciado(Competidores[0].Nombre +", "+ Competidores[0].Apodo,20) +" vs.   "+ Interfaz.Espaciado(Competidores[1].Nombre +", "+ Competidores[1].Apodo,20) +" .   │");
+            System.Console.WriteLine("        │   . "+ Interfaz.Centrar(Competidores[0].Nombre +", "+ Competidores[0].Apodo +"   vs.  "+Competidores[1].Nombre +", "+ Competidores[1].Apodo,47) +" .   │");
             System.Console.WriteLine("        └─────────────────────────────────────────────────────────┘");
             if(Competidores.Count()>1){
                 Interfaz.Continuar();
@@ -200,7 +194,7 @@ public class MecanicaDeCombate {
         for (int i = 0; i < cant; i++) {
             System.Console.WriteLine(" ║                         COMBATE N"+ (i+1) +"                        ║");
             System.Console.WriteLine(" ╟───────────────────────────────────────────────────────────╢");
-            System.Console.WriteLine(" ║        "+ Interfaz.Espaciado(listaDePersonajes[i*2].Nombre +", "+ listaDePersonajes[i*2].Apodo,21) +"vs.     "+ Interfaz.Espaciado(listaDePersonajes[(i*2)+1].Nombre +", "+ listaDePersonajes[(i*2)+1].Apodo,21) +" ║");
+            System.Console.WriteLine(" ║"+ Interfaz.Centrar("-->"+ listaDePersonajes[i*2].Nombre +", "+ listaDePersonajes[i*2].Apodo +"   vs.   "+ listaDePersonajes[(i*2)+1].Nombre +", "+ listaDePersonajes[(i*2)+1].Apodo +"<--",59) +"║");
             if (i != cant - 1) {
             System.Console.WriteLine(" ╠═══════════════════════════════════════════════════════════╣");
             }
@@ -208,17 +202,23 @@ public class MecanicaDeCombate {
             Interfaz.EscribirMensajeV2(" ╚═══════════════════════════════════════════════════════════╝");
     }
     public void GanadorPorVida(Personaje personaje) {
-        System.Console.WriteLine("            ╔═══════════════════════════════════════╗");
-        System.Console.WriteLine("            ║"+ Interfaz.Centrar("EL GANADOR ES: "+ personaje.Nombre +", "+ personaje.Apodo,49) +"║"); //49 espacios
-        System.Console.WriteLine("            ╟───────────────────────────────────────╢");
-        System.Console.WriteLine("            ║    Ganó por mayor cantidad de vida    ║");
-        System.Console.WriteLine("            ╚═══════════════════════════════════════╝");
+        System.Console.WriteLine("            ╔═══════════════════════════════════════════════╗");
+        System.Console.WriteLine("            ║"+ Interfaz.Centrar("EL GANADOR ES: "+ personaje.Nombre +", "+ personaje.Apodo,47) +"║"); //47 espacios
+        System.Console.WriteLine("            ╟───────────────────────────────────────────────╢");
+        System.Console.WriteLine("            ║        Ganó por mayor cantidad de vida        ║");
+        System.Console.WriteLine("            ╚═══════════════════════════════════════════════╝");
     }
     public void GanadorPorKO(Personaje personaje) {
         System.Console.WriteLine("            ╔═══════════════════════════════════════════════╗");
-        System.Console.WriteLine("            ║"+ Interfaz.Centrar("EL GANADOR ES: "+ personaje.Nombre +", "+ personaje.Apodo,49) +"║"); //49 espacios
+        System.Console.WriteLine("            ║"+ Interfaz.Centrar("EL GANADOR ES: "+ personaje.Nombre +", "+ personaje.Apodo,47) +"║"); //47 espacios
         System.Console.WriteLine("            ╟───────────────────────────────────────────────╢");
         System.Console.WriteLine("            ║                 Ganó por K.O                  ║");
         System.Console.WriteLine("            ╚═══════════════════════════════════════════════╝");
+    }
+    public void ResultadoCombate(Personaje personaje, float salud) {
+        System.Console.WriteLine("             ╔═══════════════════════════════════════╗");
+        System.Console.WriteLine("             ║"+ Interfaz.Centrar("Personaje: "+ personaje.Nombre +", "+ personaje.Apodo,38) +" ║"); //38 espacios
+        System.Console.WriteLine("             ║"+ Interfaz.Centrar("Salud restante: "+ salud.ToString(),38) +" ║"); //38 espacios
+        System.Console.WriteLine("             ╚═══════════════════════════════════════╝");
     }
 }
