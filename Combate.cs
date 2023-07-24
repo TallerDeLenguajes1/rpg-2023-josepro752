@@ -130,21 +130,13 @@ public class MecanicaDeCombate {
         }
         if (salud1 > 0 && salud2 < 0) {
                 System.Console.WriteLine("");
-                System.Console.WriteLine("            ╔═══════════════════════════════════════════════╗");
-                System.Console.WriteLine("            ║  "+ Interfaz.Espaciado("EL GANADOR ES: "+ personaje1.Nombre +", "+ personaje1.Apodo,43) +"  ║"); //21 espacios
-                System.Console.WriteLine("            ╟───────────────────────────────────────────────╢");
-                System.Console.WriteLine("            ║                 Ganó por K.O                  ║");
-                System.Console.WriteLine("            ╚═══════════════════════════════════════════════╝");
+                GanadorPorKO(personaje1);
                 Interfaz.Continuar();
             return personaje1;
         } else {
             if (salud2 > 0 && salud1 < 0) {
                 System.Console.WriteLine("");
-                System.Console.WriteLine("            ╔═══════════════════════════════════════════════╗");
-                System.Console.WriteLine("            ║  "+ Interfaz.Espaciado("EL GANADOR ES: "+ personaje2.Nombre +", "+ personaje2.Apodo,43) +"  ║"); //21 espacios
-                System.Console.WriteLine("            ╟───────────────────────────────────────────────╢");
-                System.Console.WriteLine("            ║                 Ganó por K.O                  ║");
-                System.Console.WriteLine("            ╚═══════════════════════════════════════════════╝");
+                GanadorPorKO(personaje1);
                 Interfaz.Continuar();
                 return personaje2;
             } else {
@@ -152,20 +144,12 @@ public class MecanicaDeCombate {
                 salud2 = (salud2/personaje2.Salud)*100;
                 if (salud1 > salud2) {
                     System.Console.WriteLine("");
-                    System.Console.WriteLine("            ╔═══════════════════════════════════════╗");
-                    System.Console.WriteLine("            ║  EL GANADOR ES: "+ Interfaz.Espaciado(personaje1.Nombre +", "+ personaje1.Apodo,21) +" ║"); //21 espacios
-                    System.Console.WriteLine("            ╟───────────────────────────────────────╢");
-                    System.Console.WriteLine("            ║    Ganó por mayor cantidad de vida    ║");
-                    System.Console.WriteLine("            ╚═══════════════════════════════════════╝");
+                    GanadorPorVida(personaje2);
                     Interfaz.Continuar();;
                     return personaje1;
                 } else {
                     System.Console.WriteLine("");
-                    System.Console.WriteLine("            ╔═══════════════════════════════════════╗");
-                    System.Console.WriteLine("            ║  EL GANADOR ES: "+ Interfaz.Espaciado(personaje2.Nombre +", "+ personaje2.Apodo,21) +" ║"); //21 espacios
-                    System.Console.WriteLine("            ╟───────────────────────────────────────╢");
-                    System.Console.WriteLine("            ║    Ganó por mayor cantidad de vida    ║");
-                    System.Console.WriteLine("            ╚═══════════════════════════════════════╝");
+                    GanadorPorVida(personaje2);
                     Interfaz.Continuar();
                     return personaje2;
                 }
@@ -222,5 +206,19 @@ public class MecanicaDeCombate {
             }
         }
             Interfaz.EscribirMensajeV2(" ╚═══════════════════════════════════════════════════════════╝");
+    }
+    public void GanadorPorVida(Personaje personaje) {
+        System.Console.WriteLine("            ╔═══════════════════════════════════════╗");
+        System.Console.WriteLine("            ║"+ Interfaz.Centrar("EL GANADOR ES: "+ personaje.Nombre +", "+ personaje.Apodo,49) +"║"); //49 espacios
+        System.Console.WriteLine("            ╟───────────────────────────────────────╢");
+        System.Console.WriteLine("            ║    Ganó por mayor cantidad de vida    ║");
+        System.Console.WriteLine("            ╚═══════════════════════════════════════╝");
+    }
+    public void GanadorPorKO(Personaje personaje) {
+        System.Console.WriteLine("            ╔═══════════════════════════════════════════════╗");
+        System.Console.WriteLine("            ║"+ Interfaz.Centrar("EL GANADOR ES: "+ personaje.Nombre +", "+ personaje.Apodo,49) +"║"); //49 espacios
+        System.Console.WriteLine("            ╟───────────────────────────────────────────────╢");
+        System.Console.WriteLine("            ║                 Ganó por K.O                  ║");
+        System.Console.WriteLine("            ╚═══════════════════════════════════════════════╝");
     }
 }

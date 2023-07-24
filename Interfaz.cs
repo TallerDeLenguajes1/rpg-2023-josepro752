@@ -34,14 +34,20 @@ public class Interfaz{
         }
         Console.WriteLine();
     }
-    public static void EscribirMensajeV4000(string mensaje){
+    public static void EscribirMensajeV3000(string mensaje){
         for (int i = 0; i < mensaje.Length; i++)
         {
             Console.Write(mensaje[i]);
             Thread.Sleep(50); // Retardo de 50 milisegundos entre cada carácter
         }
-        Thread.Sleep(4000); // Retardo de 4 segundos
+        Thread.Sleep(3000); // Retardo de 3 segundos
         Console.WriteLine();
+    }
+    public static string Centrar(string palabra, int espacios){
+        int Blanco = (espacios - palabra.Length)/2;
+        string palabraCentrada = palabra.PadLeft(palabra.Length + Blanco);
+        palabraCentrada = palabraCentrada.PadRight(espacios);
+        return palabraCentrada;
     }
     public static void Menu(PersonajesJson pjson, List<Personaje> listaDePersonajes, FabricaDePersonajes fabricaPersonaje){
         ConsoleKeyInfo key;
@@ -308,7 +314,7 @@ public class Interfaz{
                         listaDePersonajes = mecanica.Sorteo(listaDePersonajes);
                         mecanica.Fixture(listaDeGanadores,1);
                         Continuar();
-                        EscribirMensajeV4000("El ganador del Torneo es... ");
+                        EscribirMensajeV3000("El ganador del Torneo es... ");
                         System.Console.WriteLine("");
                         // FIN
                         if (listaDeGanadores != null) {
