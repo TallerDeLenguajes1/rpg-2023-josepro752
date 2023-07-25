@@ -394,6 +394,11 @@ public class PersonajesJson {
         json = JsonSerializer.Serialize(lista);
         File.WriteAllText(nombre+".json",json);
     }
+    public void GuardarPersonajeIndividual(Personaje personaje, string nombre) {
+        string json;
+        json = JsonSerializer.Serialize(personaje);
+        File.WriteAllText(nombre+".json",json);
+    }
     // Deserializacion
     public List<Personaje>? LeerPersonaje(string nombreArchivo) {
         List<Personaje>? listaPersonaje = null;
