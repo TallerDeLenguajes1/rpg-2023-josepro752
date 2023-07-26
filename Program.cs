@@ -12,13 +12,13 @@ FabricaDePersonajes personaje = new FabricaDePersonajes();
 PersonajesJson Json = new PersonajesJson();
 
 
-var restablecer = Json.LeerPersonaje("PersonajePrueba");
+var restablecer = Json.LeerPersonaje("PersonajeTorneoPrueba");
 
 if (restablecer != null) {
     Json.GuardarPersonaje(restablecer,"PersonajesTorneo");
 }
 
-if (Json.Existe("PersonajesTorneo")) {
+if (!Json.Existe("PersonajesTorneo")) {
     listaDePersonajesTorneo = personaje.CrearParticipantes("PersonajesTorneo",16);
 }
 
@@ -27,7 +27,7 @@ if (restablecer != null) {
     Json.GuardarPersonaje(restablecer,"PersonajesNiveles");
 }
 
-if (Json.Existe("PersonajesNiveles")) {
+if (!Json.Existe("PersonajesNiveles")) {
     listaDePersonajesNiveles = personaje.CrearParticipantes("PersonajesNiveles",10);
 }
 
@@ -36,11 +36,9 @@ if (restablecer != null) {
     Json.GuardarPersonaje(restablecer,"PersonajesSupervivencia");
 }
 
-if (Json.Existe("PersonajesSupervivencia")) {
+if (!Json.Existe("PersonajesSupervivencia")) {
     listaDePersonajesSupervivencia = personaje.CrearParticipantes("PersonajesSupervivencia",10);
 }
-
-
 
 
 if (Json != null) {

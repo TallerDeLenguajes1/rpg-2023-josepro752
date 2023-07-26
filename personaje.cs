@@ -411,7 +411,7 @@ public class PersonajesJson {
     public Personaje? LeerPersonajeIndividual(string nombreArchivo) {
         Personaje? personaje = null;
         if (Existe(nombreArchivo)) {
-            string json = File.ReadAllText(nombreArchivo);
+            string json = File.ReadAllText(nombreArchivo + ".json");
             personaje = JsonSerializer.Deserialize<Personaje>(json);
         }
         return personaje;

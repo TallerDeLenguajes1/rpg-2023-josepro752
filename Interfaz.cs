@@ -341,9 +341,9 @@ public class Interfaz{
             }
             System.Console.WriteLine("   ├───────────────────────────────────────────────────────────────┤");
             if(op == 2){
-            System.Console.WriteLine("  »│  . Crear Nuevos Personajes aleatorios (modo Supervivencia) .  │«");
+            System.Console.WriteLine("  »│   . Crear Nuevos Enemigos aleatorios (modo Supervivencia) .   │«");
             }else{
-            System.Console.WriteLine("   │  . Crear Nuevos Personajes aleatorios (modo Supervivencia) .  │");
+            System.Console.WriteLine("   │   . Crear Nuevos Enemigos aleatorios (modo Supervivencia) .   │");
             }
             System.Console.WriteLine("   ├───────────────────────────────────────────────────────────────┤");
             if(op == 3){
@@ -353,9 +353,9 @@ public class Interfaz{
             }
             System.Console.WriteLine("   ├───────────────────────────────────────────────────────────────┤");
             if(op == 4){
-            System.Console.WriteLine("  »│       . Ir a Elegir Personaje para jugar Supervivencia .      │«");
+            System.Console.WriteLine("  »│      . Ir a Elegir Personaje para jugar Supervivencia .       │«");
             }else{
-            System.Console.WriteLine("   │       . Ir a Elegir Personaje para jugar Supervivencia .      │");
+            System.Console.WriteLine("   │      . Ir a Elegir Personaje para jugar Supervivencia .       │");
             }
             System.Console.WriteLine("   ├───────────────────────────────────────────────────────────────┤");
             if(op == 5){
@@ -401,7 +401,7 @@ public class Interfaz{
                     }
                     Continuar();
                 }
-                if(op == 2){
+                if (op == 2) {
                     Console.Clear();
                     EscribirMensaje("Se estan creando los nuevos personajes...");
                     EscribirMensaje("Guardando los nuevos personajes...");
@@ -433,11 +433,6 @@ public class Interfaz{
                         EscribirMensaje("- A continuación, seleccione el personaje que desea utilizar en el Modo Supervivencia -");
                         Continuar();
                         ElegirPersonaje(Supervivencia,pjson);
-                        if (pjson.Existe("PersonajeActual")) { //Por si se borra en tiempo de ejecución el personaje actual
-                            Console.Clear();
-                            EscribirMensaje("- El personaje ha sido seleccionado correctamente -");
-                            Continuar();
-                        }
                     } else {
                         aux2 = fabricarPersonaje.CrearParticipantes("PersonajesSupervivencia",10);
                         EscribirMensaje("No hay personajes para seleccionar");
@@ -503,9 +498,13 @@ public class Interfaz{
                 if(aux.Key == ConsoleKey.Enter){
                     if(op == 1){
                         pjson.GuardarPersonajeIndividual(listaP[i],"PersonajeActual");// SERIALIZAR EL PERSONAJE SELECCIONADO
-                    }else if(op == 2){
-                        salida = 1;
+                        if (pjson.Existe("PersonajeActual")) { //Por si se borra en tiempo de ejecución el personaje actual
+                            Console.Clear();
+                            EscribirMensaje("- El personaje ha sido seleccionado correctamente -");
+                            Continuar();
+                        }
                     }
+                    salida = 1;
                 }
             } while (aux.Key != ConsoleKey.Escape && salida != 1);
         }
