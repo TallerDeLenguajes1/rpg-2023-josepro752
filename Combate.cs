@@ -86,7 +86,7 @@ public class MecanicaDeCombate {
                 energia1 += 1;
                 energia2 += 1;
                 if (decision.KeyChar == '\r') {
-                    ResultadoCombate(personaje1,personaje2,energia2,salud2,dano);
+                    ResultadoCombate(personaje1,personaje2,energia2,salud2,dano,"TURNO de:");
                     decision = Opciones(decision);
                 }
             } else {
@@ -116,7 +116,7 @@ public class MecanicaDeCombate {
                 energia1 += 1;
                 energia2 += 1;
                 if (decision.KeyChar == '\r') {
-                    ResultadoCombate(personaje2,personaje1,energia1,salud1,dano);
+                    ResultadoCombate(personaje2,personaje1,energia1,salud1,dano,"TURNO de:");
                     decision = Opciones(decision);
                 }
             }
@@ -151,34 +151,41 @@ public class MecanicaDeCombate {
             }
         }
     }
-    public Personaje CombateIAvsJugador(Personaje jugador, Personaje personajeIA) {
+    public Personaje CombateIAvsJugador(Personaje jugador, Personaje personajeIA, Personaje auxiliarIA, float danoAnterior) {
         Random valor = new Random();
         ConsoleKeyInfo decision;
         decision = new ConsoleKeyInfo('\r',ConsoleKey.Enter,false,false,false);
-        float saludJugador, saludIA, dano;
+        float saludJugador, saludIA;
         int habilidadAtacante, habilidadDefensor, energiaJugador, energiaIA;
         int turno = valor.Next(1,3);
         int ronda = 1;
-        saludJugador = jugador.Salud;
-        saludIA = personajeIA.Salud;
+        // Guardo Valores anteriores de personajeIA para poder mostrarlos y saber mejor como atacar
+        auxiliarIA.Salud = personajeIA.Salud;
+        auxiliarIA.Nombre = personajeIA.Nombre;
+        auxiliarIA.Apodo = personajeIA.Apodo;
+        auxiliarIA.Energia = personajeIA.Energia;
+        // Fin
         energiaJugador = jugador.Energia;
         energiaIA = personajeIA.Energia;
+        saludJugador = jugador.Salud;
+        saludIA = personajeIA.Salud;
         while ((saludJugador > 0) && (saludIA > 0) && (ronda < 21)) {
             habilidadAtacante = 0;
             habilidadDefensor = 0;
-            System.Console.WriteLine("                              ╔═══════════════════════════════════════╗");
-            System.Console.WriteLine("                              ║ "+ Interfaz.CentrarV2(" RONDA N"+ronda/2+" ",37) +" ║"); // 37 espacios
-            System.Console.WriteLine("                              ╚═══════════════════════════════════════╝");
+            System.Console.WriteLine("                                 ╔═══════════════════════════════════════╗");
+            System.Console.WriteLine("                                 ║ "+ Interfaz.CentrarV2(" RONDA N"+ronda/2+" ",37) +" ║"); // 37 espacios
+            System.Console.WriteLine("                                 ╚═══════════════════════════════════════╝");
             System.Console.WriteLine("");
-            if (turno == 1) {
+            if (turno == 1) { // TURNO DEL JUGADOR
                 turno = 2;
                 //El jugador decide como atacar
-                System.Console.WriteLine("                              ╔═══════════════════════════════════════╗");
-                System.Console.WriteLine("                              ╟──────┬────────────────────────┬───────╢");
-                System.Console.WriteLine("                              ╟──────┤   ELIGE COMO ATACAR    ├───────╢");
-                System.Console.WriteLine("                              ╟──────┴────────────────────────┴───────╢");
-                System.Console.WriteLine("                              ╚═══════════════════════════════════════╝");
+                System.Console.WriteLine("                                 ╔═══════════════════════════════════════╗");
+                System.Console.WriteLine("                                 ╟──────┬────────────────────────┬───────╢");
+                System.Console.WriteLine("                                 ╟──────┤   ELIGE COMO ATACAR    ├───────╢");
+                System.Console.WriteLine("                                 ╟──────┴────────────────────────┴───────╢");
+                System.Console.WriteLine("                                 ╚═══════════════════════════════════════╝");
                 System.Console.WriteLine("");
+                ResultadoCombate(auxiliarIA,auxiliarIA,auxiliarIA.Energia,auxiliarIA.Salud,danoAnterior,"TU TURNO:");
                 decision = OpcionesAtaque(decision,energiaJugador);
                 if (decision.KeyChar == ' ' && energiaJugador >= 7) {
                     habilidadAtacante = 2;
@@ -197,13 +204,13 @@ public class MecanicaDeCombate {
                     habilidadDefensor = 3;
                     energiaIA -= 5;
                 }
-                dano = DanoDeCombate(jugador,personajeIA,habilidadAtacante,habilidadDefensor);
-                saludIA = saludIA - dano;
+                danoAnterior = DanoDeCombate(jugador,personajeIA,habilidadAtacante,habilidadDefensor);
+                saludIA = saludIA - danoAnterior;
                 energiaJugador += 1;
                 energiaIA += 1;
                 Console.Clear();
                 System.Console.WriteLine("");
-                ResultadoCombate(jugador,personajeIA,energiaIA,saludIA,dano);
+                ResultadoCombate(jugador,personajeIA,energiaIA,saludIA,danoAnterior,"TU TURNO:");
                 Interfaz.Continuar();
             } else {
                 turno = 1;
@@ -223,12 +230,13 @@ public class MecanicaDeCombate {
                     }
                 }
                 //El jugador decide como defenderse
-                System.Console.WriteLine("                              ╔═══════════════════════════════════════╗");
-                System.Console.WriteLine("                              ╟──────┬────────────────────────┬───────╢");
-                System.Console.WriteLine("                              ╟──────┤ ELIGE COMO DEFENDERTE  ├───────╢");
-                System.Console.WriteLine("                              ╟──────┴────────────────────────┴───────╢");
-                System.Console.WriteLine("                              ╚═══════════════════════════════════════╝");
+                System.Console.WriteLine("                                 ╔═══════════════════════════════════════╗");
+                System.Console.WriteLine("                                 ╟──────┬────────────────────────┬───────╢");
+                System.Console.WriteLine("                                 ╟──────┤ ELIGE COMO DEFENDERTE  ├───────╢");
+                System.Console.WriteLine("                                 ╟──────┴────────────────────────┴───────╢");
+                System.Console.WriteLine("                                 ╚═══════════════════════════════════════╝");
                 System.Console.WriteLine("");
+                ResultadoCombate(auxiliarIA,auxiliarIA,auxiliarIA.Energia,auxiliarIA.Salud,danoAnterior,"TU TURNO:");
                 decision = OpcionesDefensa(decision,energiaJugador);
                 if (decision.KeyChar == ' ' && energiaJugador >= 5) {
                     habilidadAtacante = 3;
@@ -242,13 +250,13 @@ public class MecanicaDeCombate {
                         Thread.Sleep(1500);
                     }
                 }
-                dano =  DanoDeCombate(jugador,personajeIA,habilidadAtacante,habilidadDefensor);
-                saludJugador = saludJugador - dano;
+                danoAnterior =  DanoDeCombate(jugador,personajeIA,habilidadAtacante,habilidadDefensor);
+                saludJugador = saludJugador - danoAnterior;
                 energiaJugador += 1;
                 energiaIA += 1;
                 Console.Clear();
                 System.Console.WriteLine("");
-                ResultadoCombate(personajeIA,jugador,energiaJugador,saludJugador,dano);
+                ResultadoCombate(personajeIA,jugador,energiaJugador,saludJugador,danoAnterior,"TURNO de:");
                 Interfaz.Continuar();
             }
             Console.Clear();
@@ -293,18 +301,18 @@ public class MecanicaDeCombate {
         }
         return Combate;
     }
-    public List<Personaje> Ganadores(List<Personaje> Competidores, int modo){
+    public List<Personaje> Ganadores(List<Personaje> Competidores,Personaje auxiliarIA,float danoAnterior,int modo){
         var resultados = new List<Personaje>();
         int batalla = 1;
         Personaje ganador;
         while(Competidores.Count()>0){
-            System.Console.WriteLine("          ╔═════════════════════════════════════════════════════════╗");
-            System.Console.WriteLine("          ║ ░░░░░░░░░░░░░░░░░░░░ BATALLA N"+ batalla +" ░░░░░░░░░░░░░░░░░░░░░░░ ║");
-            System.Console.WriteLine("          ╚═════════════════════════════════════════════════════════╝");
+            System.Console.WriteLine("             ╔═════════════════════════════════════════════════════════╗");
+            System.Console.WriteLine("             ║ ░░░░░░░░░░░░░░░░░░░░ BATALLA N"+ batalla +" ░░░░░░░░░░░░░░░░░░░░░░░ ║");
+            System.Console.WriteLine("             ╚═════════════════════════════════════════════════════════╝");
             System.Console.WriteLine("");
-            System.Console.WriteLine("          ┌─────────────────────────────────────────────────────────┐");
-            System.Console.WriteLine("          │   . "+ Interfaz.Centrar(Competidores[0].Nombre +", "+ Competidores[0].Apodo +"   vs.  "+Competidores[1].Nombre +", "+ Competidores[1].Apodo,47) +" .   │");
-            System.Console.WriteLine("          └─────────────────────────────────────────────────────────┘");
+            System.Console.WriteLine("             ┌─────────────────────────────────────────────────────────┐");
+            System.Console.WriteLine("             │   . "+ Interfaz.Centrar(Competidores[0].Nombre +", "+ Competidores[0].Apodo +"   vs.  "+Competidores[1].Nombre +", "+ Competidores[1].Apodo,47) +" .   │");
+            System.Console.WriteLine("             └─────────────────────────────────────────────────────────┘");
             if (modo == 1) {
                 if(Competidores.Count()>1){
                     Interfaz.Continuar();
@@ -320,7 +328,7 @@ public class MecanicaDeCombate {
             } else {
                 if (Competidores.Count() == 2) {
                     Interfaz.Continuar();
-                    ganador = CombateIAvsJugador(Competidores[0],Competidores[1]);
+                    ganador = CombateIAvsJugador(Competidores[0],Competidores[1],auxiliarIA,danoAnterior);
                     ganador = SubirNivel(ganador);
                     resultados.Add(ganador);
                     Competidores.Remove(Competidores[0]);
@@ -336,79 +344,79 @@ public class MecanicaDeCombate {
         return resultados;
     }
     public void Fixture(List<Personaje> listaDePersonajes, int cant) {
-        Interfaz.EscribirMensaje("                  ╔═══════════════════════════════════════════════════════════╗",3);
+        Interfaz.EscribirMensaje("                    ╔═══════════════════════════════════════════════════════════╗",3);
         for (int i = 0; i < cant; i++) {
-            System.Console.WriteLine("                  ║ ░░░░░░░░░░░░░░░░░░░░░░░ COMBATE N"+ (i+1) +" ░░░░░░░░░░░░░░░░░░░░░░ ║");
-            System.Console.WriteLine("                  ╟───────────────────────────────────────────────────────────╢");
-            System.Console.WriteLine("                  ║"+ Interfaz.Centrar("--> "+ listaDePersonajes[i*2].Nombre +", "+ listaDePersonajes[i*2].Apodo +"   vs.   "+ listaDePersonajes[(i*2)+1].Nombre +", "+ listaDePersonajes[(i*2)+1].Apodo +" <--",59) +"║"); // 59 espacios totales
+            System.Console.WriteLine("                     ║ ░░░░░░░░░░░░░░░░░░░░░░░ COMBATE N"+ (i+1) +" ░░░░░░░░░░░░░░░░░░░░░░ ║");
+            System.Console.WriteLine("                     ╟───────────────────────────────────────────────────────────╢");
+            System.Console.WriteLine("                     ║"+ Interfaz.Centrar("--> "+ listaDePersonajes[i*2].Nombre +", "+ listaDePersonajes[i*2].Apodo +"   vs.   "+ listaDePersonajes[(i*2)+1].Nombre +", "+ listaDePersonajes[(i*2)+1].Apodo +" <--",59) +"║"); // 59 espacios totales
             if (i != cant - 1) {
-            System.Console.WriteLine("                  ╠═══════════════════════════════════════════════════════════╣");
+            System.Console.WriteLine("                     ╠═══════════════════════════════════════════════════════════╣");
             }
         }
-        Interfaz.EscribirMensaje("                  ╚═══════════════════════════════════════════════════════════╝",3);
+        Interfaz.EscribirMensaje("                     ╚═══════════════════════════════════════════════════════════╝",3);
     }
     public void GanadorPorVida(Personaje personaje) {
-        System.Console.WriteLine("                         ╔═══════════════════════════════════════════════╗");
-        System.Console.WriteLine("                         ║ "+ Interfaz.CentrarV2(" EL GANADOR ES: "+ personaje.Nombre +", "+ personaje.Apodo +" ",45) +" ║"); //44 espacios
-        System.Console.WriteLine("                         ╟───────────────────────────────────────────────╢");
-        System.Console.WriteLine("                         ║        Ganó por mayor cantidad de vida        ║");
-        System.Console.WriteLine("                         ╚═══════════════════════════════════════════════╝");
+        System.Console.WriteLine("                            ╔═══════════════════════════════════════════════╗");
+        System.Console.WriteLine("                            ║ "+ Interfaz.CentrarV2(" EL GANADOR ES: "+ personaje.Nombre +", "+ personaje.Apodo +" ",45) +" ║"); //44 espacios
+        System.Console.WriteLine("                            ╟───────────────────────────────────────────────╢");
+        System.Console.WriteLine("                            ║        Ganó por mayor cantidad de vida        ║");
+        System.Console.WriteLine("                            ╚═══════════════════════════════════════════════╝");
     }
     public void GanadorPorKO(Personaje personaje) {
-        System.Console.WriteLine("                         ╔═══════════════════════════════════════════════╗");
-        System.Console.WriteLine("                         ║ "+ Interfaz.CentrarV2(" EL GANADOR ES: "+ personaje.Nombre +", "+ personaje.Apodo +" ",45) +" ║"); //44 espacios
-        System.Console.WriteLine("                         ╟───────────────────────────────────────────────╢");
-        System.Console.WriteLine("                         ║                 Ganó por K.O                  ║");
-        System.Console.WriteLine("                         ╚═══════════════════════════════════════════════╝");
+        System.Console.WriteLine("                            ╔═══════════════════════════════════════════════╗");
+        System.Console.WriteLine("                            ║ "+ Interfaz.CentrarV2(" EL GANADOR ES: "+ personaje.Nombre +", "+ personaje.Apodo +" ",45) +" ║"); //44 espacios
+        System.Console.WriteLine("                            ╟───────────────────────────────────────────────╢");
+        System.Console.WriteLine("                            ║                 Ganó por K.O                  ║");
+        System.Console.WriteLine("                            ╚═══════════════════════════════════════════════╝");
     }
-    public void ResultadoCombate(Personaje personajeTurno, Personaje personaje, int energia ,float salud, float dano) {
-        System.Console.WriteLine("                              ╔═══════════════════════════════════════╗");
-        System.Console.WriteLine("                              ║ "+ Interfaz.CentrarV2(" TURNO de: "+ personajeTurno.Nombre +", "+ personajeTurno.Apodo +" ",37) +" ║"); //37 espacios
-        System.Console.WriteLine("                              ╟──────┬────────────────────────┬───────╢");
-        System.Console.WriteLine("                              ╟──────┤ RESULTADOS DEL COMBATE ├───────╢");
-        System.Console.WriteLine("                              ╟──────┴────────────────────────┴───────╢");
-        System.Console.WriteLine("                              ║"+ Interfaz.Centrar("Personaje: "+ personaje.Nombre +", "+ personaje.Apodo,39) +"║"); //39 espacios
-        System.Console.WriteLine("                              ║"+ Interfaz.Centrar("Daño ocasionado: "+ dano.ToString(),39) +"║"); //39 espacios
-        System.Console.WriteLine("                              ║"+ Interfaz.Centrar("Salud restante: "+ salud.ToString(),39) +"║"); //39 espacios
-        System.Console.WriteLine("                              ║"+ Interfaz.Centrar("Energia restante: "+ energia,39) +"║"); //39 espacios
-        System.Console.WriteLine("                              ╚═══════════════════════════════════════╝");
+    public void ResultadoCombate(Personaje personajeTurno, Personaje personaje, int energia ,float salud, float dano, string texto) {
+        System.Console.WriteLine("                                ╔═══════════════════════════════════════╗");
+        System.Console.WriteLine("                                ║ "+ Interfaz.CentrarV2(" "+ texto +" "+ personajeTurno.Nombre +", "+ personajeTurno.Apodo +" ",37) +" ║"); //37 espacios
+        System.Console.WriteLine("                                ╟──────┬────────────────────────┬───────╢");
+        System.Console.WriteLine("                                ╟──────┤ RESULTADOS DEL COMBATE ├───────╢");
+        System.Console.WriteLine("                                ╟──────┴────────────────────────┴───────╢");
+        System.Console.WriteLine("                                ║"+ Interfaz.Centrar("Personaje: "+ personaje.Nombre +", "+ personaje.Apodo,39) +"║"); //39 espacios
+        System.Console.WriteLine("                                ║"+ Interfaz.Centrar("Daño ocasionado: "+ dano.ToString(),39) +"║"); //39 espacios
+        System.Console.WriteLine("                                ║"+ Interfaz.Centrar("Salud restante: "+ salud.ToString(),39) +"║"); //39 espacios
+        System.Console.WriteLine("                                ║"+ Interfaz.Centrar("Energia restante: "+ energia,39) +"║"); //39 espacios
+        System.Console.WriteLine("                                ╚═══════════════════════════════════════╝");
 
     }
     public ConsoleKeyInfo Opciones(ConsoleKeyInfo decision) {
         if (decision.KeyChar == '\r') {
-            System.Console.WriteLine("                              ┌───────────────────────────────────────┐");
-            System.Console.WriteLine("                              │      . Siguiente turno (Enter) .      │");
-            System.Console.WriteLine("                              ├───────────────────────────────────────┤");
-            System.Console.WriteLine("                              │      . Omitir batalla (Espacio) .     │");
-            System.Console.WriteLine("                              └───────────────────────────────────────┘");
+            System.Console.WriteLine("                                 ┌───────────────────────────────────────┐");
+            System.Console.WriteLine("                                 │      . Siguiente turno (Enter) .      │");
+            System.Console.WriteLine("                                 ├───────────────────────────────────────┤");
+            System.Console.WriteLine("                                 │      . Omitir batalla (Espacio) .     │");
+            System.Console.WriteLine("                                 └───────────────────────────────────────┘");
             decision = Console.ReadKey();
         }
         return decision;
     }
     public ConsoleKeyInfo OpcionesAtaque(ConsoleKeyInfo decision, int energia) {
         System.Console.WriteLine("");
-        System.Console.WriteLine("                              ┌───────────────────────────────────────┐");
-        System.Console.WriteLine("                              │       . Ataque normal (Enter) .       │");
+        System.Console.WriteLine("                                 ┌───────────────────────────────────────┐");
+        System.Console.WriteLine("                                 │       . Ataque normal (Enter) .       │");
         if (energia >= 7) {
-            System.Console.WriteLine("                              ├───────────────────────────────────────┤");
-            System.Console.WriteLine("                              │      . Ataque fuerte (Espacio) .      │");
-            System.Console.WriteLine("                              └───────────────────────────────────────┘");
+            System.Console.WriteLine("                                 ├───────────────────────────────────────┤");
+            System.Console.WriteLine("                                 │      . Ataque fuerte (Espacio) .      │");
+            System.Console.WriteLine("                                 └───────────────────────────────────────┘");
         } else {
-            System.Console.WriteLine("                              └───────────────────────────────────────┘");
+            System.Console.WriteLine("                                 └───────────────────────────────────────┘");
         }
         decision = Console.ReadKey();
         return decision;
     }
     public ConsoleKeyInfo OpcionesDefensa(ConsoleKeyInfo decision,int energia) {
         System.Console.WriteLine("");
-        System.Console.WriteLine("                              ┌───────────────────────────────────────┐");
-        System.Console.WriteLine("                              │      . Defensa normal (Enter) .       │");
+        System.Console.WriteLine("                                 ┌───────────────────────────────────────┐");
+        System.Console.WriteLine("                                 │      . Defensa normal (Enter) .       │");
         if (energia >= 5) {
-            System.Console.WriteLine("                              ├───────────────────────────────────────┤");
-            System.Console.WriteLine("                              │      . Defensa fuerte (Espacio) .     │");
-            System.Console.WriteLine("                              └───────────────────────────────────────┘");
+            System.Console.WriteLine("                                 ├───────────────────────────────────────┤");
+            System.Console.WriteLine("                                 │      . Defensa fuerte (Espacio) .     │");
+            System.Console.WriteLine("                                 └───────────────────────────────────────┘");
         } else {
-            System.Console.WriteLine("                              └───────────────────────────────────────┘");
+            System.Console.WriteLine("                                 └───────────────────────────────────────┘");
         }
         decision = Console.ReadKey();
         return decision;

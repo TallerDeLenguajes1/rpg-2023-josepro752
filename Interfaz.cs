@@ -176,7 +176,9 @@ public class Interfaz{
     }
     public static void ModoSupervivencia(List<Personaje>? Niveles, Personaje jugador) {
         MecanicaDeCombate mecanica = new MecanicaDeCombate();
-        Personaje Ganador = new Personaje();
+        var auxiliarIA = new Personaje();
+        var Ganador = new Personaje();
+        float danoAnterior = 0;
         if(Niveles != null) {
             EscribirMensaje("                                  --> Bienvenido al Modo Supervivencia de 'Epic Wars' <--",5);
             System.Console.WriteLine("");
@@ -218,7 +220,7 @@ public class Interfaz{
                     if (option == 1) {
                         for (i = 0; i < 10; i++) {
                             // Ordeno los distintos personajes desde el nivel 3 al 12
-                            Ganador = mecanica.CombateIAvsJugador(jugador,Niveles[0]);
+                            Ganador = mecanica.CombateIAvsJugador(jugador,Niveles[0],auxiliarIA,danoAnterior);
                             if (Ganador.Nombre + Ganador.Apodo == jugador.Nombre + jugador.Apodo) {
 
                             }
@@ -233,12 +235,12 @@ public class Interfaz{
                             Console.WriteLine("        ║▒▒                                            ▒▒║");
                             Console.WriteLine("        ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
                             EscribirMensaje("        ╚════════════════════════════════════════════════╝,",3);
-                        } else { // "+ i +"
+                        } else {
                             EscribirMensaje("        ╔══════════════════════════════════════════════╗",3);
                             Console.WriteLine("        ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
                             Console.WriteLine("        ║▒▒                                          ▒▒║");
                             Console.WriteLine("        ║▒▒       ╔══════════════════════════╗       ▒▒║");
-                            Console.WriteLine("        ║▒▒       ║ ULTIMO NIVEL SUPERADO: 3 ║       ▒▒║");
+                            Console.WriteLine("        ║▒▒       ║ ULTIMO NIVEL SUPERADO: "+ i +" ║       ▒▒║");
                             Console.WriteLine("        ║▒▒       ╚══════════════════════════╝       ▒▒║");
                             Console.WriteLine("        ║▒▒                                          ▒▒║");
                             Console.WriteLine("        ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
@@ -272,6 +274,7 @@ public class Interfaz{
             ConsoleKeyInfo key;
             int option = 1, salida=0;
             List<Personaje> listaDeGanadores = new List<Personaje>();
+            var auxiliarIA = new Personaje();
             MecanicaDeCombate mecanica = new MecanicaDeCombate();
             do{
                 Console.WriteLine("                            ╔═══════════════════════════════════╗");
@@ -301,16 +304,16 @@ public class Interfaz{
                 if(key.Key == ConsoleKey.Enter){
                     if(option==1){
                         // OCTAVOS DE FINAL
-                        listaDeGanadores = OctavosDeFinal(listaDePersonajes,listaDeGanadores,mecanica);
+                        listaDeGanadores = OctavosDeFinal(listaDePersonajes,listaDeGanadores,auxiliarIA,mecanica);
                         // FIN
                         // CUARTOS DE FINAL
-                        listaDeGanadores = CuartosDeFinal(listaDeGanadores,mecanica);
+                        listaDeGanadores = CuartosDeFinal(listaDeGanadores,auxiliarIA,mecanica);
                         // FIN
                         // SEMIFINALES
-                        listaDeGanadores = Semifinales(listaDeGanadores,mecanica);
+                        listaDeGanadores = Semifinales(listaDeGanadores,auxiliarIA,mecanica);
                         // FIN
                         // FINAL
-                        Final(listaDeGanadores,mecanica);
+                        Final(listaDeGanadores,auxiliarIA,mecanica);
                         // FIN
                     }
                     salida = 2;
@@ -538,7 +541,7 @@ public static void ElegirPersonaje(List<Personaje> listaP, PersonajesJson pjson)
         }
         Continuar();
     }
-    public static List<Personaje> OctavosDeFinal(List<Personaje> listaP, List<Personaje> Ganadores, MecanicaDeCombate mecanica) {
+    public static List<Personaje> OctavosDeFinal(List<Personaje> listaP, List<Personaje> Ganadores,Personaje auxiliarIA,MecanicaDeCombate mecanica) {
         EscribirMensaje("- Ahora presentaremos los participantes que se enfrentarán en los Octavos de final -",5);
         Continuar();
         Console.Clear();
@@ -549,10 +552,10 @@ public static void ElegirPersonaje(List<Personaje> listaP, PersonajesJson pjson)
         listaP = mecanica.Sorteo(listaP);
         mecanica.Fixture(listaP,8);
         Continuar();
-        Ganadores = mecanica.Ganadores(listaP,1);
+        Ganadores = mecanica.Ganadores(listaP,auxiliarIA,0,1);
         return Ganadores;
     }
-    public static List<Personaje> CuartosDeFinal(List<Personaje> Ganadores, MecanicaDeCombate mecanica) {
+    public static List<Personaje> CuartosDeFinal(List<Personaje> Ganadores,Personaje auxiliarIA,MecanicaDeCombate mecanica) {
         EscribirMensaje("- La primera etapa siempre es la mas difícil, ya llegó aquí los cuartos de final -",5);
         Continuar();
         Console.Clear();
@@ -563,9 +566,9 @@ public static void ElegirPersonaje(List<Personaje> listaP, PersonajesJson pjson)
         Ganadores = mecanica.Sorteo(Ganadores);
         mecanica.Fixture(Ganadores,4);
         Continuar();
-        return mecanica.Ganadores(Ganadores,1);
+        return mecanica.Ganadores(Ganadores,auxiliarIA,0,1);
     }
-    public static List<Personaje> Semifinales(List<Personaje> Ganadores, MecanicaDeCombate mecanica) {
+    public static List<Personaje> Semifinales(List<Personaje> Ganadores,Personaje auxiliarIA,MecanicaDeCombate mecanica) {
         EscribirMensaje("- Nos encontramos ahora con los afortunados en clasificar en las semifinales -",5);
         Continuar();
         Console.Clear();
@@ -576,9 +579,9 @@ public static void ElegirPersonaje(List<Personaje> listaP, PersonajesJson pjson)
         Ganadores = mecanica.Sorteo(Ganadores);
         mecanica.Fixture(Ganadores,2);
         Continuar();
-        return mecanica.Ganadores(Ganadores,1);
+        return mecanica.Ganadores(Ganadores,auxiliarIA,0,1);
     }
-    public static void Final(List<Personaje> Ganadores, MecanicaDeCombate mecanica) {
+    public static void Final(List<Personaje> Ganadores,Personaje auxiliarIA,MecanicaDeCombate mecanica) {
         EscribirMensaje("- Por último, presentaremos los vencedores que lucharán en la final -",5);
         Continuar();
         Console.Clear();
@@ -589,7 +592,7 @@ public static void ElegirPersonaje(List<Personaje> listaP, PersonajesJson pjson)
         Ganadores = mecanica.Sorteo(Ganadores);
         mecanica.Fixture(Ganadores,1);
         Continuar();
-        Ganadores = mecanica.Ganadores(Ganadores,1);
+        Ganadores = mecanica.Ganadores(Ganadores,auxiliarIA,0,1);
         EscribirMensaje("El ganador del Torneo es... ",5);
         Thread.Sleep(3000);
         System.Console.WriteLine("");
