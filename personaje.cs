@@ -48,56 +48,56 @@ public class Personaje {
     //     Salud = salud;
     // }
     public void MostrarPersonajeVersionPERSONAJE() {
-        Console.WriteLine("  ╔═══════════════════════════════════════════╗");
-        Console.WriteLine("  ║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║");
-        Console.WriteLine("  ║░░░   ╔═════════════════════════════╗   ░░░║");
-        Console.WriteLine("  ║░░░   ║  >>> ELEGIR PERSONAJE <<<   ║   ░░░║");
-        Console.WriteLine("  ║░░░   ╚═════════════════════════════╝   ░░░║");
-        Console.WriteLine("  ║░░░ ┌─────────────────────────────────┐ ░░░║");
-        Console.WriteLine("  ║░░░ │     → DATOS DEL PERSONAJE ←     │ ░░░║");
-        Console.WriteLine("  ║░░░ ├─────────────────────────────────┤ ░░░║");
-        Console.WriteLine("  ║░░░ │ ♦ Nombre: "+ Interfaz.Espaciado(Nombre +", "+ Apodo,21) +" │ ░░░║"); //21 espacios
-        Console.WriteLine("  ║░░░ │ ♦ LVL: "+ Interfaz.Espaciado(Nivel.ToString(),24) +" │ ░░░║"); //24 espacios
-        Console.WriteLine("  ║░░░ │ ♦ TIPO: "+ Interfaz.Espaciado(Tipo,23) +" │ ░░░║"); //23 espacioes
-        Console.WriteLine("  ║░░░ │ ♦ Fec. Nac.: "+ Interfaz.Espaciado(FechaDeNacimiento.ToShortDateString(),18) +" │ ░░░║"); //148espacios
-        Console.WriteLine("  ║░░░ │ ♦ Edad: "+ Interfaz.Espaciado(Edad.ToString(),23) +" │ ░░░║"); //23 espacios
-        Console.WriteLine("  ║░░░ ├─────────────────────────────────┤ ░░░║");
-        Console.WriteLine("  ║░░░ │       ▲ CARACTERISTICAS ▲       │ ░░░║");
-        Console.WriteLine("  ║░░░ ├─────────────────────────────────┤ ░░░║");
-        Console.WriteLine("  ║░░░ │       ♥ SALUD ♥: "+ Interfaz.Espaciado(Salud.ToString(),15) +"│ ░░░║"); //15
-        Console.WriteLine("  ║░░░ │       ↨ VELOCIDAD ↨: "+ Interfaz.Espaciado(Velocidad.ToString(),11) +"│ ░░░║"); //11
-        Console.WriteLine("  ║░░░ │       ♫ DESTREZA ♫: "+ Interfaz.Espaciado(Destreza.ToString(),12) +"│ ░░░║"); //12
-        Console.WriteLine("  ║░░░ │       ⚔ FUERZA ⚔: "+ Interfaz.Espaciado(Fuerza.ToString(),14) +"│ ░░░║"); //14
-        Console.WriteLine("  ║░░░ │       ◘ ARMADURA ◘: "+ Interfaz.Espaciado(Armadura.ToString(),12) +"│ ░░░║"); //12
-        Console.WriteLine("  ║░░░ └─────────────────────────────────┘ ░░░║");
-        Console.WriteLine("  ║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║");
-        Console.WriteLine("  ╚═══════════════════════════════════════════╝");
+        Console.WriteLine("      ╔═══════════════════════════════════════════╗");
+        Console.WriteLine("      ║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║");
+        Console.WriteLine("      ║░░░   ╔═════════════════════════════╗   ░░░║");
+        Console.WriteLine("      ║░░░   ║  >>> ELEGIR PERSONAJE <<<   ║   ░░░║");
+        Console.WriteLine("      ║░░░   ╚═════════════════════════════╝   ░░░║");
+        Console.WriteLine("      ║░░░ ┌─────────────────────────────────┐ ░░░║");
+        Console.WriteLine("      ║░░░ │     → DATOS DEL PERSONAJE ←     │ ░░░║");
+        Console.WriteLine("      ║░░░ ├─────────────────────────────────┤ ░░░║");
+        Console.WriteLine("      ║░░░ │ ♦ Nombre: "+ Interfaz.Espaciado(Nombre +", "+ Apodo,21) +" │ ░░░║"); //21 espacios
+        Console.WriteLine("      ║░░░ │ ♦ LVL: "+ Interfaz.Espaciado(Nivel.ToString(),24) +" │ ░░░║"); //24 espacios
+        Console.WriteLine("      ║░░░ │ ♦ TIPO: "+ Interfaz.Espaciado(Tipo,23) +" │ ░░░║"); //23 espacioes
+        Console.WriteLine("      ║░░░ │ ♦ Fec. Nac.: "+ Interfaz.Espaciado(FechaDeNacimiento.ToShortDateString(),18) +" │ ░░░║"); //148espacios
+        Console.WriteLine("      ║░░░ │ ♦ Edad: "+ Interfaz.Espaciado(Edad.ToString(),23) +" │ ░░░║"); //23 espacios
+        Console.WriteLine("      ║░░░ ├─────────────────────────────────┤ ░░░║");
+        Console.WriteLine("      ║░░░ │       ▲ CARACTERISTICAS ▲       │ ░░░║");
+        Console.WriteLine("      ║░░░ ├─────────────────────────────────┤ ░░░║");
+        Console.WriteLine("      ║░░░ │       ♥ SALUD ♥: "+ Interfaz.Espaciado(Salud.ToString(),15) +"│ ░░░║"); //15
+        Console.WriteLine("      ║░░░ │       ↨ VELOCIDAD ↨: "+ Interfaz.Espaciado(Velocidad.ToString(),11) +"│ ░░░║"); //11
+        Console.WriteLine("      ║░░░ │       ♫ DESTREZA ♫: "+ Interfaz.Espaciado(Destreza.ToString(),12) +"│ ░░░║"); //12
+        Console.WriteLine("      ║░░░ │       ⚔ FUERZA ⚔: "+ Interfaz.Espaciado(Fuerza.ToString(),14) +"│ ░░░║"); //14
+        Console.WriteLine("      ║░░░ │       ◘ ARMADURA ◘: "+ Interfaz.Espaciado(Armadura.ToString(),12) +"│ ░░░║"); //12
+        Console.WriteLine("      ║░░░ └─────────────────────────────────┘ ░░░║");
+        Console.WriteLine("      ║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║");
+        Console.WriteLine("      ╚═══════════════════════════════════════════╝");
     }
     public void MostrarPersonajeVersionMENU() {
-        Console.WriteLine("  ╔═══════════════════════════════════════════╗");
-        Console.WriteLine("  ║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║");
-        Console.WriteLine("  ║░░░   ╔═════════════════════════════╗   ░░░║");
-        Console.WriteLine("  ║░░░   ║     >>> PERSONAJES <<<      ║   ░░░║");
-        Console.WriteLine("  ║░░░   ╚═════════════════════════════╝   ░░░║");
-        Console.WriteLine("  ║░░░ ┌─────────────────────────────────┐ ░░░║");
-        Console.WriteLine("  ║░░░ │     → DATOS DEL PERSONAJE ←     │ ░░░║");
-        Console.WriteLine("  ║░░░ ├─────────────────────────────────┤ ░░░║");
-        Console.WriteLine("  ║░░░ │ ♦ Nombre: "+ Interfaz.Espaciado(Nombre +", "+ Apodo,21) +" │ ░░░║"); //21 espacios
-        Console.WriteLine("  ║░░░ │ ♦ LVL: "+ Interfaz.Espaciado(Nivel.ToString(),24) +" │ ░░░║"); //24 espacios
-        Console.WriteLine("  ║░░░ │ ♦ TIPO: "+ Interfaz.Espaciado(Tipo,23) +" │ ░░░║"); //23 espacioes
-        Console.WriteLine("  ║░░░ │ ♦ Fec. Nac.: "+ Interfaz.Espaciado(FechaDeNacimiento.ToShortDateString(),18) +" │ ░░░║"); //148espacios
-        Console.WriteLine("  ║░░░ │ ♦ Edad: "+ Interfaz.Espaciado(Edad.ToString(),23) +" │ ░░░║"); //23 espacios
-        Console.WriteLine("  ║░░░ ├─────────────────────────────────┤ ░░░║");
-        Console.WriteLine("  ║░░░ │       ▲ CARACTERISTICAS ▲       │ ░░░║");
-        Console.WriteLine("  ║░░░ ├─────────────────────────────────┤ ░░░║");
-        Console.WriteLine("  ║░░░ │       ♥ SALUD ♥: "+ Interfaz.Espaciado(Salud.ToString(),15) +"│ ░░░║"); //15
-        Console.WriteLine("  ║░░░ │       ↨ VELOCIDAD ↨: "+ Interfaz.Espaciado(Velocidad.ToString(),11) +"│ ░░░║"); //11
-        Console.WriteLine("  ║░░░ │       ♫ DESTREZA ♫: "+ Interfaz.Espaciado(Destreza.ToString(),12) +"│ ░░░║"); //12
-        Console.WriteLine("  ║░░░ │       ⚔ FUERZA ⚔: "+ Interfaz.Espaciado(Fuerza.ToString(),14) +"│ ░░░║"); //14
-        Console.WriteLine("  ║░░░ │       ◘ ARMADURA ◘: "+ Interfaz.Espaciado(Armadura.ToString(),12) +"│ ░░░║"); //12
-        Console.WriteLine("  ║░░░ └─────────────────────────────────┘ ░░░║");
-        Console.WriteLine("  ║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║");
-        Console.WriteLine("  ╚═══════════════════════════════════════════╝");
+        Console.WriteLine("      ╔═══════════════════════════════════════════╗");
+        Console.WriteLine("      ║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║");
+        Console.WriteLine("      ║░░░   ╔═════════════════════════════╗   ░░░║");
+        Console.WriteLine("      ║░░░   ║     >>> PERSONAJES <<<      ║   ░░░║");
+        Console.WriteLine("      ║░░░   ╚═════════════════════════════╝   ░░░║");
+        Console.WriteLine("      ║░░░ ┌─────────────────────────────────┐ ░░░║");
+        Console.WriteLine("      ║░░░ │     → DATOS DEL PERSONAJE ←     │ ░░░║");
+        Console.WriteLine("      ║░░░ ├─────────────────────────────────┤ ░░░║");
+        Console.WriteLine("      ║░░░ │ ♦ Nombre: "+ Interfaz.Espaciado(Nombre +", "+ Apodo,21) +" │ ░░░║"); //21 espacios
+        Console.WriteLine("      ║░░░ │ ♦ LVL: "+ Interfaz.Espaciado(Nivel.ToString(),24) +" │ ░░░║"); //24 espacios
+        Console.WriteLine("      ║░░░ │ ♦ TIPO: "+ Interfaz.Espaciado(Tipo,23) +" │ ░░░║"); //23 espacioes
+        Console.WriteLine("      ║░░░ │ ♦ Fec. Nac.: "+ Interfaz.Espaciado(FechaDeNacimiento.ToShortDateString(),18) +" │ ░░░║"); //148espacios
+        Console.WriteLine("      ║░░░ │ ♦ Edad: "+ Interfaz.Espaciado(Edad.ToString(),23) +" │ ░░░║"); //23 espacios
+        Console.WriteLine("      ║░░░ ├─────────────────────────────────┤ ░░░║");
+        Console.WriteLine("      ║░░░ │       ▲ CARACTERISTICAS ▲       │ ░░░║");
+        Console.WriteLine("      ║░░░ ├─────────────────────────────────┤ ░░░║");
+        Console.WriteLine("      ║░░░ │       ♥ SALUD ♥: "+ Interfaz.Espaciado(Salud.ToString(),15) +"│ ░░░║"); //15
+        Console.WriteLine("      ║░░░ │       ↨ VELOCIDAD ↨: "+ Interfaz.Espaciado(Velocidad.ToString(),11) +"│ ░░░║"); //11
+        Console.WriteLine("      ║░░░ │       ♫ DESTREZA ♫: "+ Interfaz.Espaciado(Destreza.ToString(),12) +"│ ░░░║"); //12
+        Console.WriteLine("      ║░░░ │       ⚔ FUERZA ⚔: "+ Interfaz.Espaciado(Fuerza.ToString(),14) +"│ ░░░║"); //14
+        Console.WriteLine("      ║░░░ │       ◘ ARMADURA ◘: "+ Interfaz.Espaciado(Armadura.ToString(),12) +"│ ░░░║"); //12
+        Console.WriteLine("      ║░░░ └─────────────────────────────────┘ ░░░║");
+        Console.WriteLine("      ║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║");
+        Console.WriteLine("      ╚═══════════════════════════════════════════╝");
     }
     public void MostrarPersonajeVersionCorta() {
         System.Console.WriteLine(Nombre +", "+ Apodo);

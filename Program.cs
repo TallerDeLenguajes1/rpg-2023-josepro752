@@ -5,9 +5,9 @@ Console.Clear();
 Interfaz.Presentacion();
 
 
-List<Personaje>? listaDePersonajesSupervivencia = new List<Personaje>();
-List<Personaje>? listaDePersonajesNiveles = new List<Personaje>();
-List<Personaje>? listaDePersonajesTorneo = new List<Personaje>();
+List<Personaje>? Supervivencia = new List<Personaje>();
+List<Personaje>? Niveles = new List<Personaje>();
+List<Personaje>? Torneo = new List<Personaje>();
 FabricaDePersonajes personaje = new FabricaDePersonajes();
 PersonajesJson Json = new PersonajesJson();
 
@@ -19,7 +19,7 @@ if (restablecer != null) {
 }
 
 if (!Json.Existe("PersonajesTorneo")) {
-    listaDePersonajesTorneo = personaje.CrearParticipantes("PersonajesTorneo",16);
+    Torneo = personaje.CrearParticipantes("PersonajesTorneo",16);
 }
 
 restablecer = Json.LeerPersonaje("PersonajeNivelesPrueba");
@@ -28,7 +28,7 @@ if (restablecer != null) {
 }
 
 if (!Json.Existe("PersonajesNiveles")) {
-    listaDePersonajesNiveles = personaje.CrearParticipantes("PersonajesNiveles",10);
+    Niveles = personaje.CrearParticipantes("PersonajesNiveles",10);
 }
 
 restablecer = Json.LeerPersonaje("PersonajeSupervivenciaPrueba");
@@ -37,7 +37,7 @@ if (restablecer != null) {
 }
 
 if (!Json.Existe("PersonajesSupervivencia")) {
-    listaDePersonajesSupervivencia = personaje.CrearParticipantes("PersonajesSupervivencia",10);
+    Supervivencia = personaje.CrearParticipantes("PersonajesSupervivencia",10);
 }
 
 
