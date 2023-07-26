@@ -4,24 +4,49 @@ using InterfazVisual;
 Console.Clear();
 Interfaz.Presentacion();
 
-List<Personaje>? listaDePersonajes = new List<Personaje>();
+
+List<Personaje>? listaDePersonajesSupervivencia = new List<Personaje>();
+List<Personaje>? listaDePersonajesNiveles = new List<Personaje>();
+List<Personaje>? listaDePersonajesTorneo = new List<Personaje>();
 FabricaDePersonajes personaje = new FabricaDePersonajes();
+PersonajesJson Json = new PersonajesJson();
 
 
-PersonajesJson PersonajeJson = new PersonajesJson();
-var restablecer = PersonajeJson.LeerPersonaje("PersonajePrueba.json");
+var restablecer = Json.LeerPersonaje("PersonajePrueba");
 
-if(restablecer!=null){
-    PersonajeJson.GuardarPersonaje(restablecer,"Personajes");
+if (restablecer != null) {
+    Json.GuardarPersonaje(restablecer,"PersonajesTorneo");
 }
 
-listaDePersonajes = personaje.CrearParticipantes();
+if (Json.Existe("PersonajesTorneo")) {
+    listaDePersonajesTorneo = personaje.CrearParticipantes("PersonajesTorneo",16);
+}
 
-listaDePersonajes = PersonajeJson.LeerPersonaje("Personajes.json");
-if (listaDePersonajes != null) {
-    Interfaz.Menu(PersonajeJson, listaDePersonajes, personaje);
+restablecer = Json.LeerPersonaje("PersonajeNivelesPrueba");
+if (restablecer != null) {
+    Json.GuardarPersonaje(restablecer,"PersonajesNiveles");
+}
+
+if (Json.Existe("PersonajesNiveles")) {
+    listaDePersonajesNiveles = personaje.CrearParticipantes("PersonajesNiveles",10);
+}
+
+restablecer = Json.LeerPersonaje("PersonajeSupervivenciaPrueba");
+if (restablecer != null) {
+    Json.GuardarPersonaje(restablecer,"PersonajesSupervivencia");
+}
+
+if (Json.Existe("PersonajesSupervivencia")) {
+    listaDePersonajesSupervivencia = personaje.CrearParticipantes("PersonajesSupervivencia",10);
+}
+
+
+
+
+if (Json != null) {
+    Interfaz.Menu(Json,personaje);
 } else {
-    System.Console.WriteLine("No hay personajes");
+    System.Console.WriteLine("Hubo un problema con los archivos Json");
 }
 
-File.Delete("EdadAPI.json"); // Borra la API, para que si esta falla por problemas de cantidad limite de ingresos. Se puedan crear edades aleatorias
+File.Delete("EdadAPI.json"); // Borra la API, para que si esta falla por problemas de cantidad limite de ingresos. Se puedan crear edades aleatorias y no repetidas

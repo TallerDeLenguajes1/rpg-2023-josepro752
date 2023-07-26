@@ -151,7 +151,7 @@ public class MecanicaDeCombate {
             }
         }
     }
-    public Personaje CombateIndividual(Personaje jugador, Personaje personajeIA) {
+    public Personaje CombateIAvsJugador(Personaje jugador, Personaje personajeIA) {
         Random valor = new Random();
         ConsoleKeyInfo decision;
         decision = new ConsoleKeyInfo('\r',ConsoleKey.Enter,false,false,false);
@@ -172,12 +172,26 @@ public class MecanicaDeCombate {
             System.Console.WriteLine("");
             if (turno == 1) {
                 turno = 2;
-
+                //El jugador decide como atacar
+                decision = OpcionesAtaque(decision,energiaJugador);
+                if (decision.KeyChar == ' ' && energiaJugador >= 7) {
+                    habilidadAtacante = 2;
+                    energiaJugador -= 7;
+                } else {
+                    Interfaz.EscribirMensaje("- No puedes utilizar tu habilidad especial para atacar, no tienes suficiente energía -");
+                    Interfaz.EscribirMensaje("- Atacarás normal automaticamente -");
+                    Interfaz.Continuar();
+                }
+                //El personaje que defiende utilizara su habilidad especial para defenderse si esta cerca de morir 
+                if (energiaIA >= 5 && (saludIA < (personajeIA.Salud/3))) {
+                    habilidadDefensor = 3;
+                    energiaIA -= 5;
+                }
                 dano = DanoDeCombate(jugador,personajeIA,habilidadAtacante,habilidadDefensor);
                 saludIA = saludIA - dano;
+                energiaJugador += 1;
                 energiaIA += 1;
                 ResultadoCombate(jugador,personajeIA,energiaIA,saludIA,dano);
-                decision = Opciones(decision);
             } else {
                 turno = 1;
                 //El personaje que ataca utilizara su habilidad especial, si tiene una clara ventaja sobre su adversario o si esta llena
@@ -195,18 +209,21 @@ public class MecanicaDeCombate {
                         }
                     }
                 }
-                //El personaje que defiende utilizara su habilidad especial para defenderse si esta cerca de morir 
-                if (jugador.Energia >= 5 && (saludJugador < (jugador.Salud/3))) {
-                    habilidadDefensor = 3;
-                    energiaJugador -= 5;
+                //El jugador decide como defenderse
+                decision = OpcionesDefensa(decision,energiaJugador);
+                if (decision.KeyChar == ' ' && energiaJugador >= 7) {
+                    habilidadAtacante = 2;
+                    energiaJugador -= 7;
+                } else {
+                    Interfaz.EscribirMensaje("- No puedes utilizar tu habilidad especial para defenderte, no tienes suficiente energía -");
+                    Interfaz.EscribirMensaje("- Defenderás normal automaticamente -");
+                    Interfaz.Continuar();
                 }
                 dano =  DanoDeCombate(jugador,personajeIA,habilidadAtacante,habilidadDefensor);
                 saludJugador = saludJugador - dano;
                 energiaJugador += 1;
-                if (decision.KeyChar == '\r') {
-                    ResultadoCombate(personajeIA,jugador,energiaJugador,saludJugador,dano);
-                    decision = Opciones(decision);
-                }
+                energiaIA += 1;
+                ResultadoCombate(personajeIA,jugador,energiaJugador,saludJugador,dano);
             }
             Console.Clear();
             ronda++;
@@ -250,7 +267,7 @@ public class MecanicaDeCombate {
         }
         return Combate;
     }
-    public List<Personaje> Ganadores(List<Personaje> Competidores){
+    public List<Personaje> Ganadores(List<Personaje> Competidores, int modo){
         var resultados = new List<Personaje>();
         int batalla = 1;
         Personaje ganador;
@@ -262,16 +279,30 @@ public class MecanicaDeCombate {
             System.Console.WriteLine("        ┌─────────────────────────────────────────────────────────┐");
             System.Console.WriteLine("        │   . "+ Interfaz.Centrar(Competidores[0].Nombre +", "+ Competidores[0].Apodo +"   vs.  "+Competidores[1].Nombre +", "+ Competidores[1].Apodo,47) +" .   │");
             System.Console.WriteLine("        └─────────────────────────────────────────────────────────┘");
-            if(Competidores.Count()>1){
-                Interfaz.Continuar();
-                ganador = CombateIAvsIA(Competidores[0],Competidores[1]);
-                ganador = SubirNivel(ganador);
-                resultados.Add(ganador);
-                Competidores.Remove(Competidores[0]);
-                Competidores.Remove(Competidores[0]);
+            if (modo == 1) {
+                if(Competidores.Count()>1){
+                    Interfaz.Continuar();
+                    ganador = CombateIAvsIA(Competidores[0],Competidores[1]);
+                    ganador = SubirNivel(ganador);
+                    resultados.Add(ganador);
+                    Competidores.Remove(Competidores[0]);
+                    Competidores.Remove(Competidores[0]);
+                } else {
+                    resultados.Add(Competidores[0]);
+                    Competidores.Remove(Competidores[0]);
+                }
             } else {
-                resultados.Add(Competidores[0]);
-                Competidores.Remove(Competidores[0]);
+                if (Competidores.Count() == 2) {
+                    Interfaz.Continuar();
+                    ganador = CombateIAvsJugador(Competidores[0],Competidores[1]);
+                    ganador = SubirNivel(ganador);
+                    resultados.Add(ganador);
+                    Competidores.Remove(Competidores[0]);
+                    Competidores.Remove(Competidores[0]);
+                } else {
+                    resultados.Add(Competidores[0]);
+                    Competidores.Remove(Competidores[0]);
+                }
             }
             batalla++;
         }
@@ -319,7 +350,6 @@ public class MecanicaDeCombate {
     }
     public ConsoleKeyInfo Opciones(ConsoleKeyInfo decision) {
         if (decision.KeyChar == '\r') {
-            System.Console.WriteLine("");
             System.Console.WriteLine("        ┌───────────────────────────────────────┐");
             System.Console.WriteLine("        │      . Siguiente turno (Enter) .      │");
             System.Console.WriteLine("        ├───────────────────────────────────────┤");
@@ -329,4 +359,67 @@ public class MecanicaDeCombate {
         }
         return decision;
     }
+    public ConsoleKeyInfo OpcionesAtaque(ConsoleKeyInfo decision,int energia) {
+        System.Console.WriteLine("        ╔═══════════════════════════════════════╗");
+        System.Console.WriteLine("        ╟──────┬────────────────────────┬───────╢");
+        System.Console.WriteLine("        ╟──────┤    ELIGE COMO ATACAR   ├───────╢");
+        System.Console.WriteLine("        ╟──────┴────────────────────────┴───────╢");
+        System.Console.WriteLine("        ╚═══════════════════════════════════════╝");
+        System.Console.WriteLine("");
+        if (energia >= 5) {
+            System.Console.WriteLine("        ├───────────────────────────────────────┤");
+            System.Console.WriteLine("        │      . Ataque fuerte (Espacio) .      │");
+            System.Console.WriteLine("        └───────────────────────────────────────┘");
+        } else {
+            System.Console.WriteLine("        └───────────────────────────────────────┘");
+        }
+        decision = Console.ReadKey();
+        return decision;
+    }
+    public ConsoleKeyInfo OpcionesDefensa(ConsoleKeyInfo decision,int energia) {
+        System.Console.WriteLine("        ╔═══════════════════════════════════════╗");
+        System.Console.WriteLine("        ╟──────┬────────────────────────┬───────╢");
+        System.Console.WriteLine("        ╟──────┤  ELIGE COMO DEFENDERTE ├───────╢");
+        System.Console.WriteLine("        ╟──────┴────────────────────────┴───────╢");
+        System.Console.WriteLine("        ╚═══════════════════════════════════════╝");
+        System.Console.WriteLine("");
+        System.Console.WriteLine("        ┌───────────────────────────────────────┐");
+        System.Console.WriteLine("        │       . Ataque normal (Enter) .       │");
+        if (energia >= 7) {
+            System.Console.WriteLine("        ├───────────────────────────────────────┤");
+            System.Console.WriteLine("        │      . Ataque fuerte (Espacio) .      │");
+            System.Console.WriteLine("        └───────────────────────────────────────┘");
+        } else {
+            System.Console.WriteLine("        └───────────────────────────────────────┘");
+        }
+        decision = Console.ReadKey();
+        return decision;
+    }
 }
+
+// //El personaje que ataca utilizara su habilidad especial, si tiene una clara ventaja sobre su adversario o si esta llena
+//                 if (personajeIA.Energia >= 7 && (saludIA > (personajeIA.Salud/2))) {
+//                     habilidadAtacante = 2;
+//                     energiaIA -= 7;
+//                 } else {
+//                     if (personajeIA.Energia >= 7 && (saludJugador < (jugador.Salud/3))) {
+//                         habilidadAtacante = 2;
+//                         energiaIA -= 7;
+//                     } else {
+//                         if (energiaIA >= 10) {
+//                             habilidadAtacante = 2;
+//                             energiaIA -= 7;
+//                         }
+//                     }
+//                 }
+//                 //El jugador decide como defenderse
+//                 decision = OpcionesDefensa(decision,energiaJugador);
+//                                 if (decision.KeyChar == ' ' && energiaJugador >= 7) {
+//                     habilidadAtacante = 2;
+//                     energiaJugador -= 7;
+//                 }
+//                 dano =  DanoDeCombate(jugador,personajeIA,habilidadAtacante,habilidadDefensor);
+//                 saludJugador = saludJugador - dano;
+//                 energiaJugador += 1;
+//                 ResultadoCombate(personajeIA,jugador,energiaJugador,saludJugador,dano);
+//                 decision = Opciones(decision);

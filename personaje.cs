@@ -368,17 +368,17 @@ public class FabricaDePersonajes {
         }
         return edad;
     }
-    public List<Personaje>? CrearParticipantes() {
+    public List<Personaje>? CrearParticipantes(string nombre,int cant) {
         var listaDePersonajes = new List<Personaje> ();
         var personaje = new FabricaDePersonajes ();
         var PJson = new PersonajesJson ();
         if (!(PJson.Existe("Personajes.json"))) {
-            for (int i = 0; i < 16; i++) {
+            for (int i = 0; i < cant; i++) {
                 listaDePersonajes.Add(personaje.CrearPersonaje());
             }
-            PJson.GuardarPersonaje(listaDePersonajes, "Personajes");
+            PJson.GuardarPersonaje(listaDePersonajes,nombre);
         } else {
-            listaDePersonajes = PJson.LeerPersonaje("Personajes.json");
+            listaDePersonajes = PJson.LeerPersonaje(nombre + ".json");
         }
         return listaDePersonajes;
     }
@@ -403,13 +403,21 @@ public class PersonajesJson {
     public List<Personaje>? LeerPersonaje(string nombreArchivo) {
         List<Personaje>? listaPersonaje = null;
         if (Existe(nombreArchivo)) {
-            string json = File.ReadAllText(nombreArchivo);
+            string json = File.ReadAllText(nombreArchivo + ".json");
             listaPersonaje = JsonSerializer.Deserialize<List<Personaje>>(json);
         }
         return listaPersonaje;
     }
+    public Personaje? LeerPersonajeIndividual(string nombreArchivo) {
+        Personaje? personaje = null;
+        if (Existe(nombreArchivo)) {
+            string json = File.ReadAllText(nombreArchivo);
+            personaje = JsonSerializer.Deserialize<Personaje>(json);
+        }
+        return personaje;
+    }
     public bool Existe(string nombreArchivo) {
-        return (File.Exists(nombreArchivo));
+        return (File.Exists(nombreArchivo + ".json"));
     }
 }
 
