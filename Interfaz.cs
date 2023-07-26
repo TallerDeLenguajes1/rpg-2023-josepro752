@@ -16,7 +16,7 @@ public class Interfaz{
         Console.WriteLine(" │ └───────────┘└──┘         └───┘└───────────┘       └───────┘└───────┘└──┘    └──┘└──┘   └──┘ └──────────┘ │");
         Console.WriteLine(" └───────────────────────────────────────────────────────────────────────────────────────────────────────────┘");
         System.Console.WriteLine("");
-        EscribirMensaje("                                   >>Toca una tecla para empezar<<",5);
+        EscribirMensaje("                                   >> Toca una tecla para empezar <<",8);
         Console.ReadKey();
         Console.Clear();
     }
@@ -190,28 +190,28 @@ public class Interfaz{
             ConsoleKeyInfo key;
             int option = 1, salida = 0, i;
             do {
-                Console.WriteLine("          ╔═══════════════════════════════════╗");
-                Console.WriteLine("          ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
-                Console.WriteLine("          ║▒▒                               ▒▒║");          
-                Console.WriteLine("          ║▒▒       ╔═══════════════╗       ▒▒║");
-                Console.WriteLine("          ║▒▒       ║ SUPERVIVENCIA ║       ▒▒║");
-                Console.WriteLine("          ║▒▒       ╚═══════════════╝       ▒▒║");
-                Console.WriteLine("          ║▒▒    ┌─────────────────────┐    ▒▒║");
+                Console.WriteLine("                            ╔═══════════════════════════════════╗");
+                Console.WriteLine("                            ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
+                Console.WriteLine("                            ║▒▒                               ▒▒║");          
+                Console.WriteLine("                            ║▒▒       ╔═══════════════╗       ▒▒║");
+                Console.WriteLine("                            ║▒▒       ║ SUPERVIVENCIA ║       ▒▒║");
+                Console.WriteLine("                            ║▒▒       ╚═══════════════╝       ▒▒║");
+                Console.WriteLine("                            ║▒▒    ┌─────────────────────┐    ▒▒║");
                 if(option == 1){
-                    Console.WriteLine("          ║▒▒   »│ .     Entrar      . │«   ▒▒║");
+                    Console.WriteLine("                            ║▒▒   »│ .     Entrar      . │«   ▒▒║");
                 }else{
-                    Console.WriteLine("          ║▒▒    │ .     Entrar      . │    ▒▒║");
+                    Console.WriteLine("                            ║▒▒    │ .     Entrar      . │    ▒▒║");
                 }
-                Console.WriteLine("          ║▒▒    ├─────────────────────┤    ▒▒║");
+                Console.WriteLine("                            ║▒▒    ├─────────────────────┤    ▒▒║");
                 if(option == 2){
-                    Console.WriteLine("          ║▒▒   »│ .     VOLVER      . │«   ▒▒║");
+                    Console.WriteLine("                            ║▒▒   »│ .     VOLVER      . │«   ▒▒║");
                 }else{
-                    Console.WriteLine("          ║▒▒    │ .     VOLVER      . │    ▒▒║");
+                    Console.WriteLine("                            ║▒▒    │ .     VOLVER      . │    ▒▒║");
                 }
-                Console.WriteLine("          ║▒▒    └─────────────────────┘    ▒▒║");
-                Console.WriteLine("          ║▒▒                               ▒▒║");
-                Console.WriteLine("          ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
-                Console.WriteLine("          ╚═══════════════════════════════════╝");
+                Console.WriteLine("                            ║▒▒    └─────────────────────┘    ▒▒║");
+                Console.WriteLine("                            ║▒▒                               ▒▒║");
+                Console.WriteLine("                            ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
+                Console.WriteLine("                            ╚═══════════════════════════════════╝");
                 key = Console.ReadKey();
                 Console.Clear();
                 if(key.Key == ConsoleKey.Enter){
@@ -224,25 +224,25 @@ public class Interfaz{
                             }
                         }
                         if (i == 10) {
-                            EscribirMensaje("╔════════════════════════════════════════════════╗",3);
-                            Console.WriteLine("║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
-                            Console.WriteLine("║▒▒                                            ▒▒║");
-                            Console.WriteLine("║▒▒        ╔═══════════════════════════╗       ▒▒║");
-                            Console.WriteLine("║▒▒        ║ FELICIDADES!!!  GANASTE ☺ ║       ▒▒║");
-                            Console.WriteLine("║▒▒        ╚═══════════════════════════╝       ▒▒║");
-                            Console.WriteLine("║▒▒                                            ▒▒║");
-                            Console.WriteLine("║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
-                            EscribirMensaje("╚════════════════════════════════════════════════╝,",3);
+                            EscribirMensaje("        ╔════════════════════════════════════════════════╗",3);
+                            Console.WriteLine("        ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
+                            Console.WriteLine("        ║▒▒                                            ▒▒║");
+                            Console.WriteLine("        ║▒▒        ╔═══════════════════════════╗       ▒▒║");
+                            Console.WriteLine("        ║▒▒        ║ FELICIDADES!!!  GANASTE ☺ ║       ▒▒║");
+                            Console.WriteLine("        ║▒▒        ╚═══════════════════════════╝       ▒▒║");
+                            Console.WriteLine("        ║▒▒                                            ▒▒║");
+                            Console.WriteLine("        ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
+                            EscribirMensaje("        ╚════════════════════════════════════════════════╝,",3);
                         } else { // "+ i +"
-                            EscribirMensaje(" ╔══════════════════════════════════════════════╗",3);
-                            Console.WriteLine(" ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
-                            Console.WriteLine(" ║▒▒                                          ▒▒║");
-                            Console.WriteLine(" ║▒▒       ╔══════════════════════════╗       ▒▒║");
-                            Console.WriteLine(" ║▒▒       ║ ULTIMO NIVEL SUPERADO: 3 ║       ▒▒║");
-                            Console.WriteLine(" ║▒▒       ╚══════════════════════════╝       ▒▒║");
-                            Console.WriteLine(" ║▒▒                                          ▒▒║");
-                            Console.WriteLine(" ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
-                            EscribirMensaje(" ╚══════════════════════════════════════════════╝",3);
+                            EscribirMensaje("        ╔══════════════════════════════════════════════╗",3);
+                            Console.WriteLine("        ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
+                            Console.WriteLine("        ║▒▒                                          ▒▒║");
+                            Console.WriteLine("        ║▒▒       ╔══════════════════════════╗       ▒▒║");
+                            Console.WriteLine("        ║▒▒       ║ ULTIMO NIVEL SUPERADO: 3 ║       ▒▒║");
+                            Console.WriteLine("        ║▒▒       ╚══════════════════════════╝       ▒▒║");
+                            Console.WriteLine("        ║▒▒                                          ▒▒║");
+                            Console.WriteLine("        ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
+                            EscribirMensaje("        ╚══════════════════════════════════════════════╝",3);
                         }
                     }
                     salida = 2;
