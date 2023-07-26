@@ -4,6 +4,7 @@ namespace InterfazVisual;
 public class Interfaz{
     public static void Presentacion()
     {
+        System.Console.WriteLine("");
         Console.WriteLine(" ┌───────────────────────────────────────────────────────────────────────────────────────────────────────────┐");
         Console.WriteLine(" │ ┌───────────┐┌──────────┐ ┌───┐┌───────────┐       ┌───┐        ┌───┐  ┌──────┐  ┌────────┐  ┌──────────┐ │");
         Console.WriteLine(" │ │   ┌───────┘│  ┌────┐  └┐└───┘│  ┌────────┘       │   │        │   │┌─┘      └─┐│        └─┐│   ┌──────┘ │");
@@ -15,7 +16,7 @@ public class Interfaz{
         Console.WriteLine(" │ └───────────┘└──┘         └───┘└───────────┘       └───────┘└───────┘└──┘    └──┘└──┘   └──┘ └──────────┘ │");
         Console.WriteLine(" └───────────────────────────────────────────────────────────────────────────────────────────────────────────┘");
         System.Console.WriteLine("");
-        EscribirMensaje("                                   >>Toca una tecla para empezar<<",3);
+        EscribirMensaje("                                   >>Toca una tecla para empezar<<",5);
         Console.ReadKey();
         Console.Clear();
     }
@@ -48,34 +49,35 @@ public class Interfaz{
         ConsoleKeyInfo key;
         if (Supervivencia != null && Niveles != null && Torneo != null) {//Controlar si las listas son nulas
             do {
-                Console.WriteLine("          ╔═══════════════════════════════════╗");
-                Console.WriteLine("          ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
-                Console.WriteLine("          ║▒▒                               ▒▒║");
-                Console.WriteLine("          ║▒▒          ╔════════╗           ▒▒║");
-                Console.WriteLine("          ║▒▒          ║ INICIO ║           ▒▒║");
-                Console.WriteLine("          ║▒▒          ╚════════╝           ▒▒║");
-                Console.WriteLine("          ║▒▒    ┌─────────────────────┐    ▒▒║");
+                Console.WriteLine("");
+                Console.WriteLine("                            ╔═══════════════════════════════════╗");
+                Console.WriteLine("                            ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
+                Console.WriteLine("                            ║▒▒                               ▒▒║");
+                Console.WriteLine("                            ║▒▒          ╔════════╗           ▒▒║");
+                Console.WriteLine("                            ║▒▒          ║ INICIO ║           ▒▒║");
+                Console.WriteLine("                            ║▒▒          ╚════════╝           ▒▒║");
+                Console.WriteLine("                            ║▒▒    ┌─────────────────────┐    ▒▒║");
                 if(option == 1){
-                    Console.WriteLine("          ║▒▒   »│ .      Jugar      . │«   ▒▒║");
+                    Console.WriteLine("                            ║▒▒   »│ .      Jugar      . │«   ▒▒║");
                 }else{
-                    Console.WriteLine("          ║▒▒    │ .      Jugar      . │    ▒▒║");
+                    Console.WriteLine("                            ║▒▒    │ .      Jugar      . │    ▒▒║");
                 }
-                Console.WriteLine("          ║▒▒    ├─────────────────────┤    ▒▒║");
+                Console.WriteLine("                            ║▒▒    ├─────────────────────┤    ▒▒║");
                 if(option == 2){
-                    Console.WriteLine("          ║▒▒   »│ .   Personajes    . │«   ▒▒║");
+                    Console.WriteLine("                            ║▒▒   »│ .   Personajes    . │«   ▒▒║");
                 }else{
-                    Console.WriteLine("          ║▒▒    │ .   Personajes    . │    ▒▒║");
+                    Console.WriteLine("                            ║▒▒    │ .   Personajes    . │    ▒▒║");
                 }
-                Console.WriteLine("          ║▒▒    ├─────────────────────┤    ▒▒║");
+                Console.WriteLine("                            ║▒▒    ├─────────────────────┤    ▒▒║");
                 if(option == 3){
-                    Console.WriteLine("          ║▒▒   »│ .      SALIR      . │«   ▒▒║");
+                    Console.WriteLine("                            ║▒▒   »│ .      SALIR      . │«   ▒▒║");
                 }else{
-                    Console.WriteLine("          ║▒▒    │ .      SALIR      . │    ▒▒║");
+                    Console.WriteLine("                            ║▒▒    │ .      SALIR      . │    ▒▒║");
                 }
-                Console.WriteLine("          ║▒▒    └─────────────────────┘    ▒▒║");
-                Console.WriteLine("          ║▒▒                               ▒▒║");
-                Console.WriteLine("          ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
-                Console.WriteLine("          ╚═══════════════════════════════════╝");
+                Console.WriteLine("                            ║▒▒    └─────────────────────┘    ▒▒║");
+                Console.WriteLine("                            ║▒▒                               ▒▒║");
+                Console.WriteLine("                            ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
+                Console.WriteLine("                            ╚═══════════════════════════════════╝");
                 key = Console.ReadKey();
                 Console.Clear();
                 if(key.Key == ConsoleKey.Enter){
@@ -111,34 +113,34 @@ public class Interfaz{
         int option = 1, salida=0;
         if (jugador != null) {
             do {
-                Console.WriteLine("          ╔═══════════════════════════════════╗");
-                Console.WriteLine("          ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
-                Console.WriteLine("          ║▒▒                               ▒▒║");
-                Console.WriteLine("          ║▒▒          ╔═══════╗            ▒▒║");
-                Console.WriteLine("          ║▒▒          ║ JUGAR ║            ▒▒║");
-                Console.WriteLine("          ║▒▒          ╚═══════╝            ▒▒║");
-                Console.WriteLine("          ║▒▒    ┌─────────────────────┐    ▒▒║");
+                Console.WriteLine("                            ╔═══════════════════════════════════╗");
+                Console.WriteLine("                            ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
+                Console.WriteLine("                            ║▒▒                               ▒▒║");
+                Console.WriteLine("                            ║▒▒          ╔═══════╗            ▒▒║");
+                Console.WriteLine("                            ║▒▒          ║ JUGAR ║            ▒▒║");
+                Console.WriteLine("                            ║▒▒          ╚═══════╝            ▒▒║");
+                Console.WriteLine("                            ║▒▒    ┌─────────────────────┐    ▒▒║");
                 if(option == 1){
-                    Console.WriteLine("          ║▒▒   »│ .  Supervivencia  . │«   ▒▒║");
+                    Console.WriteLine("                            ║▒▒   »│ .  Supervivencia  . │«   ▒▒║");
                 }else{
-                    Console.WriteLine("          ║▒▒    │ .  Supervivencia  . │    ▒▒║");
+                    Console.WriteLine("                            ║▒▒    │ .  Supervivencia  . │    ▒▒║");
                 }
-                Console.WriteLine("          ║▒▒    ├─────────────────────┤    ▒▒║");
+                Console.WriteLine("                            ║▒▒    ├─────────────────────┤    ▒▒║");
                 if(option == 2){
-                    Console.WriteLine("          ║▒▒   »│ .   Modo Torneo   . │«   ▒▒║");
+                    Console.WriteLine("                            ║▒▒   »│ .   Modo Torneo   . │«   ▒▒║");
                 }else{
-                    Console.WriteLine("          ║▒▒    │ .   Modo Torneo   . │    ▒▒║");
+                    Console.WriteLine("                            ║▒▒    │ .   Modo Torneo   . │    ▒▒║");
                 }
-                Console.WriteLine("          ║▒▒    ├─────────────────────┤    ▒▒║");
+                Console.WriteLine("                            ║▒▒    ├─────────────────────┤    ▒▒║");
                 if(option == 3){
-                    Console.WriteLine("          ║▒▒   »│ .     VOLVER      . │«   ▒▒║");
+                    Console.WriteLine("                            ║▒▒   »│ .     VOLVER      . │«   ▒▒║");
                 }else{
-                    Console.WriteLine("          ║▒▒    │ .     VOLVER      . │    ▒▒║");
+                    Console.WriteLine("                            ║▒▒    │ .     VOLVER      . │    ▒▒║");
                 }
-                Console.WriteLine("          ║▒▒    └─────────────────────┘    ▒▒║");
-                Console.WriteLine("          ║▒▒                               ▒▒║");
-                Console.WriteLine("          ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
-                Console.WriteLine("          ╚═══════════════════════════════════╝");
+                Console.WriteLine("                            ║▒▒    └─────────────────────┘    ▒▒║");
+                Console.WriteLine("                            ║▒▒                               ▒▒║");
+                Console.WriteLine("                            ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
+                Console.WriteLine("                            ╚═══════════════════════════════════╝");
                 key = Console.ReadKey();
                 Console.Clear();
                 if(key.Key == ConsoleKey.Enter){
@@ -272,28 +274,28 @@ public class Interfaz{
             List<Personaje> listaDeGanadores = new List<Personaje>();
             MecanicaDeCombate mecanica = new MecanicaDeCombate();
             do{
-                Console.WriteLine("          ╔═══════════════════════════════════╗");
-                Console.WriteLine("          ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
-                Console.WriteLine("          ║▒▒                               ▒▒║");
-                Console.WriteLine("          ║▒▒          ╔════════╗           ▒▒║");
-                Console.WriteLine("          ║▒▒          ║ TORNEO ║           ▒▒║");
-                Console.WriteLine("          ║▒▒          ╚════════╝           ▒▒║");
-                Console.WriteLine("          ║▒▒    ┌─────────────────────┐    ▒▒║");
+                Console.WriteLine("                            ╔═══════════════════════════════════╗");
+                Console.WriteLine("                            ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
+                Console.WriteLine("                            ║▒▒                               ▒▒║");
+                Console.WriteLine("                            ║▒▒          ╔════════╗           ▒▒║");
+                Console.WriteLine("                            ║▒▒          ║ TORNEO ║           ▒▒║");
+                Console.WriteLine("                            ║▒▒          ╚════════╝           ▒▒║");
+                Console.WriteLine("                            ║▒▒    ┌─────────────────────┐    ▒▒║");
                 if(option == 1){
-                    Console.WriteLine("          ║▒▒   »│ .     Entrar      . │«   ▒▒║");
+                    Console.WriteLine("                            ║▒▒   »│ .     Entrar      . │«   ▒▒║");
                 }else{
-                    Console.WriteLine("          ║▒▒    │ .     Entrar      . │    ▒▒║");
+                    Console.WriteLine("                            ║▒▒    │ .     Entrar      . │    ▒▒║");
                 }
-                Console.WriteLine("          ║▒▒    ├─────────────────────┤    ▒▒║");
+                Console.WriteLine("                            ║▒▒    ├─────────────────────┤    ▒▒║");
                 if(option == 2){
-                    Console.WriteLine("          ║▒▒   »│ .     VOLVER      . │«   ▒▒║");
+                    Console.WriteLine("                            ║▒▒   »│ .     VOLVER      . │«   ▒▒║");
                 }else{
-                    Console.WriteLine("          ║▒▒    │ .     VOLVER      . │    ▒▒║");
+                    Console.WriteLine("                            ║▒▒    │ .     VOLVER      . │    ▒▒║");
                 }
-                Console.WriteLine("          ║▒▒    └─────────────────────┘    ▒▒║");
-                Console.WriteLine("          ║▒▒                               ▒▒║");
-                Console.WriteLine("          ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
-                Console.WriteLine("          ╚═══════════════════════════════════╝");
+                Console.WriteLine("                            ║▒▒    └─────────────────────┘    ▒▒║");
+                Console.WriteLine("                            ║▒▒                               ▒▒║");
+                Console.WriteLine("                            ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
+                Console.WriteLine("                            ╚═══════════════════════════════════╝");
                 key = Console.ReadKey();
                 Console.Clear();
                 if(key.Key == ConsoleKey.Enter){
@@ -332,52 +334,57 @@ public class Interfaz{
         var personajeSeleccionado = new Personaje ();
         int op = 1, salida = 0;
         int i = 0, prim;
+        Console.Clear();
+        System.Console.WriteLine("");
+        EscribirMensaje("- En este Menú verás los personajes disponibles para seleccionar en el modo supervivencia, y también podrás crear nuevos personajes aleatorios para cada modo de juego, asi como nuevos enemigos con los que luchar en el modo supervivencia (modo torneo, modo niveles o modo supervivencia) -",1);
+        System.Console.WriteLine("");
+        Continuar();
         do {
             prim = Supervivencia.Count()-1;
             Console.Clear();
-            System.Console.WriteLine("   ╔═══════════════════════════════════════════════════════════════╗");
-            System.Console.WriteLine("   ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
-            System.Console.WriteLine("   ║▒▒                                                           ▒▒║");
-            System.Console.WriteLine("   ║▒▒                 ╔═══════════════════════╗                 ▒▒║");
-            System.Console.WriteLine("   ║▒▒                 ║ SELECCIONE UNA OPCION ║                 ▒▒║");
-            System.Console.WriteLine("   ║▒▒                 ╚═══════════════════════╝                 ▒▒║");
-            System.Console.WriteLine("   ║▒▒                                                           ▒▒║");
-            System.Console.WriteLine("   ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
-            System.Console.WriteLine("   ╚═══════════════════════════════════════════════════════════════╝");
+            System.Console.WriteLine("          ╔═══════════════════════════════════════════════════════════════╗");
+            System.Console.WriteLine("          ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
+            System.Console.WriteLine("          ║▒▒                                                           ▒▒║");
+            System.Console.WriteLine("          ║▒▒                 ╔═══════════════════════╗                 ▒▒║");
+            System.Console.WriteLine("          ║▒▒                 ║ SELECCIONE UNA OPCION ║                 ▒▒║");
+            System.Console.WriteLine("          ║▒▒                 ╚═══════════════════════╝                 ▒▒║");
+            System.Console.WriteLine("          ║▒▒                                                           ▒▒║");
+            System.Console.WriteLine("          ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
+            System.Console.WriteLine("          ╚═══════════════════════════════════════════════════════════════╝");
             System.Console.WriteLine("");
-            System.Console.WriteLine("   ┌───────────────────────────────────────────────────────────────┐");
+            System.Console.WriteLine("          ┌───────────────────────────────────────────────────────────────┐");
             if(op == 1){
-            System.Console.WriteLine("  »│     . Crear Nuevos Personajes aleatorios (modo Torneo) .      │«");
+            System.Console.WriteLine("         »│     . Crear Nuevos Personajes aleatorios (modo Torneo) .      │«");
             }else{
-            System.Console.WriteLine("   │     . Crear Nuevos Personajes aleatorios (modo Torneo) .      │");
+            System.Console.WriteLine("          │     . Crear Nuevos Personajes aleatorios (modo Torneo) .      │");
             }
-            System.Console.WriteLine("   ├───────────────────────────────────────────────────────────────┤");
+            System.Console.WriteLine("          ├───────────────────────────────────────────────────────────────┤");
             if(op == 2){
-            System.Console.WriteLine("  »│   . Crear Nuevos Enemigos aleatorios (modo Supervivencia) .   │«");
+            System.Console.WriteLine("         »│   . Crear Nuevos Enemigos aleatorios (modo Supervivencia) .   │«");
             }else{
-            System.Console.WriteLine("   │   . Crear Nuevos Enemigos aleatorios (modo Supervivencia) .   │");
+            System.Console.WriteLine("          │   . Crear Nuevos Enemigos aleatorios (modo Supervivencia) .   │");
             }
-            System.Console.WriteLine("   ├───────────────────────────────────────────────────────────────┤");
+            System.Console.WriteLine("          ├───────────────────────────────────────────────────────────────┤");
             if(op == 3){
-            System.Console.WriteLine("  »│      . Crear Nuevos Personajes aleatorios para elegir .       │«");
+            System.Console.WriteLine("         »│      . Crear Nuevos Personajes aleatorios para elegir .       │«");
             }else{
-            System.Console.WriteLine("   │      . Crear Nuevos Personajes aleatorios para elegir .       │");
+            System.Console.WriteLine("          │      . Crear Nuevos Personajes aleatorios para elegir .       │");
             }
-            System.Console.WriteLine("   ├───────────────────────────────────────────────────────────────┤");
+            System.Console.WriteLine("          ├───────────────────────────────────────────────────────────────┤");
             if(op == 4){
-            System.Console.WriteLine("  »│      . Ir a Elegir Personaje para jugar Supervivencia .       │«");
+            System.Console.WriteLine("         »│      . Ir a Elegir Personaje para jugar Supervivencia .       │«");
             }else{
-            System.Console.WriteLine("   │      . Ir a Elegir Personaje para jugar Supervivencia .       │");
+            System.Console.WriteLine("          │      . Ir a Elegir Personaje para jugar Supervivencia .       │");
             }
-            System.Console.WriteLine("   ├───────────────────────────────────────────────────────────────┤");
+            System.Console.WriteLine("          ├───────────────────────────────────────────────────────────────┤");
             if(op == 5){
-            System.Console.WriteLine("  »│                         .  VOLVER  .                          │«");
+            System.Console.WriteLine("         »│                         .  VOLVER  .                          │«");
             }else{
-            System.Console.WriteLine("   │                         .  VOLVER  .                          │");
+            System.Console.WriteLine("          │                         .  VOLVER  .                          │");
             }
-            System.Console.WriteLine("   └───────────────────────────────────────────────────────────────┘");
+            System.Console.WriteLine("          └───────────────────────────────────────────────────────────────┘");
             System.Console.WriteLine("");
-            System.Console.WriteLine("   Usa las flechas '←' o '→' para ver los atributos de los personaje");
+            System.Console.WriteLine("          Usa las flechas '←' o '→' para ver los atributos de los personaje");
             aux = Console.ReadKey(intercept: true);
             if(aux.Key == ConsoleKey.UpArrow){
                 op--;
@@ -401,23 +408,15 @@ public class Interfaz{
             }
             if(aux.Key == ConsoleKey.Enter){
                 if(op == 1){
-                    Console.Clear();
-                    EscribirMensaje("Se estan creando los nuevos personajes...",3);
-                    EscribirMensaje("Guardando los nuevos personajes...",3);
-                    aux2 = fabricarPersonaje.CrearParticipantes("PersonajesTorneo",16);
-                    if (aux2 != null) {
-                        Torneo = aux2;
-                        EscribirMensaje("Los personajes se crearon exitosamente...",3);
-                    } else {
-                        EscribirMensaje("Los personajes no se modificaron",3);
-                    }
-                    Continuar();
+                    //EscribirNuevosPersonajes(Torneo,aux2,fabricarPersonaje);
                 }
                 if (op == 2) {
                     Console.Clear();
                     EscribirMensaje("Se estan creando los nuevos personajes...",3);
+                    System.Console.WriteLine("");
                     EscribirMensaje("Guardando los nuevos personajes...",3);
                     aux2 = fabricarPersonaje.CrearParticipantes("PersonajesNiveles",16);
+                    System.Console.WriteLine("");
                     if (aux2 != null) {
                         Niveles = aux2;
                         EscribirMensaje("Los personajes se crearon exitosamente...",3);
@@ -429,7 +428,9 @@ public class Interfaz{
                 if(op == 3){
                     Console.Clear();
                     EscribirMensaje("Se estan creando los nuevos personajes...",3);
+                    System.Console.WriteLine("");
                     EscribirMensaje("Guardando los nuevos personajes...",3);
+                    System.Console.WriteLine("");
                     aux2 = fabricarPersonaje.CrearParticipantes("PersonajesSupervivencia",16);
                     if (aux2 != null) {
                         Supervivencia = aux2;
@@ -461,7 +462,7 @@ public class Interfaz{
             }
         }while(aux.Key != ConsoleKey.Escape && salida !=1 && Supervivencia != null);
     }
-    public static void ElegirPersonaje(List<Personaje> listaP, PersonajesJson pjson) {
+public static void ElegirPersonaje(List<Personaje> listaP, PersonajesJson pjson) {
         int i = 0, prim;
         ConsoleKeyInfo aux;
         int op = 1, salida = 0;
@@ -521,6 +522,21 @@ public class Interfaz{
                 }
             } while (aux.Key != ConsoleKey.Escape && salida != 1);
         }
+    }
+    public static void EscribirNuevosPersonajes(List<Personaje>? listaP, List<Personaje>? aux, FabricaDePersonajes fabricarPersonaje) {
+        Console.Clear();
+        EscribirMensaje("Se estan creando los nuevos personajes...",3);
+        System.Console.WriteLine("");
+        EscribirMensaje("Guardando los nuevos personajes...",3);
+        System.Console.WriteLine("");
+        aux = fabricarPersonaje.CrearParticipantes("PersonajesTorneo",16);
+        if (aux != null) {
+            listaP = aux;
+            EscribirMensaje("Los personajes se crearon exitosamente...",3);
+        } else {
+            EscribirMensaje("Los personajes no se modificaron",3);
+        }
+        Continuar();
     }
     public static List<Personaje> OctavosDeFinal(List<Personaje> listaP, List<Personaje> Ganadores, MecanicaDeCombate mecanica) {
         EscribirMensaje("- Ahora presentaremos los participantes que se enfrentarán en los Octavos de final -",5);
