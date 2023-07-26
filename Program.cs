@@ -19,7 +19,7 @@ if (restablecer != null) {
 }
 
 if (!Json.Existe("PersonajesTorneo")) {
-    Torneo = personaje.CrearParticipantes("PersonajesTorneo",16);
+    Torneo = personaje.CrearParticipantes("PersonajesTorneo",16,-1);
 }
 
 restablecer = Json.LeerPersonaje("PersonajeNivelesPrueba");
@@ -28,7 +28,7 @@ if (restablecer != null) {
 }
 
 if (!Json.Existe("PersonajesNiveles")) {
-    Niveles = personaje.CrearParticipantes("PersonajesNiveles",10);
+    Niveles = personaje.CrearParticipantes("PersonajesNiveles",10,-1);
 }
 
 restablecer = Json.LeerPersonaje("PersonajeSupervivenciaPrueba");
@@ -37,7 +37,9 @@ if (restablecer != null) {
 }
 
 if (!Json.Existe("PersonajesSupervivencia")) {
-    Supervivencia = personaje.CrearParticipantes("PersonajesSupervivencia",10);
+    for (int i = 3; i < 13; i++) {
+        Supervivencia = personaje.CrearParticipantes("PersonajesSupervivencia",10,i);
+    }
 }
 
 
