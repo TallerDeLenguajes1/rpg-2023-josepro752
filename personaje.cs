@@ -48,7 +48,7 @@ public class Personaje {
     //     Armadura = armadura;
     //     Salud = salud;
     // }
-    public void MostrarPersonajes(int menu) {
+    public void MostrarPersonaje(int menu) {
         Console.WriteLine("            ╔═══════════════════════════════════════════╗");
         Console.WriteLine("            ║░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░║");
         switch (menu) {
@@ -65,6 +65,11 @@ public class Personaje {
             case 3:
                 Console.WriteLine("            ║░░░   ╔═════════════════════════════╗   ░░░║");
                 Console.WriteLine("            ║░░░   ║  >>> PERSONAJE GANADOR <<<  ║   ░░░║");
+                Console.WriteLine("            ║░░░   ╚═════════════════════════════╝   ░░░║");
+                break;
+            case 4:
+                Console.WriteLine("            ║░░░   ╔═════════════════════════════╗   ░░░║");
+                Console.WriteLine("            ║░░░   ║   >>> VER PERSONAJES  <<<   ║   ░░░║");
                 Console.WriteLine("            ║░░░   ╚═════════════════════════════╝   ░░░║");
             break;
         }
@@ -288,16 +293,16 @@ public class FabricaDePersonajes {
         nuevo.Tipo = nuevo.Tipo + ", " + rol;
         nuevo.Energia = 2;
         // Edad con API
-        EdadconAPI(nuevo.Nombre);
-        Root EdadConAPI = new Root();
+        // EdadconAPI(nuevo.Nombre);
+        // Root EdadConAPI = new Root();
         int anio;
-        if (File.Exists("EdadAPI.json")) {
-            string json = File.ReadAllText("EdadAPI.json");
-            EdadConAPI = JsonSerializer.Deserialize<Root>(json);
-            anio = 2023 - EdadConAPI.age;
-        } else {
+        // if (File.Exists("EdadAPI.json")) {
+        //     string json = File.ReadAllText("EdadAPI.json");
+        //     EdadConAPI = JsonSerializer.Deserialize<Root>(json);
+        //     anio = 2023 - EdadConAPI.age;
+        // } else {
             anio = valor.Next(1723,2024);
-        }
+        // }
         int mes = valor.Next(1,13);
         int dia;
         switch (mes) {

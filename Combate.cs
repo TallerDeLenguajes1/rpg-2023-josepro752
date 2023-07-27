@@ -54,9 +54,9 @@ public class MecanicaDeCombate {
         while ((salud1 > 0) && (salud2 > 0) && (ronda < 21)) {
             habilidadAtacante = 0;
             habilidadDefensor = 0;
-            System.Console.WriteLine("        ╔═══════════════════════════════════════╗");
-            System.Console.WriteLine("        ║ "+ Interfaz.CentrarV2(" RONDA N"+(ronda+1)/2+" ",37) +" ║"); // 37 espacios
-            System.Console.WriteLine("        ╚═══════════════════════════════════════╝");
+            System.Console.WriteLine("                                ╔═══════════════════════════════════════╗");
+            System.Console.WriteLine("                                ║ "+ Interfaz.CentrarV2(" RONDA N"+(ronda+1)/2+" ",37) +" ║"); // 37 espacios
+            System.Console.WriteLine("                                ╚═══════════════════════════════════════╝");
             System.Console.WriteLine("");
             if (turno == 1) {
                 turno = 2;
@@ -316,7 +316,7 @@ public class MecanicaDeCombate {
                 if(Competidores.Count()>1){
                     Interfaz.Continuar();
                     ganador = CombateIAvsIA(Competidores[0],Competidores[1]);
-                    ganador = SubirNivel(ganador);
+                    ganador = SubirNivel(ganador); // NO ME SUBE DE NIVEL EN EL MODO TORNEO
                     resultados.Add(ganador);
                     Competidores.Remove(Competidores[0]);
                     Competidores.Remove(Competidores[0]);
@@ -371,11 +371,11 @@ public class MecanicaDeCombate {
     public void ResultadoCombate(Personaje personajeTurno, Personaje? personaje, int energia ,float salud, float dano, string texto) {
         if (personaje != null) {
             System.Console.WriteLine("                               ╔═════════════════════════════════════════╗");
-            System.Console.WriteLine("                               ║ "+ Interfaz.CentrarV2(" "+ texto +" "+ personajeTurno.Nombre +", "+ personajeTurno.Apodo +" ",37) +" ║"); //37 espacios
+            System.Console.WriteLine("                               ║ "+ Interfaz.CentrarV2(" "+ texto +" "+ personajeTurno.Nombre +", "+ personajeTurno.Apodo +" ",39) +" ║"); //39 espacios
             System.Console.WriteLine("                               ╟───────┬────────────────────────┬────────╢");
             System.Console.WriteLine("                               ╟───────┤ RESULTADOS DEL COMBATE ├────────╢");
             System.Console.WriteLine("                               ╟───────┴────────────────────────┴────────╢");
-            System.Console.WriteLine("                               ║"+ Interfaz.Centrar("Personaje golpeado: "+ personaje.Nombre +", "+ personaje.Apodo,39) +"║"); //41 espacios
+            System.Console.WriteLine("                               ║"+ Interfaz.Centrar("Personaje golpeado: "+ personaje.Nombre +", "+ personaje.Apodo,41) +"║"); //41 espacios
             System.Console.WriteLine("                               ║"+ Interfaz.Centrar("Daño ocasionado: "+ dano.ToString(),41) +"║"); //41 espacios
             System.Console.WriteLine("                               ║"+ Interfaz.Centrar("Salud restante: "+ salud.ToString(),41) +"║"); //41 espacios
             System.Console.WriteLine("                               ║"+ Interfaz.Centrar("Energia restante: "+ energia,41) +"║"); //41 espacios
