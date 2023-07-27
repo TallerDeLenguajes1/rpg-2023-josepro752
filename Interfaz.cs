@@ -427,15 +427,27 @@ public class Interfaz{
                 i = 0;
             }
             if(aux.Key == ConsoleKey.Enter){
-                if(op == 1){
-                    //EscribirNuevosPersonajes(Torneo,aux2,fabricarPersonaje);
+                if (op == 1) {
+                    Console.Clear();
+                    EscribirMensaje("Se estan creando los nuevos personajes...",3);
+                    System.Console.WriteLine("");
+                    EscribirMensaje("Guardando los nuevos personajes...",3);
+                    aux2 = fabricarPersonaje.CrearParticipantes("PersonajesTorneo",16,-1);
+                    System.Console.WriteLine("");
+                    if (aux2 != null) {
+                        Torneo = aux2;
+                        EscribirMensaje("Los personajes se crearon exitosamente...",3);
+                    } else {
+                        EscribirMensaje("Los personajes no se modificaron",3);
+                    }
+                    Continuar();
                 }
                 if (op == 2) {
                     Console.Clear();
                     EscribirMensaje("Se estan creando los nuevos personajes...",3);
                     System.Console.WriteLine("");
                     EscribirMensaje("Guardando los nuevos personajes...",3);
-                    aux2 = fabricarPersonaje.CrearParticipantes("PersonajesNiveles",16,-1);
+                    aux2 = fabricarPersonaje.CrearParticipantes("PersonajesNiveles",10,3);
                     System.Console.WriteLine("");
                     if (aux2 != null) {
                         Niveles = aux2;
@@ -445,13 +457,13 @@ public class Interfaz{
                     }
                     Continuar();
                 }
-                if(op == 3){
+                if (op == 3) {
                     Console.Clear();
                     EscribirMensaje("Se estan creando los nuevos personajes...",3);
                     System.Console.WriteLine("");
                     EscribirMensaje("Guardando los nuevos personajes...",3);
+                    aux2 = fabricarPersonaje.CrearParticipantes("PersonajesSupervivencia",10,-1);
                     System.Console.WriteLine("");
-                    aux2 = fabricarPersonaje.CrearParticipantes("PersonajesSupervivencia",16,3);
                     if (aux2 != null) {
                         Supervivencia = aux2;
                         EscribirMensaje("Los personajes se crearon exitosamente...",3);

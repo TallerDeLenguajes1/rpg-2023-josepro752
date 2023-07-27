@@ -6,13 +6,13 @@ using EspacioCombate;
 namespace EspacioPersonaje;
 public class Personaje {
     // ATRIBUTOS
-    // DATOS
+    // datos
     private string? tipo;
     private string? nombre;
     private string? apodo;
     private DateTime fechaDeNacimiento;
     private int edad;
-    // CARACTERISTICAS
+    // caracteristicas
     private float velocidad;
     private int destreza;
     private float fuerza;
@@ -240,9 +240,9 @@ public class FabricaDePersonajes {
         if (nivel == -1) {
             nuevo.Nivel = valor.Next(1,7); // MAX nivel 6, para ser nivel 10 en la final (en el modo torneo)
         } else {
-            nuevo.Nivel = nivel; // MIN nivel 3, para ser nivel 12 en la ultima pelea (en el modo supervivencia)
+            nuevo.Nivel = nivel; // MIN nivel 3, para ser nivel 13 en la ultima pelea (en el modo supervivencia), los enemigos seran un poco mas fuertes
         }
-        for (int j = 1; j < nivel; j++) {
+        for (int j = 0; j < nivel; j++) {
             nuevo = mecanica.SubirNivel(nuevo);
         }
         rol = roles[valor.Next(0,5)];
@@ -330,14 +330,11 @@ public class FabricaDePersonajes {
         var listaDePersonajes = new List<Personaje> ();
         var personaje = new FabricaDePersonajes ();
         var PJson = new PersonajesJson ();
-        if (!(PJson.Existe("Personajes.json"))) {
-            for (int i = 0; i < cant; i++) {
-                listaDePersonajes.Add(personaje.CrearPersonaje(nivel));
-            }
-            PJson.GuardarPersonaje(listaDePersonajes,nombre);
-        } else {
-            listaDePersonajes = PJson.LeerPersonaje(nombre + ".json");
+        for (int i = nivel; i < cant; i++) {
+            listaDePersonajes.Add(personaje.CrearPersonaje(nivel));
         }
+        PJson.GuardarPersonaje(listaDePersonajes,nombre);
+        listaDePersonajes = PJson.LeerPersonaje(nombre + ".json");
         return listaDePersonajes;
     }
 }
