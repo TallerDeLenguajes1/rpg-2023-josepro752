@@ -113,6 +113,7 @@ public class Interfaz{
         int option = 1, salida=0;
         if (jugador != null) {
             do {
+                Console.WriteLine("");
                 Console.WriteLine("                            ╔═══════════════════════════════════╗");
                 Console.WriteLine("                            ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
                 Console.WriteLine("                            ║▒▒                               ▒▒║");
@@ -190,8 +191,9 @@ public class Interfaz{
             System.Console.WriteLine("");
             Continuar();
             ConsoleKeyInfo key;
-            int option = 1, salida = 0, i;
+            int option = 1, salida = 0, i = 0;
             do {
+                Console.WriteLine("");
                 Console.WriteLine("                            ╔═══════════════════════════════════╗");
                 Console.WriteLine("                            ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
                 Console.WriteLine("                            ║▒▒                               ▒▒║");          
@@ -218,47 +220,58 @@ public class Interfaz{
                 Console.Clear();
                 if(key.Key == ConsoleKey.Enter){
                     if (option == 1) {
-                        for (i = 0; i < 10; i++) {
-                            // Personajes desde el nivel 3 al 12
+                        do {
+                            // Personajes desde el nivel 3 al 13
                             Console.WriteLine("");
-                            EscribirMensaje("          ╔════════════════════════════════════════════════╗",3);
-                            Console.WriteLine("          ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
-                            Console.WriteLine("          ║▒▒                                            ▒▒║");
-                            Console.WriteLine("          ║▒▒        ╔═══════════════════════════╗       ▒▒║");
-                            Console.WriteLine("          ║▒▒        ║        NIVEL N: "+ (i+1) +"         ║       ▒▒║");
-                            Console.WriteLine("          ║▒▒        ╚═══════════════════════════╝       ▒▒║");
-                            Console.WriteLine("          ║▒▒                                            ▒▒║");
-                            Console.WriteLine("            ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
-                            EscribirMensaje("        ╚════════════════════════════════════════════════╝",3);
+                            Console.WriteLine("                                     ╔═══════════════════════════╗");
+                            Console.WriteLine("                                     ║         NIVEL N:"+ (i+1) +"         ║");
+                            Console.WriteLine("                                     ╚═══════════════════════════╝");
                             Ganador = mecanica.CombateIAvsJugador(jugador,Niveles[0],auxiliarIA,danoAnterior);
                             if (Ganador.Nombre + Ganador.Apodo == jugador.Nombre + jugador.Apodo) {
-
+                                Console.Clear();
+                                Console.WriteLine("");
+                                EscribirMensaje("                              ╔══════════════════════════════════════════════╗",3);
+                                Console.WriteLine("                              ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
+                                Console.WriteLine("                              ║▒▒                                          ▒▒║");
+                                Console.WriteLine("                              ║▒▒       ╔══════════════════════════╗       ▒▒║");
+                                Console.WriteLine("                              ║▒▒       ║     NIVEL "+ (i+1) +" SUPERADO     ║       ▒▒║");
+                                Console.WriteLine("                              ║▒▒       ╚══════════════════════════╝       ▒▒║");
+                                Console.WriteLine("                              ║▒▒                                          ▒▒║");
+                                Console.WriteLine("                              ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
+                                EscribirMensaje("                              ╚══════════════════════════════════════════════╝",3);
+                                Thread.Sleep(1500);
+                                Console.Clear();
                             }
-                        }
+                            i++;
+                        } while ((Ganador.Nombre + Ganador.Apodo == jugador.Nombre + jugador.Apodo) || (i < 14));
                         if (i == 10) {
+                            Console.Clear();
                             Console.WriteLine("");
-                            EscribirMensaje("          ╔════════════════════════════════════════════════╗",3);
-                            Console.WriteLine("          ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
-                            Console.WriteLine("          ║▒▒                                            ▒▒║");
-                            Console.WriteLine("          ║▒▒        ╔═══════════════════════════╗       ▒▒║");
-                            Console.WriteLine("          ║▒▒        ║ FELICIDADES!!!  GANASTE ☺ ║       ▒▒║");
-                            Console.WriteLine("          ║▒▒        ╚═══════════════════════════╝       ▒▒║");
-                            Console.WriteLine("          ║▒▒                                            ▒▒║");
-                            Console.WriteLine("          ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
-                            EscribirMensaje("          ╚════════════════════════════════════════════════╝,",3);
-                            Console.WriteLine("");
+                            EscribirMensaje("                              ╔════════════════════════════════════════════════╗",3);
+                            Console.WriteLine("                              ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
+                            Console.WriteLine("                              ║▒▒                                            ▒▒║");
+                            Console.WriteLine("                              ║▒▒        ╔═══════════════════════════╗       ▒▒║");
+                            Console.WriteLine("                              ║▒▒        ║ FELICIDADES!!!  GANASTE ☺ ║       ▒▒║");
+                            Console.WriteLine("                              ║▒▒        ╚═══════════════════════════╝       ▒▒║");
+                            Console.WriteLine("                              ║▒▒                                            ▒▒║");
+                            Console.WriteLine("                              ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
+                            EscribirMensaje("                              ╚════════════════════════════════════════════════╝,",3);
+                            Thread.Sleep(4000);
+                            Console.Clear();
                         } else {
+                            Console.Clear();
                             Console.WriteLine("");
-                            EscribirMensaje("          ╔══════════════════════════════════════════════╗",3);
-                            Console.WriteLine("          ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
-                            Console.WriteLine("          ║▒▒                                          ▒▒║");
-                            Console.WriteLine("          ║▒▒       ╔══════════════════════════╗       ▒▒║");
-                            Console.WriteLine("          ║▒▒       ║ ULTIMO NIVEL SUPERADO: "+ (i+1) +" ║       ▒▒║");
-                            Console.WriteLine("          ║▒▒       ╚══════════════════════════╝       ▒▒║");
-                            Console.WriteLine("          ║▒▒                                          ▒▒║");
-                            Console.WriteLine("          ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
-                            EscribirMensaje("          ╚══════════════════════════════════════════════╝",3);
-                            Console.WriteLine("");
+                            EscribirMensaje("                              ╔══════════════════════════════════════════════╗",3);
+                            Console.WriteLine("                              ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
+                            Console.WriteLine("                              ║▒▒                                          ▒▒║");
+                            Console.WriteLine("                              ║▒▒       ╔══════════════════════════╗       ▒▒║");
+                            Console.WriteLine("                              ║▒▒       ║ ULTIMO NIVEL SUPERADO: "+ (i+1) +" ║       ▒▒║");
+                            Console.WriteLine("                              ║▒▒       ╚══════════════════════════╝       ▒▒║");
+                            Console.WriteLine("                              ║▒▒                                          ▒▒║");
+                            Console.WriteLine("                              ║▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒║");
+                            EscribirMensaje("                              ╚══════════════════════════════════════════════╝",3);
+                            Thread.Sleep(4000);
+                            Console.Clear();
                         }
                     }
                     salida = 2;
@@ -438,7 +451,7 @@ public class Interfaz{
                         Torneo = aux2;
                         EscribirMensaje("Los personajes se crearon exitosamente...",3);
                     } else {
-                        EscribirMensaje("Los personajes no se modificaron",3);
+                        EscribirMensaje("Los personajes se modificaron exitosamente",3);
                     }
                     Continuar();
                 }
@@ -453,7 +466,7 @@ public class Interfaz{
                         Niveles = aux2;
                         EscribirMensaje("Los personajes se crearon exitosamente...",3);
                     } else {
-                        EscribirMensaje("Los personajes no se modificaron",3);
+                        EscribirMensaje("Los personajes se modificaron exitosamente",3);
                     }
                     Continuar();
                 }
@@ -468,7 +481,7 @@ public class Interfaz{
                         Supervivencia = aux2;
                         EscribirMensaje("Los personajes se crearon exitosamente...",3);
                     } else {
-                        EscribirMensaje("Los personajes no se modificaron",3);
+                        EscribirMensaje("Los personajes se modificaron exitosamente",3);
                     }
                     Continuar();
                 }
@@ -579,72 +592,66 @@ public static void ElegirPersonaje(List<Personaje> listaP, PersonajesJson pjson)
         int op = 1, salida = 0;
         Console.Clear();
         Console.WriteLine("");
-        EscribirMensaje("- Si desea ver en detalles los particiopantes, toque barra espaciadora -",5);
+        EscribirMensaje("- Si desea ver en detalles los particiopantes antes de empezar esta competencia, presione la barra espaciadora, de lo contrario presione cualquier otra tecla -",5);
         aux = Console.ReadKey();
+        Console.Clear();
         if (aux.KeyChar == ' ') {
-            if (listaP != null) {
-                prim = listaP.Count()-1;
-                do {
-                    Console.Clear();
-                    listaP[i].MostrarPersonaje(1);
-                    if (op == 2) {
-                    System.Console.WriteLine("");
-                    System.Console.WriteLine("                      ┌─────────────────────┐");
-                    if(op == 1){
-                    System.Console.WriteLine("                     »│ .  VER PERSONAJES . │«");
-                    }else{
-                    System.Console.WriteLine("                      │ .  VER PERSONAJES . │");
-                    }
-                    System.Console.WriteLine("                      ├─────────────────────┤");
-                    if(op == 2){
-                    System.Console.WriteLine("                     »│ .     VOLVER      . │«");
-                    }else{
-                    System.Console.WriteLine("                      │ .     VOLVER      . │");
-                    }
-                    System.Console.WriteLine("                      └─────────────────────┘");
-                    System.Console.WriteLine("");
-                    System.Console.WriteLine("         Usa las flechas '←' o '→' para cambiar de personaje");
-                    aux = Console.ReadKey(intercept: true);
-                    if(aux.Key == ConsoleKey.UpArrow){
-                        op--;
-                    }else if(aux.Key == ConsoleKey.DownArrow){
-                        op++;
-                    }
-                    if(op<1){
-                        op = 2;
-                    }else if(op>2){
-                        op = 1;
-                    }
-                    if(aux.Key == ConsoleKey.RightArrow){
-                        i++;
-                    }else if(aux.Key == ConsoleKey.LeftArrow){
-                        i--;
-                    }
-                    if(i<0){
-                        i = (listaP.Count()-1);
-                    }else if(i>(listaP.Count()-1)){
-                        i = 0;
-                    }
-                    if(aux.Key == ConsoleKey.Enter){
-
-                        salida = 1;
-                    }
-                } while (aux.Key != ConsoleKey.Escape && salida != 1);
-            } else {
+            prim = listaP.Count()-1;
+            do {
+                Console.Clear();
+                listaP[i].MostrarPersonaje(1);
                 System.Console.WriteLine("");
-                EscribirMensaje("- No hay personajes para ver -",5);
-                Continuar();
-            }
-        } 
+                System.Console.WriteLine("                      ┌─────────────────────┐");
+                if (op == 1) {
+                System.Console.WriteLine("                     »│ .  VER PERSONAJES . │«");
+                } else {
+                System.Console.WriteLine("                      │ .  VER PERSONAJES . │");
+                }
+                System.Console.WriteLine("                      ├─────────────────────┤");
+                if (op == 2) {
+                System.Console.WriteLine("                     »│ .     EMPEZAR     . │«");
+                } else {
+                System.Console.WriteLine("                      │ .     EMPEZAR     . │");
+                }
+                System.Console.WriteLine("                      └─────────────────────┘");
+                System.Console.WriteLine("");
+                System.Console.WriteLine("         Usa las flechas '←' o '→' para cambiar de personaje",3);
+                System.Console.WriteLine("");
+                aux = Console.ReadKey(intercept: true);
+                if(aux.Key == ConsoleKey.UpArrow){
+                    op--;
+                }else if(aux.Key == ConsoleKey.DownArrow){
+                    op++;
+                }
+                if(op<1){
+                    op = 2;
+                }else if(op>2){
+                    op = 1;
+                }
+                if(aux.Key == ConsoleKey.RightArrow){
+                    i++;
+                }else if(aux.Key == ConsoleKey.LeftArrow){
+                    i--;
+                }
+                if(i<0){
+                    i = (listaP.Count()-1);
+                }else if(i>(listaP.Count()-1)){
+                    i = 0;
+                }
+                if(aux.Key == ConsoleKey.Enter && op == 2){
+                    salida = 1;
+                }
+            } while (aux.Key != ConsoleKey.Escape && salida != 1);
         }
+        Console.Clear();
         System.Console.WriteLine("");
         EscribirMensaje("- Ahora presentaremos los participantes que se enfrentarán en los Octavos de final -",5);
         Continuar();
         Console.Clear();
         Console.WriteLine("");
-        EscribirMensaje("                                ╔════════════════════════════╗",3);
-        EscribirMensaje("                                ║  --> OCTAVOS DE FINAL <--  ║",2);
-        EscribirMensaje("                                ╚════════════════════════════╝",3);
+        EscribirMensaje("                                     ╔════════════════════════════╗",3);
+        Console.WriteLine("                                     ║  --> OCTAVOS DE FINAL <--  ║",2);
+        EscribirMensaje("                                     ╚════════════════════════════╝",3);
         Console.WriteLine("");
         listaP = mecanica.Sorteo(listaP);
         mecanica.Fixture(listaP,8);
@@ -657,9 +664,9 @@ public static void ElegirPersonaje(List<Personaje> listaP, PersonajesJson pjson)
         Continuar();
         Console.Clear();
         Console.WriteLine("");
-        EscribirMensaje("                                    ╔════════════════════════════╗",3);
-        EscribirMensaje("                                    ║  --> CUARTOS DE FINAL <--  ║",2);
-        EscribirMensaje("                                    ╚════════════════════════════╝",3);
+        EscribirMensaje("                                     ╔════════════════════════════╗",3);
+        Console.WriteLine("                                     ║  --> CUARTOS DE FINAL <--  ║",2);
+        EscribirMensaje("                                     ╚════════════════════════════╝",3);
         Console.WriteLine("");
         Ganadores = mecanica.Sorteo(Ganadores);
         mecanica.Fixture(Ganadores,4);
@@ -673,7 +680,7 @@ public static void ElegirPersonaje(List<Personaje> listaP, PersonajesJson pjson)
         Console.Clear();
         Console.WriteLine("");
         EscribirMensaje("                                      ╔═══════════════════════╗",3);
-        EscribirMensaje("                                      ║  --> SEMIFINALES <--  ║",2);
+        Console.WriteLine("                                      ║  --> SEMIFINALES <--  ║",2);
         EscribirMensaje("                                      ╚═══════════════════════╝",3);
         Console.WriteLine("");
         Ganadores = mecanica.Sorteo(Ganadores);
@@ -687,9 +694,9 @@ public static void ElegirPersonaje(List<Personaje> listaP, PersonajesJson pjson)
         Continuar();
         Console.Clear();
         Console.WriteLine("");
-        EscribirMensaje("                                        ╔═══════════════════╗",3);
-        EscribirMensaje("                                        ║   --> FINAL <--   ║",3);
-        EscribirMensaje("                                        ╚═══════════════════╝",3);
+        EscribirMensaje("                                          ╔═══════════════════╗",3);
+        Console.WriteLine("                                          ║   --> FINAL <--   ║",3);
+        EscribirMensaje("                                          ╚═══════════════════╝",3);
         System.Console.WriteLine("");
         Ganadores = mecanica.Sorteo(Ganadores);
         mecanica.Fixture(Ganadores,1);
@@ -699,7 +706,7 @@ public static void ElegirPersonaje(List<Personaje> listaP, PersonajesJson pjson)
         Thread.Sleep(3000);
         System.Console.WriteLine("");
         if (Ganadores != null) {
-            Ganadores[0].MostrarPersonajes(2);
+            Ganadores[0].MostrarPersonaje(3);
             Continuar();
             EscribirMensaje(" - Que bien !!!. ¿Cual creíste que ganaría? - ",5);
             Continuar();

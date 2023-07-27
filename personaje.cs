@@ -293,16 +293,16 @@ public class FabricaDePersonajes {
         nuevo.Tipo = nuevo.Tipo + ", " + rol;
         nuevo.Energia = 2;
         // Edad con API
-        // EdadconAPI(nuevo.Nombre);
-        // Root EdadConAPI = new Root();
+        EdadconAPI(nuevo.Nombre);
+        Root EdadConAPI = new Root();
         int anio;
-        // if (File.Exists("EdadAPI.json")) {
-        //     string json = File.ReadAllText("EdadAPI.json");
-        //     EdadConAPI = JsonSerializer.Deserialize<Root>(json);
-        //     anio = 2023 - EdadConAPI.age;
-        // } else {
+        if (File.Exists("EdadAPI.json")) {
+            string json = File.ReadAllText("EdadAPI.json");
+            EdadConAPI = JsonSerializer.Deserialize<Root>(json);
+            anio = 2023 - EdadConAPI.age;
+        } else {
             anio = valor.Next(1723,2024);
-        // }
+        }
         int mes = valor.Next(1,13);
         int dia;
         switch (mes) {

@@ -8,19 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\josei\\.nuget\\packages\\": {}
+    "C:\\Users\\Jose.DESKTOP-6FS2U8S\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\josei\\OneDrive\\Escritorio\\FACULTAD\\Taller de Lenguajes 1\\rpg-2023-josepro752\\rpg-2023-josepro752.csproj",
+      "projectUniqueName": "C:\\Users\\Jose.DESKTOP-6FS2U8S\\Downloads\\rpg-2023-josepro752\\rpg-2023-josepro752.csproj",
       "projectName": "rpg-2023-josepro752",
-      "projectPath": "C:\\Users\\josei\\OneDrive\\Escritorio\\FACULTAD\\Taller de Lenguajes 1\\rpg-2023-josepro752\\rpg-2023-josepro752.csproj",
-      "packagesPath": "C:\\Users\\josei\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\josei\\OneDrive\\Escritorio\\FACULTAD\\Taller de Lenguajes 1\\rpg-2023-josepro752\\obj\\",
+      "projectPath": "C:\\Users\\Jose.DESKTOP-6FS2U8S\\Downloads\\rpg-2023-josepro752\\rpg-2023-josepro752.csproj",
+      "packagesPath": "C:\\Users\\Jose.DESKTOP-6FS2U8S\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Jose.DESKTOP-6FS2U8S\\Downloads\\rpg-2023-josepro752\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\josei\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Jose.DESKTOP-6FS2U8S\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -59,7 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }
