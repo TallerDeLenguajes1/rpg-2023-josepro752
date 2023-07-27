@@ -242,8 +242,8 @@ public class FabricaDePersonajes {
         } else {
             nuevo.Nivel = nivel; // MIN nivel 3, para ser nivel 13 en la ultima pelea (en el modo supervivencia), los enemigos seran un poco mas fuertes
         }
-        for (int j = 0; j < nivel; j++) {
-            nuevo = mecanica.SubirNivel(nuevo);
+        for (int j = 0; j < nuevo.Nivel; j++) {
+            nuevo = mecanica.SubirNivel(nuevo); // SUBO ATRIBUTOS DEL PERSONAJE segun el nivel del mismo
         }
         rol = roles[valor.Next(0,5)];
         switch (rol) {
@@ -330,8 +330,14 @@ public class FabricaDePersonajes {
         var listaDePersonajes = new List<Personaje> ();
         var personaje = new FabricaDePersonajes ();
         var PJson = new PersonajesJson ();
-        for (int i = nivel; i < cant; i++) {
-            listaDePersonajes.Add(personaje.CrearPersonaje(nivel));
+        if (nivel == - 1) {
+            for (int i = 0; i < cant; i++) {
+                listaDePersonajes.Add(personaje.CrearPersonaje(nivel));
+            }
+        } else {
+            for (int i = 0; i < cant; i++) {
+                listaDePersonajes.Add(personaje.CrearPersonaje(nivel + i));
+            }
         }
         PJson.GuardarPersonaje(listaDePersonajes,nombre);
         listaDePersonajes = PJson.LeerPersonaje(nombre + ".json");

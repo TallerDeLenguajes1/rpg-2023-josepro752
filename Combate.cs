@@ -6,7 +6,6 @@ public class MecanicaDeCombate {
     public Personaje SubirNivel(Personaje personaje) {
         Random valor = new Random(); 
         personaje.Salud += 5;
-        personaje.Nivel += 1;
         personaje.Fuerza += 0.25f;
         personaje.Armadura += 0.25f;
         personaje.Velocidad += 0.25f;
