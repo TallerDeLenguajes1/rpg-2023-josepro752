@@ -291,7 +291,7 @@ public class FabricaDePersonajes {
         }
         nuevo.Destreza = valor.Next(1,6);
         nuevo.Tipo = nuevo.Tipo + ", " + rol;
-        nuevo.Energia = 2;
+        nuevo.Energia = 2; // Se puede cambiar para que los personajes empiecen con mas vida
         // Edad con API
         EdadconAPI(nuevo.Nombre);
         Root EdadConAPI = new Root();

@@ -59,41 +59,35 @@ public class MecanicaDeCombate {
             System.Console.WriteLine("                                ║ "+ Interfaz.CentrarV2(" RONDA N"+(ronda+1)/2+" ",37) +" ║"); // 37 espacios
             System.Console.WriteLine("                                ╚═══════════════════════════════════════╝");
             System.Console.WriteLine("");
-            if (turno == 1) {
+            if (turno == 1)
+            {
                 turno = 2;
                 //El personaje que ataca utilizara su habilidad especial, si tiene una clara ventaja sobre su adversario o si esta llena
-                if (energia1 >= 7 && (salud1 > (personaje1.Salud/2))) {
-                    habilidadAtacante = 2;
-                    energia1 -= 7;
-                } else {
-                    if (energia1 >= 7 && (salud2 < (personaje2.Salud/3))) {
-                        habilidadAtacante = 2;
-                        energia1 -= 7;
-                    } else {
-                        if (energia1 == 10) {
-                            habilidadAtacante = 2;
-                            energia1 -= 7;
-                        }
-                    }
-                }
+                CombateAUTOMATICO(personaje1, personaje2, salud1, salud2, ref habilidadAtacante, ref energia1);
                 //El personaje que defiende utilizara su habilidad especial para defenderse si esta cerca de morir 
-                if (energia2 >= 5 && (salud2 < (personaje2.Salud/3))) {
+                if (energia2 >= 5 && (salud2 < (personaje2.Salud / 3)))
+                {
                     habilidadDefensor = 3;
                     energia2 -= 5;
                 }
-                dano = DanoDeCombate(personaje1,personaje2,habilidadAtacante,habilidadDefensor);
+                dano = DanoDeCombate(personaje1, personaje2, habilidadAtacante, habilidadDefensor);
                 salud2 = salud2 - dano;
                 energia1 += 1;
                 energia2 += 1;
-                if (decision.KeyChar == '\r') {
-                    if (dano > 0) {
-                        ResultadoCombate(personaje1,personaje2,energia2,salud2,dano,"TURNO de:");
-                    } else {
-                        ResultadoCombate(personaje1,personaje2,energia2,salud2,valor.Next(1,5),"TURNO de:");
+                if (decision.KeyChar == '\r')
+                {
+                    if (dano > 0)
+                    {
+                        ResultadoCombate(personaje1, personaje2, energia2, salud2, dano, "TURNO de:");
+                    }
+                    else
+                    {
+                        ResultadoCombate(personaje1, personaje2, energia2, salud2, valor.Next(1, 5), "TURNO de:");
                     }
                     decision = Opciones(decision);
                 }
-            } else {
+            }
+            else {
                 turno = 1;
                 //El personaje que ataca utilizara su habilidad especial, si tiene una clara ventaja sobre su adversario o si esta llena
                 if (energia2 >= 7 && (salud2 > (personaje2.Salud/2))) {
@@ -139,7 +133,7 @@ public class MecanicaDeCombate {
         } else {
             if (salud2 > 0 && salud1 < 0) {
                 System.Console.WriteLine("");
-                GanadorPorKO(personaje1);
+                GanadorPorKO(personaje2);
                 Interfaz.Continuar();
                 return personaje2;
             } else {
@@ -147,7 +141,7 @@ public class MecanicaDeCombate {
                 salud2 = (salud2/personaje2.Salud)*100;
                 if (salud1 > salud2) {
                     System.Console.WriteLine("");
-                    GanadorPorVida(personaje2);
+                    GanadorPorVida(personaje1);
                     Interfaz.Continuar();;
                     return personaje1;
                 } else {
@@ -159,6 +153,32 @@ public class MecanicaDeCombate {
             }
         }
     }
+
+    private static void CombateAUTOMATICO(Personaje personaje1, Personaje personaje2, float salud1, float salud2, ref int habilidadAtacante, ref int energia1)
+    {
+        if (energia1 >= 7 && (salud1 > (personaje1.Salud / 2)))
+        {
+            habilidadAtacante = 2;
+            energia1 -= 7;
+        }
+        else
+        {
+            if (energia1 >= 7 && (salud2 < (personaje2.Salud / 3)))
+            {
+                habilidadAtacante = 2;
+                energia1 -= 7;
+            }
+            else
+            {
+                if (energia1 == 10)
+                {
+                    habilidadAtacante = 2;
+                    energia1 -= 7;
+                }
+            }
+        }
+    }
+
     public Personaje CombateIAvsJugador(Personaje jugador, Personaje personajeIA, Personaje auxiliarIA, float danoAnterior) {
         Random valor = new Random();
         ConsoleKeyInfo decision;
@@ -243,7 +263,7 @@ public class MecanicaDeCombate {
                     }
                 }
                 //El jugador decide como defenderse
-                ResultadoCombate(jugador,personajeIA,auxiliarIAEnergia,auxiliarIASalud,danoAnterior,"TURNO DE:");
+                ResultadoCombate(personajeIA,jugador,energiaJugador,saludJugador,danoAnterior,"TURNO DE:");
                 System.Console.WriteLine("");
                 System.Console.WriteLine("                                ╔═══════════════════════════════════════╗");
                 System.Console.WriteLine("                                ╟──────┬────────────────────────┬───────╢");
@@ -263,7 +283,7 @@ public class MecanicaDeCombate {
                         Thread.Sleep(1500);
                     }
                 }
-                danoAnterior =  DanoDeCombate(jugador,personajeIA,habilidadAtacante,habilidadDefensor);
+                danoAnterior =  DanoDeCombate(personajeIA,jugador,habilidadAtacante,habilidadDefensor);
                 saludJugador = saludJugador - danoAnterior;
                 energiaJugador += 1;
                 energiaIA += 1;
@@ -289,7 +309,7 @@ public class MecanicaDeCombate {
         } else {
             if (saludIA > 0 && saludJugador < 0) {
                 System.Console.WriteLine("");
-                GanadorPorKO(jugador);
+                GanadorPorKO(personajeIA);
                 Interfaz.Continuar();
                 return personajeIA;
             } else {
@@ -297,7 +317,7 @@ public class MecanicaDeCombate {
                 saludIA = (saludIA/personajeIA.Salud)*100;
                 if (saludJugador > saludIA) {
                     System.Console.WriteLine("");
-                    GanadorPorVida(personajeIA);
+                    GanadorPorVida(jugador);
                     Interfaz.Continuar();;
                     return jugador;
                 } else {
@@ -330,7 +350,7 @@ public class MecanicaDeCombate {
             Interfaz.EscribirMensaje("                       ╚═════════════════════════════════════════════════════════╝",1);
             System.Console.WriteLine("");
             System.Console.WriteLine("                       ┌─────────────────────────────────────────────────────────┐");
-            System.Console.WriteLine("                       │   . "+ Interfaz.Centrar(Competidores[0].Nombre +", "+ Competidores[0].Apodo +"   vs.  "+Competidores[1].Nombre +", "+ Competidores[1].Apodo,47) +" .   │");
+            System.Console.WriteLine("                       │   . "+ Interfaz.Centrar(Competidores[0].Nombre +", "+ Competidores[0].Apodo +"   vs.  "+ Competidores[1].Nombre +", "+ Competidores[1].Apodo,47) +" .   │");
             System.Console.WriteLine("                       └─────────────────────────────────────────────────────────┘");
             if (modo == 1) {
                 if(Competidores.Count()>1){
@@ -389,17 +409,17 @@ public class MecanicaDeCombate {
         System.Console.WriteLine("                            ║                 Ganó por K.O                  ║");
         System.Console.WriteLine("                            ╚═══════════════════════════════════════════════╝");
     }
-    public void ResultadoCombate(Personaje personajeTurno, Personaje personaje, int energia ,float salud, float dano, string texto) {
-        if (dano != 0) {
+    public void ResultadoCombate(Personaje personajeTurno, Personaje personajeGolpeado, int energiaGolpeado ,float saludGolpeado, float danoGolpeado, string texto) {
+        if (danoGolpeado != 0) {
             System.Console.WriteLine("                               ╔═════════════════════════════════════════╗");
             System.Console.WriteLine("                               ║ "+ Interfaz.CentrarV2(" "+ texto +" "+ personajeTurno.Nombre +", "+ personajeTurno.Apodo +" ",39) +" ║"); //39 espacios
             System.Console.WriteLine("                               ╟───────┬────────────────────────┬────────╢");
             System.Console.WriteLine("                               ╟───────┤ RESULTADOS DEL COMBATE ├────────╢");
             System.Console.WriteLine("                               ╟───────┴────────────────────────┴────────╢");
-            System.Console.WriteLine("                               ║"+ Interfaz.Centrar("Personaje golpeado: "+ personaje.Nombre +", "+ personaje.Apodo,41) +"║"); //41 espacios
-            System.Console.WriteLine("                               ║"+ Interfaz.Centrar("Daño ocasionado: "+ dano.ToString(),41) +"║"); //41 espacios
-            System.Console.WriteLine("                               ║"+ Interfaz.Centrar("Salud restante: "+ salud.ToString(),41) +"║"); //41 espacios
-            System.Console.WriteLine("                               ║"+ Interfaz.Centrar("Energia restante: "+ energia,41) +"║"); //41 espacios
+            System.Console.WriteLine("                               ║"+ Interfaz.Centrar("Personaje golpeado: "+ personajeGolpeado.Nombre +", "+ personajeGolpeado.Apodo,41) +"║"); //41 espacios
+            System.Console.WriteLine("                               ║"+ Interfaz.Centrar("Daño ocasionado: "+ danoGolpeado.ToString(),41) +"║"); //41 espacios
+            System.Console.WriteLine("                               ║"+ Interfaz.Centrar("Salud restante: "+ saludGolpeado.ToString(),41) +"║"); //41 espacios
+            System.Console.WriteLine("                               ║"+ Interfaz.Centrar("Energia restante: "+ energiaGolpeado,41) +"║"); //41 espacios
             System.Console.WriteLine("                               ╚═════════════════════════════════════════╝");
             System.Console.WriteLine("");
         } else {
