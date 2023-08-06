@@ -79,7 +79,7 @@ public class Personaje {
         Console.WriteLine("            ║░░░ │ ♦ Nombre: "+ Interfaz.Espaciado(Nombre +", "+ Apodo,21) +" │ ░░░║"); //21 espacios
         Console.WriteLine("            ║░░░ │ ♦ LVL: "+ Interfaz.Espaciado(Nivel.ToString(),24) +" │ ░░░║"); //24 espacios
         Console.WriteLine("            ║░░░ │ ♦ TIPO: "+ Interfaz.Espaciado(Tipo,23) +" │ ░░░║"); //23 espacioes
-        Console.WriteLine("            ║░░░ │ ♦ Fec. Nac.: "+ Interfaz.Espaciado(FechaDeNacimiento.ToShortDateString(),18) +" │ ░░░║"); //148espacios
+        Console.WriteLine("            ║░░░ │ ♦ Fec. Nac.: "+ Interfaz.Espaciado(FechaDeNacimiento.ToShortDateString(),18) +" │ ░░░║"); //18 espacios
         Console.WriteLine("            ║░░░ │ ♦ Edad: "+ Interfaz.Espaciado(Edad.ToString(),23) +" │ ░░░║"); //23 espacios
         Console.WriteLine("            ║░░░ ├─────────────────────────────────┤ ░░░║");
         Console.WriteLine("            ║░░░ │       ▲ CARACTERISTICAS ▲       │ ░░░║");
@@ -214,6 +214,7 @@ public class FabricaDePersonajes {
         var nuevo = new Personaje();
         var valor = new Random();
         string rol;
+        int j;
         // Datos
         nuevo.Tipo = Tipo[valor.Next(0,3)];
         switch (nuevo.Tipo) {
@@ -247,9 +248,10 @@ public class FabricaDePersonajes {
         } else {
             nuevo.Nivel = nivel; // MIN nivel 3, para ser nivel 13 en la ultima pelea (en el modo supervivencia), los enemigos seran un poco mas fuertes
         }
-        for (int j = 0; j < nuevo.Nivel; j++) {
+        for (j = 0; j < nuevo.Nivel; j++) {
             nuevo = mecanica.SubirNivel(nuevo); // SUBO ATRIBUTOS DEL PERSONAJE segun el nivel del mismo
         }
+        nuevo.Nivel += j;
         rol = roles[valor.Next(0,5)];
         switch (rol) {
             case "Arquero":
@@ -291,7 +293,7 @@ public class FabricaDePersonajes {
         }
         nuevo.Destreza = valor.Next(1,6);
         nuevo.Tipo = nuevo.Tipo + ", " + rol;
-        nuevo.Energia = 2; // Se puede cambiar para que los personajes empiecen con mas vida
+        nuevo.Energia = 4; // Se puede cambiar para que los personajes empiecen con mas vida
         // Edad con API
         EdadconAPI(nuevo.Nombre);
         Root EdadConAPI = new Root();
@@ -340,7 +342,7 @@ public class FabricaDePersonajes {
                 listaDePersonajes.Add(personaje.CrearPersonaje(nivel));
             }
         } else {
-            for (int i = 0; i < cant; i++) {
+            for (int i = 0; i < cant; i++) { 
                 listaDePersonajes.Add(personaje.CrearPersonaje(nivel + i));
             }
         }
